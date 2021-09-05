@@ -4,6 +4,8 @@ import { LoginForm } from "./loginForm";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
+import { WelcomePage } from "./welcomePage";
+import { SignUpPage } from "./signedUpPage";
 
 const BoxContainer = styled.div`
   width: 280px;
@@ -131,7 +133,21 @@ export function AccountBox(props) {
     }, 400);
   };
 
-  const contextValue = { switchToSignup, switchToSignin };
+  const switchToWelcomePage = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("welcome");
+    }, 400);
+  };
+
+  const switchToSignUpPage = () => {
+    playExpandingAnimation();
+    setTimeout(() => {
+      setActive("signedup");
+    }, 400);
+  };
+
+  const contextValue = { switchToSignup, switchToSignin, switchToWelcomePage, switchToSignUpPage };
 
   return (
     <AccountContext.Provider value={contextValue}>
@@ -157,10 +173,27 @@ export function AccountBox(props) {
               <SmallText>Please sign-up to continue!</SmallText>
             </HeaderContainer>
           )}
+          {active === "welcome" && (
+            <HeaderContainer>
+              <HeaderText>Hello</HeaderText>
+              <HeaderText>Again</HeaderText>
+              <SmallText>You've signed in!</SmallText>
+            </HeaderContainer>
+          )}
+          {active === "signedup" && (
+            <HeaderContainer>
+              <HeaderText>Congratulations!</HeaderText>
+              {/* <HeaderText>Again</HeaderText> */}
+              <SmallText>You've signed up!</SmallText>
+            </HeaderContainer>
+          )}
         </TopContainer>
         <InnerContainer>
           {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
+          {active === "welcome" && <WelcomePage />}
+          {active === "signedup" && <SignUpPage />}
+
         </InnerContainer>
       </BoxContainer>
     </AccountContext.Provider>
