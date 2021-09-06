@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LogoImg from "../../images/logos/newLogo.png";
 import { Link } from "react-router-dom";
+import { HomePagePath } from "../../Paths";
 
 const BrandLogoContainer = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ export function BrandLogo(props) {
   return (
     <BrandLogoContainer>
       {!hideLogo && (
-        <Link to="/">
+        <Link to={HomePagePath}>
           <LogoImage size={logoSize}>
             <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" />
           </LogoImage>

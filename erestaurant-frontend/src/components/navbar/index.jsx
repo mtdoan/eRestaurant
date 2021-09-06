@@ -6,6 +6,7 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import { deviceSize } from "../responsive";
 import { useMediaQuery } from "react-responsive";
+import { buildPath } from "../../Paths";
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -58,11 +59,11 @@ export function Navbar(props) {
         {!isMobile && <Marginer direction="horizontal" margin={10} />}
         {!isMobile && <Seperator />}
         <Marginer direction="horizontal" margin={10} />
-        <Link to="/customer/access/signup">
+        <Link to={buildPath("signup")}>
           <Button size={11}>Register</Button>
         </Link>
         <Marginer direction="horizontal" margin={8} />
-        <AnchorLink to="/customer/access/signin">Login</AnchorLink>
+        <AnchorLink to={buildPath("signin")}>Login</AnchorLink>
       </AccessibilityContainer>
     </NavbarContainer>
   );

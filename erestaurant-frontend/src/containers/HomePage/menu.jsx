@@ -1,7 +1,6 @@
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { deviceSize } from "../../components/responsive";
+// import { deviceSize } from "../../components/responsive";
 import Products from "../../components/products";
 import { productData } from "../../components/products/data";
 

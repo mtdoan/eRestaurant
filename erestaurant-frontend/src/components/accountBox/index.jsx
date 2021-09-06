@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { LoginForm } from "./loginForm";
 import { AccountContext } from "./context";
 import { SignupForm } from "./signupForm";
-import { MutedLink } from "./common";
 import { SignedInPage } from "./signedInPage";
 import { SignedUpPage } from "./signedUpPage";
 
@@ -119,7 +118,7 @@ export function AccountBox(props) {
   const { initialActive } = props;
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState(
-    initialActive ? initialActive : "signin"
+    initialActive
   );
 
   const playExpandingEffect = () => {
