@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/eRestaurant/static/css/main.e9bae532.chunk.css",
-    "main.js": "/eRestaurant/static/js/main.290d8b2b.chunk.js",
-    "main.js.map": "/eRestaurant/static/js/main.290d8b2b.chunk.js.map",
-    "runtime-main.js": "/eRestaurant/static/js/runtime-main.b2111993.js",
-    "runtime-main.js.map": "/eRestaurant/static/js/runtime-main.b2111993.js.map",
-    "static/js/2.07494e45.chunk.js": "/eRestaurant/static/js/2.07494e45.chunk.js",
-    "static/js/2.07494e45.chunk.js.map": "/eRestaurant/static/js/2.07494e45.chunk.js.map",
-    "static/js/3.55e5750e.chunk.js": "/eRestaurant/static/js/3.55e5750e.chunk.js",
-    "static/js/3.55e5750e.chunk.js.map": "/eRestaurant/static/js/3.55e5750e.chunk.js.map",
+    "main.js": "/eRestaurant/static/js/main.cac95bb7.chunk.js",
+    "main.js.map": "/eRestaurant/static/js/main.cac95bb7.chunk.js.map",
+    "runtime-main.js": "/eRestaurant/static/js/runtime-main.1255b97d.js",
+    "runtime-main.js.map": "/eRestaurant/static/js/runtime-main.1255b97d.js.map",
+    "static/js/2.fdeac82f.chunk.js": "/eRestaurant/static/js/2.fdeac82f.chunk.js",
+    "static/js/2.fdeac82f.chunk.js.map": "/eRestaurant/static/js/2.fdeac82f.chunk.js.map",
+    "static/js/3.dab5ff99.chunk.js": "/eRestaurant/static/js/3.dab5ff99.chunk.js",
+    "static/js/3.dab5ff99.chunk.js.map": "/eRestaurant/static/js/3.dab5ff99.chunk.js.map",
     "index.html": "/eRestaurant/index.html",
     "static/css/main.e9bae532.chunk.css.map": "/eRestaurant/static/css/main.e9bae532.chunk.css.map",
-    "static/js/2.07494e45.chunk.js.LICENSE.txt": "/eRestaurant/static/js/2.07494e45.chunk.js.LICENSE.txt",
+    "static/js/2.fdeac82f.chunk.js.LICENSE.txt": "/eRestaurant/static/js/2.fdeac82f.chunk.js.LICENSE.txt",
     "static/media/TheSpecial.fc5cdd5c.png": "/eRestaurant/static/media/TheSpecial.fc5cdd5c.png",
     "static/media/TopSectionBackground.f6b82282.jpeg": "/eRestaurant/static/media/TopSectionBackground.f6b82282.jpeg",
     "static/media/newLogo.5707064d.png": "/eRestaurant/static/media/newLogo.5707064d.png",
@@ -23,9 +23,9 @@
     "static/media/sweet3.c495c742.jpeg": "/eRestaurant/static/media/sweet3.c495c742.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b2111993.js",
-    "static/js/2.07494e45.chunk.js",
+    "static/js/runtime-main.1255b97d.js",
+    "static/js/2.fdeac82f.chunk.js",
     "static/css/main.e9bae532.chunk.css",
-    "static/js/main.290d8b2b.chunk.js"
+    "static/js/main.cac95bb7.chunk.js"
   ]
 }
