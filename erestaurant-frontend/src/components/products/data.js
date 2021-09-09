@@ -10,7 +10,7 @@ export const productData = [
     img: product1,
     alt: 'Pizza',
     name: 'Supreme Pizza',
-    desc:
+    description:
       'Marinara sauce, basil, italian sausage, roma tomatoes, olives, and pesto',
     price: '$19.99',
     button: 'Add to Cart'
@@ -19,7 +19,7 @@ export const productData = [
     img: product2,
     alt: 'Pizza',
     name: 'Hawaiian Paradise',
-    desc:
+    description:
       ' Marinara sauce, basil, italian sausage, roma tomatoes, olives, and pesto',
     price: '$16.99',
     button: 'Add to Cart'
@@ -28,7 +28,7 @@ export const productData = [
     img: product3,
     alt: 'Pizza',
     name: 'Veggie Overload',
-    desc:
+    description:
       ' Marinara sauce, basil, italian sausage, roma tomatoes, olives, and pesto',
     price: '$14.99',
     button: 'Add to Cart'
@@ -37,7 +37,7 @@ export const productData = [
     img: product2,
     alt: 'Pizza',
     name: 'Hawaiian Paradise',
-    desc:
+    description:
       ' Marinara sauce, basil, italian sausage, roma tomatoes, olives, and pesto',
     price: '$16.99',
     button: 'Add to Cart'
@@ -46,7 +46,7 @@ export const productData = [
     img: product2,
     alt: 'Pizza',
     name: 'Hawaiian Paradise',
-    desc:
+    description:
       ' Marinara sauce, basil, italian sausage, roma tomatoes, olives, and pesto',
     price: '$16.99',
     button: 'Add to Cart'
@@ -58,7 +58,7 @@ export const productDataTwo = [
     img: sweet2,
     alt: 'Donuts',
     name: 'Doughlicious',
-    desc:
+    description:
       'Belgian chocolate glazed donuts covered in icing with sprinkles on top',
     price: '$9.99',
     button: 'Add to Cart'
@@ -67,7 +67,7 @@ export const productDataTwo = [
     img: sweet3,
     alt: 'Ice Cream',
     name: 'Caramel Wonder',
-    desc:
+    description:
       'Vanilla ice cream covered with caramel and chocolate glaze topped with a coco stick',
     price: '$12.99',
     button: 'Add to Cart'
@@ -76,7 +76,7 @@ export const productDataTwo = [
     img: sweet1,
     alt: 'Brownie',
     name: 'Brownie Bunch',
-    desc:
+    description:
       'Double fudge brownie squares topped with white chocolate pieces and macadamia nuts',
     price: '$9.99',
     button: 'Add to Cart'
