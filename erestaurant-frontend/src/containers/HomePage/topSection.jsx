@@ -7,7 +7,7 @@ import TheSpecialImg from "../../images/TheSpecial.jpg";
 
 const TopSectionContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: url(${TopSectionBackgroundImg}) no-repeat;
   background-position: 0px 0px;
   background-size: cover;
@@ -31,11 +31,12 @@ const TopSectionInnerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-top: 20px;
 `;
 
 const StandoutImage = styled.div`
   width: 100%;
-  height: 34em;
+  height: 100%;
   img {
     width: 100%;
     height: 100%;
