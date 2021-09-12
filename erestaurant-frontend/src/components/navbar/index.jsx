@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
+import { HomePagePath } from "../../Paths"; 
 import { buildPath } from "../../Paths";
 
 const NavbarContainer = styled.div`
@@ -65,7 +66,7 @@ const AnchorLink = styled(Link)`
 
 const AnchorLinkLoginRegisterContainer = styled(Link)`
   font-size: 15px;
-  color: rgb(205, 2, 36);
+  color: #fff;
   cursor: pointer;
   text-decoration: none;
   outline: none;
@@ -84,7 +85,7 @@ const Seperator = styled.div`
 const SeperatorLoginRegisterContainer = styled.div`
   min-height: 35%;
   width: 1px;
-  background-color: rgb(205, 2, 36);
+  background-color: #fff;
 `;
 
 export function Navbar(props) {
@@ -98,7 +99,7 @@ export function Navbar(props) {
       <CenterContainer>
         <MenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink>Home</AnchorLink>
+          <AnchorLink to={HomePagePath}>Home</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -113,7 +114,7 @@ export function Navbar(props) {
 
       <AccessibilityContainer>
         <div style={{ marginLeft: "auto" }} />
-        <AnchorLink to={buildPath("signup")}>Register</AnchorLink>
+        <AnchorLink to={buildPath("register")}>Register</AnchorLink>
         <Marginer direction="horizontal" margin={accessibilityMarginSize} />
         <Seperator />
         <Marginer direction="horizontal" margin={accessibilityMarginSize} />
@@ -130,11 +131,11 @@ export function NavbarLoginRegister(props) {
     <NavbarContainer useTransparent={useTransparent}>
       <div style={{ marginLeft: "auto" }} />
       <MenuLoginRegisterContainer>
-        <AnchorLinkLoginRegisterContainer>Home</AnchorLinkLoginRegisterContainer>
+        <AnchorLinkLoginRegisterContainer to={HomePagePath}>Home</AnchorLinkLoginRegisterContainer>
         <Marginer direction="horizontal" margin={marginSize} />
         <SeperatorLoginRegisterContainer />
         <Marginer direction="horizontal" margin={marginSize} />
-        <AnchorLinkLoginRegisterContainer to={buildPath("signup")}>Register</AnchorLinkLoginRegisterContainer>
+        <AnchorLinkLoginRegisterContainer to={buildPath("register")}>Register</AnchorLinkLoginRegisterContainer>
         <Marginer direction="horizontal" margin={marginSize} />
         <SeperatorLoginRegisterContainer />
         <Marginer direction="horizontal" margin={marginSize} />
