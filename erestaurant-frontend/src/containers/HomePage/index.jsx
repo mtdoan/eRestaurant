@@ -6,7 +6,7 @@ import { TopSection } from "./topSection";
 export function HomePage() {
   return (
     <TopSection>
-      <Navbar useTransparent />
+      <Navbar useTransparent id="homePageNavbar"/>
     </TopSection>
   );
 }

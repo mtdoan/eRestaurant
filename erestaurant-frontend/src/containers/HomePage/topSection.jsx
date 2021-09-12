@@ -56,7 +56,7 @@ export function TopSection(props) {
         <TopSectionInnerContainer>
           {!isMobile && (
             <StandoutImage>
-              <img src={TheSpecialImg} alt="The special offer" />
+              <img id="homePromotionalImg" src={TheSpecialImg} alt="The special offer" />
             </StandoutImage>
           )}
         </TopSectionInnerContainer>
