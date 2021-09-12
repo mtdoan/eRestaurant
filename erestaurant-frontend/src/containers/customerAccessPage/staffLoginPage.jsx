@@ -11,6 +11,7 @@ import { NavbarLoginRegister } from "../../components/navbar";
 
 const PageWrapper = styled.div`
   width: 100%;
+  height: 100%;
   min-height: 100%;
   padding: 0;
   margin: 0;
@@ -24,7 +25,7 @@ const InnerPageContainer = styled.div`
   flex: 1;
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 70vh;
+  min-height: 100vh;
   padding: 1em;
   display: flex;
   flex-direction: column;

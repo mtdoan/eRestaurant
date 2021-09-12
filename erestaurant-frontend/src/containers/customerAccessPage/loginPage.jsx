@@ -40,7 +40,7 @@ const InnerPageContainer = styled.div`
   flex: 1;
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 70vh;
+  min-height: 100vh;
   padding: 1em;
   display: flex;
   flex-direction: column;
