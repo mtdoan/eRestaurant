@@ -7,6 +7,7 @@ import { HomePagePath } from "../../Paths";
 const BrandLogoContainer = styled.div`
   display: flex;
   align-items: center;
+  width: 20%;
 `;
 
 const LogoImage = styled.div`
@@ -19,20 +20,8 @@ const LogoImage = styled.div`
   }
 `;
 
-const LogoTitle = styled.h2`
-  margin: 0;
-  font-size: ${({ size }) => (size ? size + "px" : "20px")};
-  color: ${({ color }) => (color ? color : "#fff")};
-  font-weight: 900;
-  margin-left: 6px;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
-
 export function BrandLogo(props) {
-  const { logoSize, textSize, color, hideLogo } = props;
+  const { logoSize, hideLogo } = props;
 
   return (
     <BrandLogoContainer id={props.id} >
@@ -43,12 +32,6 @@ export function BrandLogo(props) {
           </LogoImage>
         </Link>
       )}
-      {/* <StyledLink to="/">
-        <LogoTitle size={textSize} color={color}>
-          Le Bistrot D'Andre Restaurant
-        </LogoTitle>
-      </StyledLink> */} 
-      {/* can remove later*/}
     </BrandLogoContainer>
   );
 }
