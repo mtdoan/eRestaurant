@@ -1,9 +1,9 @@
 import "./App.css";
 import { HomePage } from "./containers/HomePage";
 import { buildPath, HomePagePath } from "./Paths";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { CustomerAccessPage } from "./containers/customerAccessPage";
+import { LoginPage } from "./containers/customerAccessPage/loginPage";
+import { StaffLoginPage } from "./containers/customerAccessPage/staffLoginPage";
+import { RegisterPage } from "./containers/customerAccessPage/registerPage";
 import { BookingPage } from "./containers/BookingPage/BookingPage";
 
 function App() {
@@ -12,7 +12,6 @@ function App() {
       <Router>
         <Switch>
           <Route path={HomePagePath} exact component={HomePage} />
-          <Route path={buildPath("/:action")} exact component={CustomerAccessPage}/>
           <Route path={buildPath("signin")} exact component={LoginPage} />
           <Route path={buildPath("staff/signin")} exact component={StaffLoginPage} />
           <Route path={buildPath("register")} exact component={RegisterPage} />
