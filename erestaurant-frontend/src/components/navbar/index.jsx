@@ -132,12 +132,7 @@ export function NavbarLoggedIn(props) {
 
   return (
     <NavbarContainer useTransparent={useTransparent}>
-      <Container>
-      <Row>
-        <Col>
-         <BrandLogo/>
-        </Col>
-        <Col sm>
+          <BrandLogo/>
           <CenterContainer>
             <MenuContainer>
               <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -153,12 +148,7 @@ export function NavbarLoggedIn(props) {
               <Marginer direction="horizontal" margin={menuMarginSize} />
             </MenuContainer>
           </CenterContainer>
-        </Col>
-        <Col>
           <p>Hello User!</p>
-        </Col>
-      </Row>
-      </Container>
     </NavbarContainer>
   );
 }
