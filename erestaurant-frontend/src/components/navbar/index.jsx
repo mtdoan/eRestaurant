@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { deviceSize } from "../responsive";
 import { useMediaQuery } from "react-responsive";
 import { buildPath } from "../../Paths";
+import { Container, Row, Col } from 'react-grid';
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -65,6 +66,66 @@ export function Navbar(props) {
         <Marginer direction="horizontal" margin={8} />
         <AnchorLink to={buildPath("signin")}>Login</AnchorLink>
       </AccessibilityContainer>
+    </NavbarContainer>
+  );
+}
+
+export function NavbarLoggedIn(props) {
+  const { useTransparent } = props;
+  const menuMarginSize = 60;
+  const accessibilityMarginSize = 20;
+
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+      <Container>
+      <Row>
+        <Col>
+         <BrandLogo/>
+        </Col>
+        <Col sm>
+          <CenterContainer>
+            <MenuContainer>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={HomePagePath}>Home</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("about")}>About</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+            </MenuContainer>
+          </CenterContainer>
+        </Col>
+        <Col>
+          <p>Hello User!</p>
+        </Col>
+      </Row>
+      </Container>
+    </NavbarContainer>
+  );
+}
+
+export function NavbarLoginRegister(props) {
+  const { useTransparent } = props;
+  const marginSize = 24;
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+      <div style={{ marginLeft: "auto" }} />
+      <MenuLoginRegisterContainer>
+        <AnchorLinkLoginRegisterContainer to={HomePagePath}>Home</AnchorLinkLoginRegisterContainer>
+        <Marginer direction="horizontal" margin={marginSize} />
+        <SeperatorLoginRegisterContainer />
+        <Marginer direction="horizontal" margin={marginSize} />
+        <AnchorLinkLoginRegisterContainer to={buildPath("register")}>Register</AnchorLinkLoginRegisterContainer>
+        <Marginer direction="horizontal" margin={marginSize} />
+        <SeperatorLoginRegisterContainer />
+        <Marginer direction="horizontal" margin={marginSize} />
+        <AnchorLinkLoginRegisterContainer to={buildPath("signin")}>Login</AnchorLinkLoginRegisterContainer>
+        <Marginer direction="horizontal" margin={marginSize} />
+      </MenuLoginRegisterContainer>
     </NavbarContainer>
   );
 }
