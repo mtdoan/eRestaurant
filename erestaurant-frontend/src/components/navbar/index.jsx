@@ -125,7 +125,6 @@ export function Navbar(props) {
   );
 }
 
-<<<<<<< HEAD
 export function NavbarLoggedIn(props) {
   const { useTransparent } = props;
   const menuMarginSize = 60;
@@ -164,8 +163,6 @@ export function NavbarLoggedIn(props) {
   );
 }
 
-=======
->>>>>>> main
 export function NavbarLoginRegister(props) {
   const { useTransparent } = props;
   const marginSize = 24;

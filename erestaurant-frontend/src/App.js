@@ -5,6 +5,7 @@ import { LoginPage } from "./containers/customerAccessPage/loginPage";
 import { StaffLoginPage } from "./containers/customerAccessPage/staffLoginPage";
 import { RegisterPage } from "./containers/customerAccessPage/registerPage";
 import { BookingPage } from "./containers/BookingPage/BookingPage";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
