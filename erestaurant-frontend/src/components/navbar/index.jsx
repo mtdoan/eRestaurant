@@ -148,7 +148,7 @@ export function NavbarLoggedIn(props) {
               <Marginer direction="horizontal" margin={menuMarginSize} />
             </MenuContainer>
           </CenterContainer>
-          <p>Hello User!</p>
+          <h1>Hello User!</h1>
     </NavbarContainer>
   );
 }
