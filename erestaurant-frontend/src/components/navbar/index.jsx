@@ -95,7 +95,9 @@ export function Navbar(props) {
 
   return (
     <NavbarContainer useTransparent={useTransparent}>
-      <BrandLogo />
+      <AccessibilityContainer> 
+        <BrandLogo />
+      </AccessibilityContainer>
       <CenterContainer>
         <MenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
