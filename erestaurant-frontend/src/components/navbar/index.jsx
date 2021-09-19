@@ -5,7 +5,6 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import { HomePagePath } from "../../Paths"; 
 import { buildPath } from "../../Paths";
-import { Container, Row, Col } from 'react-grid';
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -95,8 +94,10 @@ export function Navbar(props) {
   const accessibilityMarginSize = 20;
 
   return (
-    <NavbarContainer useTransparent={useTransparent}>
-      <BrandLogo />
+    <NavbarContainer useTransparent={useTransparent}>      
+      <AccessibilityContainer>
+        <BrandLogo/>
+      </AccessibilityContainer>
       <CenterContainer>
         <MenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -132,7 +133,9 @@ export function NavbarLoggedIn(props) {
 
   return (
     <NavbarContainer useTransparent={useTransparent}>
-          <BrandLogo/>
+          <AccessibilityContainer>
+            <BrandLogo/>
+          </AccessibilityContainer>
           <CenterContainer>
             <MenuContainer>
               <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -148,7 +151,9 @@ export function NavbarLoggedIn(props) {
               <Marginer direction="horizontal" margin={menuMarginSize} />
             </MenuContainer>
           </CenterContainer>
-          <h1>Hello User!</h1>
+          <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
+          <h1 >Hello User! </h1>
+          </AccessibilityContainer>
     </NavbarContainer>
   );
 }

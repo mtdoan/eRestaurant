@@ -5,7 +5,7 @@ import { Marginer } from "../../components/marginer";
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Container, Row, Col } from 'react-grid';
-import { NavbarLoggedIn } from "../../components/navbar";
+import { NavbarLoggedIn } from "../../components/navbar"; 
 
 export function BookingPage() {
 
