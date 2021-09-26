@@ -1,7 +1,7 @@
 import "./App.css";
 import { HomePage } from "./containers/HomePage";
 import { buildPath, HomePagePath } from "./Paths";
-import { LoginPage } from "./containers/CustomerAccessPage/loginPage";
+import { LoginPage } from "./containers/CustomerAccessPage/customerLoginPage";
 import { LoggedInPage } from "./containers/CustomerAccessPage/loggedInPage";
 import { StaffLoginPage } from "./containers/CustomerAccessPage/staffLoginPage";
 import { RegisterPage } from "./containers/CustomerAccessPage/registerPage";
