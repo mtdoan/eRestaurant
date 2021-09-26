@@ -1,7 +1,7 @@
 import "./App.css";
 import { HomePage } from "./containers/HomePage";
 import { buildPath, HomePagePath } from "./Paths";
-import { LoginPage } from "./containers/customerAccessPage/loginPage";
+import { LoginPage } from "./containers/customerAccessPage/customerLoginPage";
 import { StaffLoginPage } from "./containers/customerAccessPage/staffLoginPage";
 import { RegisterPage } from "./containers/customerAccessPage/registerPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";

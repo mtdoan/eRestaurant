@@ -68,17 +68,17 @@ export function StaffLoginPage() {
   return (
     <PageWrapper>
       <InnerPageContainer>
-      <NavbarLoginRegister useTransparent/>
+      <NavbarLoginRegister id="staffLoginPageNavbar" useTransparent/>
         <div>
-          <StandoutImage> 
+          <StandoutImage id="staffLoginPageLogo"> 
             <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" /> 
           </StandoutImage> 
           <FormContainer>
-            <Input placeholder="Email" />
-            <Input type="password" placeholder="Password" />
-            <MutedLink href="#">Forgot Password</MutedLink>
+            <Input id="staffEmailInput" placeholder="Email" />
+            <Input id="staffPasswordInput" type="password" placeholder="Password" />
+            <MutedLink id="staffForgotPasswordLink" href="#">Forgot Password</MutedLink>
             <Marginer direction="vertical" margin="1em" />
-            <SubmitButton >LOGIN</SubmitButton>
+            <SubmitButton id="staffLoginButton" >LOGIN</SubmitButton>
             <Marginer direction="vertical" margin={5} />
           </FormContainer>
         </div>

@@ -80,20 +80,20 @@ const Heading = styled.h1`
   return (
     <PageWrapper>
       <InnerPageContainer>
-      <NavbarLoginRegister useTransparent/>
+        <NavbarLoginRegister id="registerPageNavbar"useTransparent/>
         <div>
-          <StandoutImage> 
+          <StandoutImage id="registerPageLogo"> 
             <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" /> 
           </StandoutImage> 
-          <Heading>Create Account</Heading>
+          <Heading id="registerPageHeading">Create Account</Heading>
           <FormContainer>
-            <Input placeholder="Email*" />
-            <Input placeholder="First Name*" />
-            <Input placeholder="Last Name*" />
-            <Input placeholder="Phone number" />
-            <Input type="password" placeholder="Password*" />
+            <Input id="registerEmailInput" placeholder="Email*" />
+            <Input id="registerFirstNameInput" placeholder="First Name*" />
+            <Input id="registerLastNameInput" placeholder="Last Name*" />
+            <Input id="registerPhoneNumberInput" placeholder="Phone number" />
+            <Input id="registerPasswordInput" type="password" placeholder="Password*" />
             <Marginer direction="vertical" margin="1em" />
-            <SubmitButton>Signup</SubmitButton>
+            <SubmitButton id="registerSignupButton">Signup</SubmitButton>
             <Marginer direction="vertical" margin={5} />
           </FormContainer>
         </div>

@@ -94,9 +94,9 @@ export function Navbar(props) {
   const accessibilityMarginSize = 20;
 
   return (
-    <NavbarContainer useTransparent={useTransparent}>
-      <BrandLogo />
-      <CenterContainer>
+    <NavbarContainer id={props.id} useTransparent={useTransparent}>
+      <BrandLogo id="brandLogo"/>
+      <CenterContainer id="centerMenuBar">
         <MenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
@@ -112,7 +112,7 @@ export function Navbar(props) {
         </MenuContainer>
       </CenterContainer>
 
-      <AccessibilityContainer>
+      <AccessibilityContainer id="rightAccessibilityBar">
         <div style={{ marginLeft: "auto" }} />
         <AnchorLink to={buildPath("register")}>Register</AnchorLink>
         <Marginer direction="horizontal" margin={accessibilityMarginSize} />
@@ -128,7 +128,7 @@ export function NavbarLoginRegister(props) {
   const { useTransparent } = props;
   const marginSize = 24;
   return (
-    <NavbarContainer useTransparent={useTransparent}>
+    <NavbarContainer id={props.id} useTransparent={useTransparent}>
       <div style={{ marginLeft: "auto" }} />
       <MenuLoginRegisterContainer>
         <AnchorLinkLoginRegisterContainer to={HomePagePath}>Home</AnchorLinkLoginRegisterContainer>

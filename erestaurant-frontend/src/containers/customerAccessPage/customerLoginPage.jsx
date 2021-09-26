@@ -58,18 +58,18 @@ const AnchorLink = styled(Link)`
   return (
     <PageWrapper>
       <InnerPageContainer>
-      <NavbarLoginRegister useTransparent/>
+      <NavbarLoginRegister useTransparent id="customerLoginPageNavbar"/>
         <div>
-          <StandoutImage> 
+          <StandoutImage id="customerLoginPageLogo"> 
             <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" /> 
           </StandoutImage> 
           <FormContainer>
-            <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
-            <Input placeholder="Email" />
-            <Input type="password" placeholder="Password" />
-            <MutedLink href="#">Forgot Password</MutedLink>
+            <AnchorLink id="staffLoginLink" to={buildPath("staff/signin")} >Staff Portal</AnchorLink>
+            <Input id="customerEmailInput" placeholder="Email" />
+            <Input id="customerPasswordInput" type="password" placeholder="Password" />
+            <MutedLink id="customerForgotPasswordLink" href="#">Forgot Password</MutedLink>
             <Marginer direction="vertical" margin="1em" />
-            <SubmitButton >LOGIN</SubmitButton>
+            <SubmitButton id="customerLoginButton" >LOGIN</SubmitButton>
             <Marginer direction="vertical" margin={5} />
           </FormContainer>
         </div>

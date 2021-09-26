@@ -35,7 +35,7 @@ export function BrandLogo(props) {
   const { logoSize, textSize, color, hideLogo } = props;
 
   return (
-    <BrandLogoContainer>
+    <BrandLogoContainer id={props.id} >
       {!hideLogo && (
         <Link to={HomePagePath}>
           <LogoImage size={logoSize}>
