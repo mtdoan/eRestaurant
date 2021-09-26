@@ -4,6 +4,7 @@ import { buildPath, HomePagePath } from "./Paths";
 import { LoginPage } from "./containers/CustomerAccessPage/loginPage";
 import { StaffLoginPage } from "./containers/CustomerAccessPage/staffLoginPage";
 import { RegisterPage } from "./containers/CustomerAccessPage/registerPage";
+import { RegisteredPage } from "./containers/CustomerAccessPage/registeredPage";
 import { OrderPage } from "./containers/CustomerAccessPage/orderPage";
 import { ListStaffPage } from "./containers/StaffAccessPage/listStaffPage";
 import { EditStaff } from "./containers/StaffAccessPage/editStaff";
@@ -22,6 +23,7 @@ function App() {
           <Route path={buildPath("signin")} exact component={LoginPage} />
           <Route path={buildPath("staff/signin")} exact component={StaffLoginPage} />
           <Route path={buildPath("register")} exact component={RegisterPage} />
+          <Route path={buildPath("registered")} exact component={RegisteredPage} />
           <Route path={buildPath("order")} exact component={OrderPage} />
           <Route path={buildPath("staff/list")} exact component={ListStaffPage} />
           <Route path={buildPath("staff/edit/:staffId")} exact component={EditStaff} />

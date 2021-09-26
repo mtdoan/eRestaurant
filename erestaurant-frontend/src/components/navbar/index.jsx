@@ -131,7 +131,8 @@ export function NavbarLoginRegister(props) {
   const { useTransparent } = props;
   const marginSize = 24;
   return (
-    <NavbarContainer id={props.id} useTransparent={useTransparent}>
+    <NavbarContainer useTransparent={useTransparent}>
+      <BrandLogo />
       <div style={{ marginLeft: "auto" }} />
       <MenuLoginRegisterContainer>
         <AnchorLinkLoginRegisterContainer to={HomePagePath}>Home</AnchorLinkLoginRegisterContainer>

@@ -7,29 +7,27 @@ import {
   Input
 } from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
-import { useHistory, Redirect } from "react-router-dom";
-import Axios from "axios";
+import { useHistory } from "react-router-dom";
 import { submitSignUpForm } from "../../components/utils/client";
-import { HomePagePath } from "../../Paths";
 
 
 const SubmitButton = styled.button`
   padding: 10px;
   width: 150px;
-  color: #ffbe0c;
+  color: #fff;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background: #fff; 
+  background: rgba(205, 2, 36, 0.9); 
   &:focus {
     outline: none;
   }
   &:hover {
-    background: #ffbe0c;
-    color: #fff;
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
   }
 `;
 
@@ -79,7 +77,7 @@ function SignUpForm() {
 }
 
 export function RegisterPage() {
-  const StandoutImage = styled.div`
+  const FormContainer = styled.div`
   width: 100%;
   height: 40%;
   display: flex;
@@ -99,7 +97,7 @@ export function RegisterPage() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffe08c;
+  background: #fff;
 `;
 
   const InnerPageContainer = styled.div`
@@ -113,28 +111,17 @@ export function RegisterPage() {
   align-items: center;
 `;
 
-//   const AnchorLink = styled(Link)`
-//   color: #000;
-//   cursor: pointer;
-//   font-size: 12px;
-//   font-weight: 500;
-//   margin: 10px 0 10px 0;
-// `;
-
   const Heading = styled.h1`
-  color: #ffbb00;
+  color: #000;
 `;
   return (
     <PageWrapper>
       <InnerPageContainer>
-        <NavbarLoginRegister useTransparent />
-        <div>
-          <StandoutImage>
-            <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" />
-          </StandoutImage>
+        <NavbarLoginRegister />
+        <FormContainer>
           <Heading>Create Account</Heading>
           <SignUpForm />
-        </div>
+        </FormContainer>
       </InnerPageContainer>
     </PageWrapper>
   );
