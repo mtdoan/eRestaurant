@@ -3,17 +3,18 @@ import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
-import { HomePagePath } from "../../Paths"; 
+import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 const NavbarContainer = styled.div`
   width: 100%;
-  height: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5em;
-  margin-top: 20px;
+  padding: 0.5rem calc((100vw - 1500px) / 2);
   background-color: ${({ useTransparent }) =>
     useTransparent ? "transparent" : "rgba(205, 2, 36, 0.9)"
   };
@@ -41,8 +42,9 @@ const MenuContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   align-items: center;
-  background-color: rgba(205, 2, 36, 0.8);
-  border-radius: 5px;
+  padding: 4px;
+  background: rgba(205, 2, 36, 0.9);
+  border-radius: 4px;
 `;
 
 const MenuLoginRegisterContainer = styled.div`
@@ -103,7 +105,7 @@ export function Navbar(props) {
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -128,7 +130,8 @@ export function NavbarLoginRegister(props) {
   const { useTransparent } = props;
   const marginSize = 24;
   return (
-    <NavbarContainer id={props.id} useTransparent={useTransparent}>
+    <NavbarContainer useTransparent={useTransparent}>
+      <BrandLogo />
       <div style={{ marginLeft: "auto" }} />
       <MenuLoginRegisterContainer>
         <AnchorLinkLoginRegisterContainer to={HomePagePath}>Home</AnchorLinkLoginRegisterContainer>
@@ -142,6 +145,38 @@ export function NavbarLoginRegister(props) {
         <AnchorLinkLoginRegisterContainer to={buildPath("signin")}>Login</AnchorLinkLoginRegisterContainer>
         <Marginer direction="horizontal" margin={marginSize} />
       </MenuLoginRegisterContainer>
+    </NavbarContainer>
+  );
+}
+
+export function NavbarOrder(props) {
+  const { useTransparent } = props;
+  const menuMarginSize = 60;
+  const element = <FontAwesomeIcon icon={faShoppingCart} />
+
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+      <BrandLogo />
+      <CenterContainer>
+        <MenuContainer>
+          <Marginer direction="horizontal" margin={menuMarginSize} />
+          <AnchorLink to={HomePagePath}>Home</AnchorLink>
+          <Marginer direction="horizontal" margin={menuMarginSize} />
+          <Seperator />
+          <Marginer direction="horizontal" margin={menuMarginSize} />
+          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
+          <Marginer direction="horizontal" margin={menuMarginSize} />
+          <Seperator />
+          <Marginer direction="horizontal" margin={menuMarginSize} />
+          <AnchorLink to={buildPath("about")}>About</AnchorLink>
+          <Marginer direction="horizontal" margin={menuMarginSize} />
+        </MenuContainer>
+      </CenterContainer>
+
+      <AccessibilityContainer>
+        <div style={{ marginLeft: "auto" }} />
+        <h1 style={{ color: "#fff" }}>{element}</h1>
+      </AccessibilityContainer>
     </NavbarContainer>
   );
 }

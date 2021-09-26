@@ -1,36 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import LogoImg from "../../images/logos/newLogo.png";
 import { Marginer } from "../../components/marginer";
 import {
   FormContainer,
   Input
 } from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { submitSignUpForm } from "../../components/utils/client";
+
 
 const SubmitButton = styled.button`
   padding: 10px;
   width: 150px;
-  color: #ffbe0c;
+  color: #fff;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background: #fff; 
+  background: rgba(205, 2, 36, 0.9); 
   &:focus {
     outline: none;
   }
   &:hover {
-    background: #ffbe0c;
-    color: #fff;
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
   }
 `;
 
+function SignUpForm() {
+
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPasswword] = useState("");
+  const history = useHistory();
+
+  const callback = () => {
+    console.log("Call back");
+    history.push("/eRestaurant/registered");
+  }
+
+  const submitSignUpFormHandler = () => {
+    submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback );
+  };
+  return (
+    <FormContainer>
+      <Input type="text" placeholder="Email*" value={email} onChange={(e) => {
+        setEmail(e.target.value);
+      }}
+      />
+      <Input type="text" placeholder="First Name*" value={firstName} onChange={(e) => {
+        setFirstName(e.target.value);
+      }}
+      />
+      <Input type="text" placeholder="Last Name*" value={lastName} onChange={(e) => {
+        setLastName(e.target.value);
+      }}
+      />
+      <Input type="text" placeholder="Phone number" value={phoneNumber} onChange={(e) => {
+        setPhoneNumber(e.target.value);
+      }}
+      />
+      <Input type="password" placeholder="Password*" value={password} onChange={(e) => {
+        setPasswword(e.target.value);
+      }}
+      />
+      <Marginer direction="vertical" margin="1em" />
+      <SubmitButton type="button" onClick={submitSignUpFormHandler}>Signup</SubmitButton>
+      <Marginer direction="vertical" margin={5} />
+    </FormContainer>);
+}
+
 export function RegisterPage() {
-  const StandoutImage = styled.div`
+  const Container = styled.div`
   width: 100%;
   height: 40%;
   display: flex;
@@ -42,7 +88,7 @@ export function RegisterPage() {
   }
 `;
 
-const PageWrapper = styled.div`
+  const PageWrapper = styled.div`
   width: 100%;
   min-height: 100%;
   padding: 0;
@@ -50,10 +96,10 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffe08c;
+  background: #fff;
 `;
 
-const InnerPageContainer = styled.div`
+  const InnerPageContainer = styled.div`
   flex: 1;
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
@@ -62,41 +108,20 @@ const InnerPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  `;
 
-const AnchorLink = styled(Link)`
+  const Heading = styled.h1`
   color: #000;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 500;
-  margin: 10px 0 10px 0;
-`;
-
-const Heading = styled.h1`
-  color: #ffbb00;
-`;
-
-
+  `;
+  
   return (
     <PageWrapper>
       <InnerPageContainer>
-        <NavbarLoginRegister id="registerPageNavbar"useTransparent/>
-        <div>
-          <StandoutImage id="registerPageLogo"> 
-            <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" /> 
-          </StandoutImage> 
-          <Heading id="registerPageHeading">Create Account</Heading>
-          <FormContainer>
-            <Input id="registerEmailInput" placeholder="Email*" />
-            <Input id="registerFirstNameInput" placeholder="First Name*" />
-            <Input id="registerLastNameInput" placeholder="Last Name*" />
-            <Input id="registerPhoneNumberInput" placeholder="Phone number" />
-            <Input id="registerPasswordInput" type="password" placeholder="Password*" />
-            <Marginer direction="vertical" margin="1em" />
-            <SubmitButton id="registerSignupButton">Signup</SubmitButton>
-            <Marginer direction="vertical" margin={5} />
-          </FormContainer>
-        </div>
+        <NavbarLoginRegister />
+        <Container>
+          <Heading>Create Account</Heading>
+          <SignUpForm />
+        </Container>
       </InnerPageContainer>
     </PageWrapper>
   );

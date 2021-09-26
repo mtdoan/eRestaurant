@@ -46,7 +46,6 @@ const StandoutImage = styled.div`
 
 export function TopSection(props) {
   const { children } = props;
-
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
 
   return (
@@ -59,6 +58,7 @@ export function TopSection(props) {
               <img id="homePromotionalImg" src={TheSpecialImg} alt="The special offer" />
             </StandoutImage>
           )}
+          
         </TopSectionInnerContainer>
       </BackgroundFilter>
     </TopSectionContainer>
