@@ -1,58 +1,47 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import LogoImg from "../../images/logos/newLogo.png";
 import { Marginer } from "../../components/marginer";
 import {
   FormContainer,
   Input,
   MutedLink,
-  SubmitButton,
 } from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { buildPath } from "../../Paths";
 import { submitSignInForm } from "../../components/utils/client";
+import { useHistory } from "react-router-dom";
 
 
-function SignInForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPasswword] = useState("");
+const SubmitButton = styled.button`
+  padding: 10px;
+  width: 150px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
+  }
+`;
 
-  const submitSignInFormHandler = () => {
-    submitSignInForm(email, password, () => console.log("OK"));
-  };
-
-  const AnchorLink = styled(Link)`
+const AnchorLink = styled(Link)`
     color: #000;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
     margin: 10px 0 10px 0;
   `;
 
-  return (
-    <FormContainer>
-      <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
-      <Input type="text" placeholder="Email"
-        value={email} onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <Input type="password" placeholder="Password"
-        value={password} onChange={(e) => {
-          setPasswword(e.target.value);
-        }}
-      />
-      <MutedLink href="#">Forgot Password</MutedLink>
-      <Marginer direction="vertical" margin="1em" />
-      <SubmitButton onClick={submitSignInFormHandler}>LOGIN</SubmitButton>
-      <Marginer direction="vertical" margin={5} />
-    </FormContainer>
-  )
-}
-
-export function LoginPage() {
-  const StandoutImage = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 40%;
   display: flex;
@@ -64,7 +53,7 @@ export function LoginPage() {
   }
 `;
 
-  const PageWrapper = styled.div`
+const PageWrapper = styled.div`
   width: 100%;
   min-height: 100%;
   padding: 0;
@@ -72,10 +61,10 @@ export function LoginPage() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ff8f80;
+  background: #fff;
 `;
 
-  const InnerPageContainer = styled.div`
+const InnerPageContainer = styled.div`
   flex: 1;
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
@@ -84,18 +73,59 @@ export function LoginPage() {
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  `;
+
+const Heading = styled.h1`
+  color: #000;
+  `;
+
+function SignInForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPasswword] = useState("");
+  const history = useHistory();
+
+  const callback = () => {
+    console.log("Call back");
+    history.push("/eRestaurant/signedin");
+  }
+
+  const submitSignInFormHandler = () => {
+    submitSignInForm(email, password, callback);
+  };
+
+  return (
+    <FormContainer>
+      <Input type="text" placeholder="Email"
+        value={email} onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <Input type="password" placeholder="Password"
+        value={password} onChange={(e) => {
+          setPasswword(e.target.value);
+        }}
+      />
+      <MutedLink href="#">Forgot Password</MutedLink>
+      <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
+
+      <Marginer direction="vertical" margin="1em" />
+      <SubmitButton type="button" onClick={submitSignInFormHandler}>LOGIN</SubmitButton>
+      <Marginer direction="vertical" margin={5} />
+    </FormContainer>
+  )
+}
+
+export function LoginPage() {
+
 
   return (
     <PageWrapper>
       <InnerPageContainer>
-        <NavbarLoginRegister useTransparent />
-        <div>
-          <StandoutImage>
-            <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" />
-          </StandoutImage>
+        <NavbarLoginRegister />
+        <Container>
+          <Heading>Sign In</Heading>
           <SignInForm />
-        </div>
+        </Container>
       </InnerPageContainer>
     </PageWrapper>
 

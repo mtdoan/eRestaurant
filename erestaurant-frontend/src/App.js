@@ -2,6 +2,7 @@ import "./App.css";
 import { HomePage } from "./containers/HomePage";
 import { buildPath, HomePagePath } from "./Paths";
 import { LoginPage } from "./containers/CustomerAccessPage/loginPage";
+import { LoggedInPage } from "./containers/CustomerAccessPage/loggedInPage";
 import { StaffLoginPage } from "./containers/CustomerAccessPage/staffLoginPage";
 import { RegisterPage } from "./containers/CustomerAccessPage/registerPage";
 import { RegisteredPage } from "./containers/CustomerAccessPage/registeredPage";
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           <Route path={HomePagePath} exact component={HomePage} />
           <Route path={buildPath("signin")} exact component={LoginPage} />
+          <Route path={buildPath("signedin")} exact component={LoggedInPage} />
           <Route path={buildPath("staff/signin")} exact component={StaffLoginPage} />
           <Route path={buildPath("register")} exact component={RegisterPage} />
           <Route path={buildPath("registered")} exact component={RegisteredPage} />

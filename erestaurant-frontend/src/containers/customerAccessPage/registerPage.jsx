@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import LogoImg from "../../images/logos/newLogo.png";
 import { Marginer } from "../../components/marginer";
 import {
   FormContainer,
@@ -42,7 +41,7 @@ function SignUpForm() {
 
   const callback = () => {
     console.log("Call back");
-    history.push("/eRestaurant");
+    history.push("/eRestaurant/registered");
   }
 
   const submitSignUpFormHandler = () => {
@@ -77,7 +76,7 @@ function SignUpForm() {
 }
 
 export function RegisterPage() {
-  const FormContainer = styled.div`
+  const Container = styled.div`
   width: 100%;
   height: 40%;
   display: flex;
@@ -109,19 +108,20 @@ export function RegisterPage() {
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  `;
 
   const Heading = styled.h1`
   color: #000;
-`;
+  `;
+  
   return (
     <PageWrapper>
       <InnerPageContainer>
         <NavbarLoginRegister />
-        <FormContainer>
+        <Container>
           <Heading>Create Account</Heading>
           <SignUpForm />
-        </FormContainer>
+        </Container>
       </InnerPageContainer>
     </PageWrapper>
   );
