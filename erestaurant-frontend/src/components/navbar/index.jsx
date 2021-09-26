@@ -10,12 +10,11 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 const NavbarContainer = styled.div`
   width: 100%;
-  height: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5em;
-  margin-top: 20px;
+  padding: 0.5rem calc((100vw - 1500px) / 2);
   background-color: ${({ useTransparent }) =>
     useTransparent ? "transparent" : "rgba(205, 2, 36, 0.9)"
   };
@@ -106,7 +105,7 @@ export function Navbar(props) {
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -165,7 +164,7 @@ export function NavbarOrder(props) {
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />

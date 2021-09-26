@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavbarOrder } from "../../components/navbar";
-import { Marginer } from "../../components/marginer";
 import { Link } from "react-router-dom";
 import CartScrollContainer from "../../components/cart/CartScrollContainer";
 import { ProductScrollContainer } from "../../components/products/ProductScrollContainer";
-import { loadCart, userId } from "../../components/utils/client";
+import { loadCart, getUser } from "../../components/utils/client";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -88,21 +87,27 @@ const types = ['Entree', 'Main', 'Desserts', 'Drinks' ];
 export function OrderPage() {
   const [cart, setCart] = useState({ cartItems: [] });
   const [active, setActive] = useState(types[0]);
+  const [userName, setUserName] = useState("customer");
 
   const refreshCart = () => {
-    loadCart(userId(), (cartItems) => setCart({ cartItems }));
+    loadCart((cartItems) => setCart({ cartItems }));
   };
+
+  const getUserName = () => {
+    getUser((user) => setUserName(user.firstName));
+  }
 
   useEffect(() => {
     console.log('Call CART api');
     refreshCart();
+    getUserName();
   }, []);
 
   return (
     <PageWrapper>
       <InnerPageContainer>
         <NavbarOrder />
-        <MenuTypeContainer>Hello, "USERNAME"</MenuTypeContainer>
+        <MenuTypeContainer>Hello, {userName}</MenuTypeContainer>
         <MenuTypeContainer>
           <ButtonGroup>
             {types.map(type => (

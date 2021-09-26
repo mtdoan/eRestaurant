@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { userId, addDishToCart, removeDishFromCart } from '../utils/client';
+import {addDishToCart, removeDishFromCart } from '../utils/client';
 
 const CartItemInfo = styled.div`
   width: 80%;
@@ -59,13 +59,13 @@ const ConfirmContainer = styled.div`
 
 const CartScrollContainer = ({ cartItems, onCartChange }) => {
   const [cart, setCart] = useState({ cartItems: cartItems });
-
+  
   const addToCart = (productId) => {
-    addDishToCart(userId(), productId, onCartChange);
+    addDishToCart(productId, onCartChange);
   };
 
   const deleteFromCart = (productId) => {
-    removeDishFromCart(userId(), productId, onCartChange);
+    removeDishFromCart(productId, onCartChange);
   };
 
   useEffect(() => {

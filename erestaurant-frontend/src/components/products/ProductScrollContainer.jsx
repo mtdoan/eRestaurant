@@ -7,33 +7,13 @@ import {
   ProductDescription,
   ProductScrollDiv
 } from './ProductsElements';
-import { addDishToCart, loadDishes, userId } from "../utils/client";
-
-// const Tab = styled.button`
-//   font-size: 20px;
-//   padding: 10px 60px;
-//   cursor: pointer;
-//   opacity: 0.6;
-//   background: white;
-//   border: 0;
-//   outline: 0;
-//   ${({ active }) =>
-//     active &&
-//     `
-//     border-bottom: 2px solid black;
-//     opacity: 1;
-//   `}
-// `;
-// const ButtonGroup = styled.div`
-//   display: flex;
-// `;
-
+import { addDishToCart, loadDishes } from "../utils/client";
 
 export function ProductScrollContainer({ onCartChange, type }) {
   const [data, setData] = useState({ dishes: [] });
 
   const addToCart = (productId) => {
-    addDishToCart(userId(), productId, onCartChange);
+    addDishToCart(productId, onCartChange);
   }; 
 
   useEffect(() => {

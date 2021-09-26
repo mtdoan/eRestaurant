@@ -1,11 +1,17 @@
 import axios from 'axios';
 
 const hostUrl = "http://localhost:8081";
-
-export const userId = () => 1;
+const instance = axios.create({
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Methods': '*'
+  },
+  withCredentials: true
+});
 
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
-  axios.post(`${hostUrl}/signUp`, {
+  instance.post(`${hostUrl}/signUp`, {
     email,
     firstName,
     lastName,
@@ -19,7 +25,7 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
 };
 
 export const submitSignInForm = (email, password, callback) => {
-  axios.post(`${hostUrl}/signIn`, {
+  instance.post(`${hostUrl}/signIn`, {
     email,
     password
   }).then(response => {
@@ -29,16 +35,16 @@ export const submitSignInForm = (email, password, callback) => {
   });
 };
 
-export const loadCart = (userId, callback) => {
-  axios.get(`${hostUrl}/cartItems`).then((response) => {
+export const loadCart = (callback) => {
+  instance.get(`${hostUrl}/cartItems`).then((response) => {
     if (response.status === 200) {
       callback(response.data);
     }
   });
 };
 
-export const addDishToCart = (userId, dishId, callback) => {
-  axios.post(`${hostUrl}/cartItems/${userId}/add/${dishId}`).then(response => {
+export const addDishToCart = (dishId, callback) => {
+  instance.post(`${hostUrl}/cartItems/add/${dishId}`).then(response => {
     if (response.status === 200) {
       callback();
     }
@@ -46,15 +52,15 @@ export const addDishToCart = (userId, dishId, callback) => {
 };
 
 export const loadDishes = (callback) => {
-  axios.get(`${hostUrl}/dishes`).then(response => {
+  instance.get(`${hostUrl}/dishes`).then(response => {
     if (response.status === 200) {
       callback(response.data);
     }
   });
 };
 
-export const removeDishFromCart = (userId, dishId, callback) => {
-  axios.post(`${hostUrl}/cartItems/${userId}/del/${dishId}`).then(response => {
+export const removeDishFromCart = (dishId, callback) => {
+  instance.post(`${hostUrl}/cartItems/del/${dishId}`).then(response => {
     if (response.status === 200) {
       callback();
     }
@@ -62,7 +68,7 @@ export const removeDishFromCart = (userId, dishId, callback) => {
 };
 
 export const loadStaff = (callback) => {
-  axios.get(`${hostUrl}/staff/list`).then(response => {
+  instance.get(`${hostUrl}/staff/list`).then(response => {
     if (response.status === 200) {
       callback(response.data);
     }
@@ -70,7 +76,7 @@ export const loadStaff = (callback) => {
 };
 
 export const removeStaffFromList = (staffId, callback) => {
-  axios.post(`${hostUrl}/staff/del/${staffId}`).then(response => {
+  instance.post(`${hostUrl}/staff/del/${staffId}`).then(response => {
     if (response.status === 200) {
       callback();
     }
@@ -78,9 +84,17 @@ export const removeStaffFromList = (staffId, callback) => {
 };
 
 export const editStaff = (staffId, callback) => {
-  axios.post(`${hostUrl}/staff/edit/${staffId}`).then(response => {
+  instance.post(`${hostUrl}/staff/edit/${staffId}`).then(response => {
     if (response.status === 200) {
       callback();
+    }
+  });
+};
+
+export const getUser = (callback) => {
+  instance.get(`${hostUrl}/myAccount`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
     }
   });
 };
