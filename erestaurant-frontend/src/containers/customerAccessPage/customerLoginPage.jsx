@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LogoImg from "../../images/logos/newLogo.png";
 import { Marginer } from "../../components/marginer";
@@ -11,6 +11,45 @@ import {
 import { NavbarLoginRegister } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { buildPath } from "../../Paths";
+import { submitSignInForm } from "../../components/utils/client";
+
+
+function SignInForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPasswword] = useState("");
+
+  const submitSignInFormHandler = () => {
+    submitSignInForm(email, password, () => console.log("OK"));
+  };
+
+  const AnchorLink = styled(Link)`
+    color: #000;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 10px 0 10px 0;
+  `;
+
+  return (
+    <FormContainer>
+      <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
+      <Input type="text" placeholder="Email"
+        value={email} onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <Input type="password" placeholder="Password"
+        value={password} onChange={(e) => {
+          setPasswword(e.target.value);
+        }}
+      />
+      <MutedLink href="#">Forgot Password</MutedLink>
+      <Marginer direction="vertical" margin="1em" />
+      <SubmitButton onClick={submitSignInFormHandler}>LOGIN</SubmitButton>
+      <Marginer direction="vertical" margin={5} />
+    </FormContainer>
+  )
+}
 
 export function LoginPage() {
   const StandoutImage = styled.div`
@@ -25,7 +64,7 @@ export function LoginPage() {
   }
 `;
 
-const PageWrapper = styled.div`
+  const PageWrapper = styled.div`
   width: 100%;
   min-height: 100%;
   padding: 0;
@@ -36,7 +75,7 @@ const PageWrapper = styled.div`
   background: #ff8f80;
 `;
 
-const InnerPageContainer = styled.div`
+  const InnerPageContainer = styled.div`
   flex: 1;
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
@@ -47,34 +86,18 @@ const InnerPageContainer = styled.div`
   align-items: center;
 `;
 
-const AnchorLink = styled(Link)`
-  color: #fff;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  margin: 10px 0 10px 0;
-`;
-
   return (
     <PageWrapper>
       <InnerPageContainer>
-      <NavbarLoginRegister useTransparent id="customerLoginPageNavbar"/>
+        <NavbarLoginRegister useTransparent />
         <div>
-          <StandoutImage id="customerLoginPageLogo"> 
-            <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" /> 
-          </StandoutImage> 
-          <FormContainer>
-            <AnchorLink id="staffLoginLink" to={buildPath("staff/signin")} >Staff Portal</AnchorLink>
-            <Input id="customerEmailInput" placeholder="Email" />
-            <Input id="customerPasswordInput" type="password" placeholder="Password" />
-            <MutedLink id="customerForgotPasswordLink" href="#">Forgot Password</MutedLink>
-            <Marginer direction="vertical" margin="1em" />
-            <SubmitButton id="customerLoginButton" >LOGIN</SubmitButton>
-            <Marginer direction="vertical" margin={5} />
-          </FormContainer>
+          <StandoutImage>
+            <img src={LogoImg} alt="Le Bistrot D'Andre Restaurant" />
+          </StandoutImage>
+          <SignInForm />
         </div>
       </InnerPageContainer>
     </PageWrapper>
-    
+
   );
 }

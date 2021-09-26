@@ -103,8 +103,8 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
                   {cartItem.dish.description}
                 </p>
               </CartItemInfo>
-              <input type="button" value="-" className="minus" style={{ margin: "0 0 0 50px " }} onClick={deleteHandler} />
-              <p>{cartItem.count}</p>
+              <input type="button" value="-" className="minus" style={{ margin: "0 0 0 40px " }} onClick={deleteHandler} />
+              <p style={{ margin: "0 8px 0 8px " }}>{cartItem.count}</p>
               <input type="button" value="+" className="plus" onClick={addHandler} />
             </div>
           )

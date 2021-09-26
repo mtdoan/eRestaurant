@@ -53,6 +53,7 @@ const MenuTypeContainer = styled.div`
   height: 40px;
   display: flex;
   margin: auto;
+  margin-bottom: 8px;
   align-items: center;
   background-color: transparent;
 `;
@@ -64,8 +65,30 @@ const ContentWrapper = styled.div`
 
 const MARGIN_SIZE = 60;
 
+const Tab = styled.button`
+  font-size: 20px;
+  padding: 10px 60px;
+  cursor: pointer;
+  opacity: 0.6;
+  background: white;
+  border: 0;
+  outline: 0;
+  ${({ active }) =>
+    active &&
+    `
+    border-bottom: 2px solid black;
+    opacity: 1;
+  `}
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+`;
+const types = ['Entree', 'Main', 'Desserts', 'Drinks' ];
+
 export function OrderPage() {
   const [cart, setCart] = useState({ cartItems: [] });
+  const [active, setActive] = useState(types[0]);
+
   const refreshCart = () => {
     loadCart(userId(), (cartItems) => setCart({ cartItems }));
   };
@@ -81,23 +104,21 @@ export function OrderPage() {
         <NavbarOrder />
         <MenuTypeContainer>Hello, "USERNAME"</MenuTypeContainer>
         <MenuTypeContainer>
-          <AnchorLink>Entree</AnchorLink>
-          <Marginer direction="horizontal" margin={MARGIN_SIZE} />
-          <SeperatorLoginRegisterContainer />
-          <Marginer direction="horizontal" margin={MARGIN_SIZE} />
-          <AnchorLink>Main</AnchorLink>
-          <Marginer direction="horizontal" margin={MARGIN_SIZE} />
-          <SeperatorLoginRegisterContainer />
-          <Marginer direction="horizontal" margin={MARGIN_SIZE} />
-          <AnchorLink>Desserts</AnchorLink>
-          <Marginer direction="horizontal" margin={MARGIN_SIZE} />
-          <SeperatorLoginRegisterContainer />
-          <Marginer direction="horizontal" margin={MARGIN_SIZE} />
-          <AnchorLink>Drinks</AnchorLink>
+          <ButtonGroup>
+            {types.map(type => (
+              <Tab
+                key={type}
+                active={active === type}
+                onClick={() => setActive(type)}
+              >
+                {type}
+              </Tab>
+            ))}
+          </ButtonGroup>
         </MenuTypeContainer>
 
         <ContentWrapper>
-          <ProductScrollContainer onCartChange={refreshCart} />
+          <ProductScrollContainer onCartChange={refreshCart} type={active}/>
           <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />
         </ContentWrapper>
       </InnerPageContainer>

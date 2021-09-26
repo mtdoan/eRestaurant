@@ -70,7 +70,7 @@ export const ProductTitle = styled.h2`
 `;
 
 export const ProductInfo = styled.div`
-  width: 70%;
+  width: 80%;
   padding: 1rem;
   text-align: start;
 `;

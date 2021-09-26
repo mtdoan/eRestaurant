@@ -43,6 +43,9 @@ const MenuContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   align-items: center;
+  padding: 4px;
+  background: rgba(205, 2, 36, 0.9);
+  border-radius: 4px;
 `;
 
 const MenuLoginRegisterContainer = styled.div`
