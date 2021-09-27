@@ -24,6 +24,8 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
   });
 };
 
+;
+
 export const submitSignInForm = (email, password, callback) => {
   instance.post(`${hostUrl}/signIn`, {
     email,
@@ -83,13 +85,20 @@ export const removeStaffFromList = (staffId, callback) => {
   });
 };
 
-export const editStaff = (staffId, callback) => {
-  instance.post(`${hostUrl}/staff/edit/${staffId}`).then(response => {
+export const editStaff = (staffId, firstName, lastName, phoneNumber, position, restaurantId, callback) => {
+  instance.post(`${hostUrl}/staff/edit/${staffId}`, {
+    firstName,
+    lastName,
+    phoneNumber,
+    position,
+    restaurantId
+  }).then(response => {
     if (response.status === 200) {
       callback();
     }
   });
 };
+
 
 export const getUser = (callback) => {
   instance.get(`${hostUrl}/myAccount`).then(response => {
@@ -98,3 +107,27 @@ export const getUser = (callback) => {
     }
   });
 };
+
+export const getStaff = (staffId, callback) => {
+  instance.get(`${hostUrl}/staff/${staffId}`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const submitStaffForm = (firstName, lastName, email, password, phoneNumber, position, restaurantId, callback ) => {
+  instance.post(`${hostUrl}/staff/add`, {
+    firstName,
+    lastName,
+    email,
+    password,
+    phoneNumber,
+    position,
+    restaurantId
+  }).then(response => {
+    if (response.status === 200) {
+      callback();
+    }
+  });
+}

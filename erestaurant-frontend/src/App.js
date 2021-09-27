@@ -9,6 +9,7 @@ import { RegisteredPage } from "./containers/CustomerAccessPage/registeredPage";
 import { OrderPage } from "./containers/CustomerAccessPage/orderPage";
 import { ListStaffPage } from "./containers/StaffAccessPage/listStaffPage";
 import { EditStaff } from "./containers/StaffAccessPage/editStaff";
+import { AddStaff } from "./containers/StaffAccessPage/addStaff";
 
 
 // import { ConfirmationPage } from "./containers/customerAccessPage/confirmationPage";
@@ -29,6 +30,7 @@ function App() {
           <Route path={buildPath("order")} exact component={OrderPage} />
           <Route path={buildPath("staff/list")} exact component={ListStaffPage} />
           <Route path={buildPath("staff/edit/:staffId")} exact component={EditStaff} />
+          <Route path={buildPath("staff/add/")} exact component={AddStaff} />
 
           {/* <Route path={buildPath("confirm")} exact component={ConfirmationPage} /> */}
         </Switch>

@@ -43,6 +43,17 @@ const MenuContainer = styled.div`
   margin-right: auto;
   align-items: center;
   padding: 4px;
+  border-radius: 4px;
+`;
+
+const HomeMenuContainer = styled.div`
+  height: 50px;
+  width: 400px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  padding: 4px;
   background: rgba(205, 2, 36, 0.9);
   border-radius: 4px;
 `;
@@ -55,7 +66,7 @@ const MenuLoginRegisterContainer = styled.div`
 `;
 
 const AnchorLink = styled(Link)`
-  font-size: 15px;
+  font-size: 1rem;
   color: #fff;
   cursor: pointer;
   text-decoration: none;
@@ -67,7 +78,7 @@ const AnchorLink = styled(Link)`
 `;
 
 const AnchorLinkLoginRegisterContainer = styled(Link)`
-  font-size: 15px;
+  font-size: 1rem;
   color: #fff;
   cursor: pointer;
   text-decoration: none;
@@ -99,7 +110,7 @@ export function Navbar(props) {
     <NavbarContainer id={props.id} useTransparent={useTransparent}>
       <BrandLogo id="brandLogo"/>
       <CenterContainer id="centerMenuBar">
-        <MenuContainer>
+        <HomeMenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -111,7 +122,7 @@ export function Navbar(props) {
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={buildPath("about")}>About</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
-        </MenuContainer>
+        </HomeMenuContainer>
       </CenterContainer>
 
       <AccessibilityContainer id="rightAccessibilityBar">
