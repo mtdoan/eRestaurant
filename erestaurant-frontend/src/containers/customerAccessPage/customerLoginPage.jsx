@@ -120,8 +120,8 @@ export function LoginPage() {
 
   return (
     <PageWrapper>
+      <NavbarLoginRegister />
       <InnerPageContainer>
-        <NavbarLoginRegister />
         <Container>
           <Heading>Sign In</Heading>
           <SignInForm />

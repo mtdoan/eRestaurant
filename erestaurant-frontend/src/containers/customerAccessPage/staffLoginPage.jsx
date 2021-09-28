@@ -117,8 +117,8 @@ export function StaffLoginPage() {
 
   return (
     <PageWrapper>
-      <InnerPageContainer>
       <NavbarLoginRegister />
+      <InnerPageContainer>
         <Container>
           <Heading>Staff Sign In Portal</Heading>
           <SignInForm />

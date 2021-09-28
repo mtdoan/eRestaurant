@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { NavbarLoginRegister } from "../../components/navbar";
 import { Link } from "react-router-dom";
-import { buildPath } from "../../Paths";
+import { HomePagePath } from "../../Paths";
 
-export function RegisteredPage() {
+export function BookedPage() {
   const FormContainer = styled.div`
   width: 100%;
   height: 40%;
@@ -37,11 +37,11 @@ export function RegisteredPage() {
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+  `;
 
   const Heading = styled.h1`
   color: #000;
-`;
+  `;
 
   const AnchorLink = styled(Link)`
     color: #000;
@@ -56,8 +56,15 @@ export function RegisteredPage() {
       <NavbarLoginRegister />
       <InnerPageContainer>
         <FormContainer>
-          <Heading>Congratulation! You've registered successfully.</Heading>
-          <p><span><AnchorLink to={buildPath("signin")}>Sign in</AnchorLink></span> to continute</p>
+          <Heading>Your booking has been placed successfully.</Heading>
+          <p>Booking number: ........</p>
+          <p>Date: ........ Time: ........</p>
+          <p>Location: ........ </p>
+          <p>Thank you! </p>
+          <p>----------------------------------------------------------------------- </p>
+
+
+          <p>Go to the <span><AnchorLink to={HomePagePath}>homepage</AnchorLink></span> now</p>
         </FormContainer>
       </InnerPageContainer>
     </PageWrapper>

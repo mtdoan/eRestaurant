@@ -7,16 +7,24 @@ const CartItemInfo = styled.div`
   padding: 1rem;
   text-align: start;
 `;
+const CartItemButtonContainer = styled.div`
+  width: 20%;
+  display: flex;
+  margin-right: 2rem;
+  margin-left: 1rem;
+  text-align: start;
+  justify-content: center;
+`;
 
 const CartScrollDiv = styled.div`
   overflow-y: scroll;
-  width: 700px;
+  width: 100%;
   height: 85%;
 `;
 
 const CartContainer = styled.div`
   border: 1px solid red;
-  width: 700px;
+  width: 40%;
   height: 700px;
   margin: 0 0 1rem 1rem;
 
@@ -51,10 +59,11 @@ const Button = styled.button`
 `;
 
 const ConfirmContainer = styled.div`
+  width: 100%;
   height: 15%;
-  border: none;
   text-align: center;
-  margin: 10px 0 0 500px;
+  display: block;
+
 `;
 
 const CartScrollContainer = ({ cartItems, onCartChange }) => {
@@ -103,15 +112,17 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
                   {cartItem.dish.description}
                 </p>
               </CartItemInfo>
-              <input type="button" value="-" className="minus" style={{ margin: "0 0 0 40px " }} onClick={deleteHandler} />
-              <p style={{ margin: "0 8px 0 8px " }}>{cartItem.count}</p>
-              <input type="button" value="+" className="plus" onClick={addHandler} />
+              <CartItemButtonContainer>
+                <input type="button" value="-" className="minus" style={{ margin: "0 0 0 40px " }} onClick={deleteHandler} />
+                <p style={{ margin: "0 8px 0 8px " }}>{cartItem.count}</p>
+                <input type="button" value="+" className="plus" onClick={addHandler} />
+              </CartItemButtonContainer>
             </div>
           )
         })}
       </CartScrollDiv>
       <ConfirmContainer>
-        Total = ${total}
+        <p style={{ margin: "auto"}}>Total = ${total}</p>
         <Button>Confirm Order</Button>
       </ConfirmContainer>
     </CartContainer>

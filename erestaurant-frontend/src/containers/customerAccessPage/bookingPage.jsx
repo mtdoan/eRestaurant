@@ -4,7 +4,8 @@ import { NavbarOrder } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import CartScrollContainer from "../../components/cart/CartScrollContainer";
 import { ProductScrollContainer } from "../../components/products/ProductScrollContainer";
-import { loadCart, getUser } from "../../components/utils/client";
+import { getUser } from "../../components/utils/client";
+import { Booking } from "../../components/booking";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -21,7 +22,8 @@ const InnerPageContainer = styled.div`
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
   min-height: 100vh;
-  padding: 1em;
+  ${'' /* padding: 1em; */}
+  padding: 0.5rem calc((100vw - 2000px) / 2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,50 +84,26 @@ const Tab = styled.button`
 const ButtonGroup = styled.div`
   display: flex;
 `;
-const types = ['Entree', 'Main', 'Desserts', 'Drinks' ];
+const types = ['Entree', 'Main', 'Desserts', 'Drinks'];
 
-export function OrderPage() {
-  const [cart, setCart] = useState({ cartItems: [] });
-  const [active, setActive] = useState(types[0]);
+export function BookingPage() {
   const [userName, setUserName] = useState("customer");
-
-  const refreshCart = () => {
-    loadCart((cartItems) => setCart({ cartItems }));
-  };
 
   const getUserName = () => {
     getUser((user) => setUserName(user.firstName));
   }
 
   useEffect(() => {
-    console.log('Call CART api');
-    refreshCart();
+    console.log('Call CART api at Booking page');
     getUserName();
   }, []);
 
   return (
     <PageWrapper>
+      <NavbarOrder />
       <InnerPageContainer>
-        <NavbarOrder />
         <MenuTypeContainer>Hello, {userName}</MenuTypeContainer>
-        <MenuTypeContainer>
-          <ButtonGroup>
-            {types.map(type => (
-              <Tab
-                key={type}
-                active={active === type}
-                onClick={() => setActive(type)}
-              >
-                {type}
-              </Tab>
-            ))}
-          </ButtonGroup>
-        </MenuTypeContainer>
-
-        <ContentWrapper>
-          <ProductScrollContainer onCartChange={refreshCart} type={active}/>
-          <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />
-        </ContentWrapper>
+        <Booking />
       </InnerPageContainer>
     </PageWrapper>
   );

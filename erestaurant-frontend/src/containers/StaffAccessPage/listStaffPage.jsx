@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import LogoImg from "../../images/logos/newLogo.png";
-import { Marginer } from "../../components/marginer";
-import {
-    FormContainer,
-    // Input,
-    MutedLink,
-    SubmitButton,
-} from "../../components/accountBox/common"
 import { NavbarOrder } from "../../components/navbar";
-
 import { Link } from "react-router-dom";
 import { buildPath } from "../../Paths";
 import { Table, TableHead, TableCell, Paper, TableRow, TableBody, Button, makeStyles } from '@material-ui/core'
@@ -79,8 +70,9 @@ export function ListStaffPage() {
 
     return (
         <PageWrapper>
+            <NavbarOrder />
+
             <InnerPageContainer>
-                <NavbarOrder />
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow className={classes.thead}>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Marginer } from "../../components/marginer";
 import {
   FormContainer,
   Input
@@ -69,9 +68,7 @@ function SignUpForm() {
         setPasswword(e.target.value);
       }}
       />
-      <Marginer direction="vertical" margin="1em" />
       <SubmitButton type="button" onClick={submitSignUpFormHandler}>Signup</SubmitButton>
-      <Marginer direction="vertical" margin={5} />
     </FormContainer>);
 }
 
@@ -116,8 +113,8 @@ export function RegisterPage() {
   
   return (
     <PageWrapper>
+      <NavbarLoginRegister />
       <InnerPageContainer>
-        <NavbarLoginRegister />
         <Container>
           <Heading>Create Account</Heading>
           <SignUpForm />

@@ -14,7 +14,7 @@ export const ProductWrapper = styled.div`
 export const ProductScrollDiv = styled.div`
   overflow-y: scroll;
   border:1px solid red;
-  width: 1000px;
+  width: 60%;
   float: left;
   height: 700px;
   display: flex;

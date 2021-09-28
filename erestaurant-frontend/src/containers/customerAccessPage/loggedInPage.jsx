@@ -53,8 +53,8 @@ export function LoggedInPage() {
 
   return (
     <PageWrapper>
+      <NavbarLoginRegister />
       <InnerPageContainer>
-        <NavbarLoginRegister />
         <FormContainer>
           <Heading>You've logged in successfully.</Heading>
           <p>Go to the <span><AnchorLink to={HomePagePath}>homepage</AnchorLink></span> now</p>
