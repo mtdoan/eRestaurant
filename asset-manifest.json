@@ -1,25 +1,28 @@
 {
   "files": {
     "main.css": "/eRestaurant/static/css/main.e9bae532.chunk.css",
-    "main.js": "/eRestaurant/static/js/main.de08e6e5.chunk.js",
-    "main.js.map": "/eRestaurant/static/js/main.de08e6e5.chunk.js.map",
-    "runtime-main.js": "/eRestaurant/static/js/runtime-main.eaa67072.js",
-    "runtime-main.js.map": "/eRestaurant/static/js/runtime-main.eaa67072.js.map",
-    "static/js/2.b8233282.chunk.js": "/eRestaurant/static/js/2.b8233282.chunk.js",
-    "static/js/2.b8233282.chunk.js.map": "/eRestaurant/static/js/2.b8233282.chunk.js.map",
-    "static/js/3.797e80b4.chunk.js": "/eRestaurant/static/js/3.797e80b4.chunk.js",
-    "static/js/3.797e80b4.chunk.js.map": "/eRestaurant/static/js/3.797e80b4.chunk.js.map",
+    "main.js": "/eRestaurant/static/js/main.66915cb9.chunk.js",
+    "main.js.map": "/eRestaurant/static/js/main.66915cb9.chunk.js.map",
+    "runtime-main.js": "/eRestaurant/static/js/runtime-main.d916caad.js",
+    "runtime-main.js.map": "/eRestaurant/static/js/runtime-main.d916caad.js.map",
+    "static/css/2.c8956ef5.chunk.css": "/eRestaurant/static/css/2.c8956ef5.chunk.css",
+    "static/js/2.1f07b3ad.chunk.js": "/eRestaurant/static/js/2.1f07b3ad.chunk.js",
+    "static/js/2.1f07b3ad.chunk.js.map": "/eRestaurant/static/js/2.1f07b3ad.chunk.js.map",
+    "static/js/3.4017775b.chunk.js": "/eRestaurant/static/js/3.4017775b.chunk.js",
+    "static/js/3.4017775b.chunk.js.map": "/eRestaurant/static/js/3.4017775b.chunk.js.map",
     "index.html": "/eRestaurant/index.html",
+    "static/css/2.c8956ef5.chunk.css.map": "/eRestaurant/static/css/2.c8956ef5.chunk.css.map",
     "static/css/main.e9bae532.chunk.css.map": "/eRestaurant/static/css/main.e9bae532.chunk.css.map",
-    "static/js/2.b8233282.chunk.js.LICENSE.txt": "/eRestaurant/static/js/2.b8233282.chunk.js.LICENSE.txt",
+    "static/js/2.1f07b3ad.chunk.js.LICENSE.txt": "/eRestaurant/static/js/2.1f07b3ad.chunk.js.LICENSE.txt",
     "static/media/TheSpecial.866da2b3.jpg": "/eRestaurant/static/media/TheSpecial.866da2b3.jpg",
     "static/media/TopSectionBackground.f6b82282.jpeg": "/eRestaurant/static/media/TopSectionBackground.f6b82282.jpeg",
     "static/media/newLogo.5707064d.png": "/eRestaurant/static/media/newLogo.5707064d.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.eaa67072.js",
-    "static/js/2.b8233282.chunk.js",
+    "static/js/runtime-main.d916caad.js",
+    "static/css/2.c8956ef5.chunk.css",
+    "static/js/2.1f07b3ad.chunk.js",
     "static/css/main.e9bae532.chunk.css",
-    "static/js/main.de08e6e5.chunk.js"
+    "static/js/main.66915cb9.chunk.js"
   ]
 }
