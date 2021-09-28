@@ -91,11 +91,11 @@ export const ProductButton = styled.button`
   border: none;
   outline: none;
   background: rgb(205, 2, 36);
-  border-radius: 10px;
+  border-radius: 16px;
   color: #fff;
   transition: 0.2 ease-out;
   text-align: center;
-  padding: 10px;
+  padding: 0.6rem 1rem;
   margin: 10px;
   cursor: pointer;
   text-transform: uppercase;

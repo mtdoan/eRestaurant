@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import {addDishToCart, removeDishFromCart } from '../utils/client';
+import { useHistory } from "react-router-dom";
 
 const CartItemInfo = styled.div`
   width: 80%;
@@ -41,11 +42,11 @@ const Button = styled.button`
   border: none;
   outline: none;
   background: rgb(205, 2, 36);
-  border-radius: 10px;
+  border-radius: 16px;
   color: #fff;
   transition: 0.2 ease-out;
   text-align: center;
-  padding: 10px;
+  padding: 0.6rem 1rem;
   margin: 10px;
   cursor: pointer;
   text-transform: uppercase;
@@ -68,6 +69,7 @@ const ConfirmContainer = styled.div`
 
 const CartScrollContainer = ({ cartItems, onCartChange }) => {
   const [cart, setCart] = useState({ cartItems: cartItems });
+  const history = useHistory();
   
   const addToCart = (productId) => {
     addDishToCart(productId, onCartChange);
@@ -90,6 +92,10 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
   for (let i = 0; i < cart.cartItems.length; i++) {
     total += cart.cartItems[i].dish.price * cart.cartItems[i].count;
   }
+
+  const confirmOrderHandler = () => {
+    history.push("/eRestaurant/booking");
+  };
 
   return (
     <CartContainer>
@@ -123,7 +129,7 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
       </CartScrollDiv>
       <ConfirmContainer>
         <p style={{ margin: "auto"}}>Total = ${total}</p>
-        <Button>Confirm Order</Button>
+        <Button onClick={confirmOrderHandler}>Confirm Order</Button>
       </ConfirmContainer>
     </CartContainer>
   )
