@@ -1,17 +1,17 @@
 import "./App.css";
 import { HomePage } from "./containers/HomePage";
 import { buildPath, HomePagePath } from "./Paths";
-import { LoginPage } from "./containers/CustomerAccessPage/customerLoginPage";
-import { LoggedInPage } from "./containers/CustomerAccessPage/loggedInPage";
-import { StaffLoginPage } from "./containers/CustomerAccessPage/staffLoginPage";
-import { RegisterPage } from "./containers/CustomerAccessPage/registerPage";
-import { RegisteredPage } from "./containers/CustomerAccessPage/registeredPage";
-import { OrderPage } from "./containers/CustomerAccessPage/orderPage";
+import { LoginPage } from "./containers/customerAccessPage/customerLoginPage";
+import { LoggedInPage } from "./containers/customerAccessPage/loggedInPage";
+import { StaffLoginPage } from "./containers/customerAccessPage/staffLoginPage";
+import { RegisterPage } from "./containers/customerAccessPage/registerPage";
+import { RegisteredPage } from "./containers/customerAccessPage/registeredPage";
+import { OrderPage } from "./containers/customerAccessPage/orderPage";
 import { ListStaffPage } from "./containers/StaffAccessPage/listStaffPage";
 import { EditStaff } from "./containers/StaffAccessPage/editStaff";
 import { AddStaff } from "./containers/StaffAccessPage/addStaff";
-import { BookingPage } from "./containers/CustomerAccessPage/bookingPage";
-import { BookedPage } from "./containers/CustomerAccessPage/bookedPage";
+import { BookingPage } from "./containers/customerAccessPage/bookingPage";
+import { BookedPage } from "./containers/customerAccessPage/bookedPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
