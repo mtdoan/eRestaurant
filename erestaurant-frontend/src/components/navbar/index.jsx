@@ -25,6 +25,7 @@ const AccessibilityContainer = styled.div`
   width: 20%;
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 `;
 
 

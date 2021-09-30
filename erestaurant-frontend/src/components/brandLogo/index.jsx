@@ -8,6 +8,7 @@ const BrandLogoContainer = styled.div`
   display: flex;
   align-items: center;
   width: 20%;
+  margin: 0 1rem;
 `;
 
 const LogoImage = styled.div`
