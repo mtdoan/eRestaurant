@@ -131,3 +131,17 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
     }
   });
 }
+
+
+export const submitBooking = (restaurantId, numberOfPatrons, dateEpoch, timeSlotId, callback ) => {
+  instance.post(`${hostUrl}/booking`, {
+    restaurantId,
+    numberOfPatrons,
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback();
+    }
+  });
+}
