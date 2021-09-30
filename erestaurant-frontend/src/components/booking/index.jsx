@@ -161,8 +161,8 @@ export function Booking(props) {
                 { value: 8, label: 'Dinner 6:30PM' },
                 { value: 9, label: 'Dinner 7:00PM' },
                 { value: 10, label: 'Dinner 7:30PM' },
-                { value: 11, label: 'Dinner 8:30PM' },
-                { value: 12, label: 'Dinner 9:00PM' },
+                { value: 11, label: 'Dinner 8:00PM' },
+                { value: 12, label: 'Dinner 8:30PM' },
               ]} 
               placeholder="Choose time"
               onChange={(event) => {
