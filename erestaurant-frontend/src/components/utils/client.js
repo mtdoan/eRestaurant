@@ -145,3 +145,11 @@ export const submitBooking = (restaurantId, numberOfPatrons, dateEpoch, timeSlot
     }
   });
 }
+
+export const getBooking = (callback) => {
+  instance.get(`${hostUrl}/booking/details`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
