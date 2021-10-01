@@ -58,7 +58,6 @@ export function TopSection(props) {
               <img id="homePromotionalImg" src={TheSpecialImg} alt="The special offer" />
             </StandoutImage>
           )}
-          
         </TopSectionInnerContainer>
       </BackgroundFilter>
     </TopSectionContainer>

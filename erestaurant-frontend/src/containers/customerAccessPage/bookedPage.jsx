@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { NavbarLoginRegister } from "../../components/navbar";
-import { Link } from "react-router-dom";
-import ReactToPrint from 'react-to-print';
 import { useReactToPrint } from 'react-to-print';
-import { HomePagePath } from "../../Paths";
-import { getBooking, loadCart } from "../../components/utils/client";
+import { getBooking } from "../../components/utils/client";
 import { Invoice } from './invoice';
-import "./components.css";
 
 const FormContainer = styled.div`
   width: 100%;
@@ -51,40 +47,6 @@ const InvoiceContainer = styled.div`
 
   const Heading = styled.h1`
   color: #000;
-  `;
-
-  const AnchorLink = styled(Link)`
-    color: #000;
-    cursor: pointer;
-    font-size: 0.7rem;
-    font-weight: 500;
-    margin: 10px 0 10px 0;
-  `;
-  const CartItemInfo = styled.div`
-    width: 80%;
-    text-align: start;
-  `;
-
-  const ItemTitle = styled.h2`
-    font-weight: 700;
-    font-size: 1rem;
-  `;
-
-  const CartItemButtonContainer = styled.div`
-    width: 20%;
-    display: flex;
-    justify-content: top;
-    margin: auto;
-    text-align: top;
-
-  `;
-
-  const CartContainer = styled.div`
-    width: 100%;
-    margin: 0 0.5rem 0.5rem 0;
-    display: flex;
-    text-align: start;
-
   `;
 
   const ColDiv = styled.div`
@@ -178,9 +140,6 @@ export function BookedPage() {
           <button onClick={handlePrint} style={{ width: "160px" }}>Print this out!</button>
           <p/>
           <p>Thank you! </p>
-    
-          
-      
         </FormContainer>
       </InnerPageContainer>
     </PageWrapper>
