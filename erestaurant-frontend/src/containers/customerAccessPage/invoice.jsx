@@ -4,7 +4,7 @@ import { getBooking, loadCart, getUser } from "../../components/utils/client";
 import 'antd/dist/antd.css';
 
 const PageWrapper = styled.div`
-  width: 100%;
+  width: 800px;
   min-height: 100%;
   padding: 0;
   margin: 0;
@@ -14,7 +14,7 @@ const PageWrapper = styled.div`
 `;
 
 const RowDiv = styled.div`
-  width: 1000px;
+  width: 100%;
   min-height: 100%;
   padding: 0;
   margin: 1rem;
@@ -44,7 +44,7 @@ const SmallColDiv = styled.div`
   text-align: left;
 `;
 
-export const Invoice = (props) => {
+export const Invoice = React.forwardRef((props, ref) => {
   const [booking, setBooking] = useState();
   const [cart, setCart] = useState({ cartItems: [] });
   const [user, setUser] = useState(null);
@@ -76,7 +76,7 @@ export const Invoice = (props) => {
   }
 
   return (
-    <PageWrapper>
+    <PageWrapper ref={ref}>
       <RowDiv style={{ flexDirection: "column" }}>
         <div style={{ textAlign: "center" }}>  
           <h1>Invoice</h1>
@@ -87,16 +87,14 @@ export const Invoice = (props) => {
         <SmallColDiv />
         <ColDiv >
           <h3>Le Bistro D'Andre</h3>
-          <div>Address: Shop 1B, King Road</div>
-          <div>Haymarket NSW 2000</div>
+          <div>Address: 1B King Road</div>
+          <div>Haymarket, NSW 2000</div>
           <div>Phone: 1300 367 283</div>
         </ColDiv>
         <SmallColDiv />
         <SmallColDiv />
-        <SmallColDiv />
-
         <ColDiv >
-          <table>
+          <table style={{ fontSize: "16px", textAlign: "left" }}>
             <tr>
               <th>Invoice # :</th>
               <td>0001</td>
@@ -113,6 +111,7 @@ export const Invoice = (props) => {
             </tr>
           </table>
         </ColDiv>
+        <SmallColDiv />
       </RowDiv>
 
       <RowDiv>
@@ -130,10 +129,8 @@ export const Invoice = (props) => {
       </RowDiv>
 
       <RowDiv style={{ display: "flex" }}>
-        {/* <SmallColDiv />
-        <SmallColDiv /> */}
-          <table style={{ fontSize: "16px", width: "100%", margin: "0 0 0 100px" }}>
-            <thead>
+          <table style={{ fontSize: "16px", width: "100%", margin: "0 0 0 80px", textAlign: "left" }}>
+            <thead >
               <tr>
                 <th>No.</th>
                 <th style={{ width: "55%" }}>Product</th>
@@ -141,7 +138,7 @@ export const Invoice = (props) => {
                 <th>Quantity</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
             {cart.cartItems.map(cartItem => {
               return (
                 <tr key={cartItem.id} >
@@ -162,7 +159,7 @@ export const Invoice = (props) => {
               )
             })}
             <tr> 
-                <td colSpan="4">______________________________________________________________________________________________</td>
+                <td colSpan="4">_____________________________________________________________________________</td>
               </tr>
               <tr>
                 <td colSpan="2">Sub-total</td>
@@ -182,5 +179,8 @@ export const Invoice = (props) => {
      
     </PageWrapper>
   );
-};
+});
+
+
+//  default Invoice;
 
