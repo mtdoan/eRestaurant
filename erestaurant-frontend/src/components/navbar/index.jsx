@@ -5,6 +5,7 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
+import { MenuViewPage } from "../../containers/MenuPage/MenuViewPage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
@@ -116,7 +117,7 @@ export function Navbar(props) {
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
+          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
