@@ -121,7 +121,6 @@ export function OrderPage() {
             ))}
           </ButtonGroup>
         </MenuTypeContainer>
-
         <ContentWrapper>
           <ProductScrollContainer onCartChange={refreshCart} type={active}/>
           <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />

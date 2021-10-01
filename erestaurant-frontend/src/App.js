@@ -13,7 +13,6 @@ import { AddStaff } from "./containers/StaffAccessPage/addStaff";
 import { BookingPage } from "./containers/CustomerAccessPage/bookingPage";
 import { BookedPage } from "./containers/CustomerAccessPage/bookedPage";
 import { Invoice } from "./containers/CustomerAccessPage/invoice";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -34,8 +33,6 @@ function App() {
           <Route path={buildPath("booking")} exact component={BookingPage} />
           <Route path={buildPath("booked")} exact component={BookedPage} />
           <Route path={buildPath("invoice")} exact component={Invoice} />
-
-          
         </Switch>
       </Router>
     </div>

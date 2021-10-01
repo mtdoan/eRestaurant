@@ -182,5 +182,3 @@ export const Invoice = React.forwardRef((props, ref) => {
 });
 
 
-//  default Invoice;
-
