@@ -3,8 +3,8 @@ import { Navbar } from "../../components/navbar";
 import styled from "styled-components";
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
-import SnailImg from "../../images/snails.jpg";
-import DessertImg from "../../images/MilleFeuille.jpg";
+import SnailImg from "../../images/snails sized.jpg";
+import DessertImg from "../../images/MilleFeuille sized.jpg";
 import { Tabs, TabLink, TabContent } from "react-tabs-redux";
 
 
@@ -157,15 +157,36 @@ const styles = {
                     {/* Placeholder */}
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V) blah blah blah blah blah</ItemDescription>
+                        <p>Baguette & Salted Butter $5</p>
+                        <ItemDescription>Gluten free available</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V)</ItemDescription>
+                        <p>Pate De Foie $10</p>
+                        <ItemDescription>Chicken Liver pate, served with baguette</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>French Onion Soup $12</p>
+                        <ItemDescription>Topped with Cheesy croutons</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Croqe Monsieur $14</p>
+                        <ItemDescription>Ham and cheese toastie with fried egg on top</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Beef Tartare $20</p>
+                        <ItemDescription>Raw Beef with Mayonaise and served with Grilled Bread </ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
                     
@@ -174,15 +195,57 @@ const styles = {
                       {/* Placeholder */}
                       <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V) blah blah blah blah blah</ItemDescription>
+                        <p>Bacon and Leek Quiche $24</p>
+                        <ItemDescription>Bacon, Leek, egg in a creamy quiche sauce.</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V)</ItemDescription>
+                        <p>Tomato Quiche $21</p>
+                        <ItemDescription>Delicious fresh tomatoes</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Mushroom Risotto $28</p>
+                        <ItemDescription>Mushroom Mix with Herbs and Parmesan Cheese</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Salmon en Papillote $37</p>
+                        <ItemDescription>Fresh Salmon Fillet with Green Beans and Carrots</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Chicken Confit $34</p>
+                        <ItemDescription>Free Range Chicken with Tomato Puree</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Steak Frites $34</p>
+                        <ItemDescription>Rib Eye Steak with Herb Fries</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Beef Bourguignon $39</p>
+                        <ItemDescription>Beef burgundy, slow cooked in Red Wine with Mushrooms, Carrots and Thyme</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Bouillabaisse $40</p>
+                        <ItemDescription>Mussels, Crab, Mullet, Bass, Barramundi in a slow cooked Tomato Sauce</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
 
@@ -191,15 +254,36 @@ const styles = {
                     {/* Placeholder */}
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V) blah blah blah blah blah</ItemDescription>
+                        <p>Vanilla créme brûlèe $14</p>
+                        <ItemDescription>Vanilla créme brûlèe, Pistachio crumble , Mandarin sorbet</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V)</ItemDescription>
+                        <p>Profiteroles $12</p>
+                        <ItemDescription>Vanilla ice cream, Salted caramel, Hot chocolate sauce</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Ice Cream $10</p>
+                        <ItemDescription>Vanilla, Chocolate, Strawberry</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Raspberry souffle $15</p>
+                        <ItemDescription>With Pistachio Ice Cream</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Mille-feuille of Banana $16</p>
+                        <ItemDescription>Hazelnut and Creme Chantilly, Mango, Passionfruit Sorbet</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
 
@@ -208,17 +292,67 @@ const styles = {
                     {/* Placeholder */}
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V) blah blah blah blah blah</ItemDescription>
+                        <p>Fresh Juice $8</p>
+                        <ItemDescription>Apple, Orange, Pineapple</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
                         <ItemContainer>
-                        <p>Tempura Zucchini Flowers $19</p>
-                        <ItemDescription>Filled with goats cheese and sundried tomato mousse, french onion tartlet, capsicum coulis, fig balsamic (V)</ItemDescription>
+                        <p>Soft Drinks $8</p>
+                        <ItemDescription>Coke, Diet Coke, Sprite, Fanta, Pepsi, Ginger Beer</ItemDescription>
                         </ItemContainer>
                     </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Sparkling Water $5</p>
+                        <ItemDescription>It sure is sparkly</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Le Fraise Spritz $23</p>
+                        <ItemDescription>Absolut Vodka, Alba Luna Prosecco, Citrus, Strawberry Shrub</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>Paris l' Appel $23</p>
+                        <ItemDescription>Beefeater Gin, Navados Sherry, Grapefruit, Violette, Citrus</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>2018 Domaine de Beauvernay 'Terroir de Jullié' Julienas (RED) $27</p>
+                        <ItemDescription>Bright,supple Gamay with cherries and violets on a smooth, juicy palate.</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>2019 Terre a Terre 'Piccadilly Red' Trousseau Cabernet Franc (RED) $27</p>
+                        <ItemDescription>Light and fresh Australian twist on Jura: cherry, pomegranate and spices.</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>2018 Domaine de la Loge ‘Silex’ Pouilly-Fumé – Loire Valley, Fr (WHITE) $28</p>
+                        <ItemDescription>Light and fresh Australian twist on Jura: cherry, pomegranate and spices.</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+                    
+                    <MenuItemContainer>
+                        <ItemContainer>
+                        <p>2018 Domaine de Belle-vue, Clos des bouquinardieres – Pays Nantais, Fr (WHITE) $37</p>
+                        <ItemDescription>Very mineral and vibrant, tastes of wet stone, this is one of the best Muscadet.</ItemDescription>
+                        </ItemContainer>
+                    </MenuItemContainer>
+
                      </TabContent>
                 </Tabs>
                 <img src={DessertImg} alt="snails" style={{width: 250,height: 550, marginRight: 20,marginLeft: 20}}/>
