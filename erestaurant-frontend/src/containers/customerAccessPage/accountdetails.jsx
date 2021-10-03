@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 import styled from "styled-components";
-import { NavbarOrder } from "../../components/navbar";
-import { Link } from "react-router-dom";
-import { buildPath } from "../../Paths";
-import { Table, TableHead, TableCell, Paper, TableRow, TableBody, Button, makeStyles } from '@material-ui/core'
-import { loadStaff, removeStaffFromList } from "../../components/utils/client";
+import { deviceSize } from "../../components/responsive";
+import { Navbar } from "../../components/navbar";
+import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
-const PageWrapper = styled.div`
+export function CustomerAccountDetails() {
+  const PageWrapper = styled.div`
   width: 100%;
   min-height: 100%;
   padding: 0;
@@ -15,13 +14,47 @@ const PageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const InnerPageContainer = styled.div`
-  flex: 1;
+
+const TopSectionContainer = styled.div`
   width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 100vh;
-  padding: 1em;
+  height: 100vh;
+  background: url(${TopSectionBackgroundImg}) no-repeat;
+  background-position: 0px 0px;
+  background-size: cover;
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    height: 700px;
+    background-position: 0px 0px;
+  }
+`;
+
+const TopSectionInnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  background-color: white;
+`;
+
+const BackgroundFilter = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(234, 125, 125, 0.8);
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
+
+  return (
+    <PageWrapper>
+      <TopSectionContainer>
+        <BackgroundFilter>
+            <Navbar useTransparent/>
+            <TopSectionInnerContainer>
+              <p>content</p>
+            </TopSectionInnerContainer>
+        </BackgroundFilter>
+      </TopSectionContainer>
+    </PageWrapper>
+  );
+}

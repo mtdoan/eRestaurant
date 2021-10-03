@@ -29,7 +29,7 @@ const AccessibilityContainer = styled.div`
 
 
 const CenterContainer = styled.div`
-  height: 40px;
+  height: 100%;
   width: 60%;
   display: block;
   align-items: center;
@@ -108,8 +108,9 @@ export function Navbar(props) {
 
   return (
     <NavbarContainer id={props.id} useTransparent={useTransparent}>
+      <AccessibilityContainer>
       <BrandLogo id="brandLogo"/>
-      <CenterContainer id="centerMenuBar">
+      </AccessibilityContainer>
         <HomeMenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
@@ -123,7 +124,6 @@ export function Navbar(props) {
           <AnchorLink to={buildPath("about")}>About</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
         </HomeMenuContainer>
-      </CenterContainer>
 
       <AccessibilityContainer id="rightAccessibilityBar">
         <div style={{ marginLeft: "auto" }} />

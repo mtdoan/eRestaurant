@@ -7,7 +7,6 @@ import { HomePagePath } from "../../Paths";
 const BrandLogoContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 20%;
 `;
 
 const LogoImage = styled.div`
