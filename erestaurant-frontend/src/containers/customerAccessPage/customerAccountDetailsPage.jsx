@@ -5,6 +5,7 @@ import { Navbar } from "../../components/navbar";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Container, Row, Col } from 'react-grid';
 import { Marginer } from "../../components/marginer";
+import { useHistory } from "react-router";
 
 export function CustomerAccountDetailsPage() {
   const PageWrapper = styled.div`
@@ -79,6 +80,8 @@ const Input = styled.input`
     justify-content: flex-left;
   `;
 
+  const history = useHistory();
+
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -110,7 +113,7 @@ const Input = styled.input`
                         </Row>
                     </Container>
                     <Marginer direction="vertical" margin="3em"/> 
-                    <SubmitButton>Save Details</SubmitButton>
+                    <SubmitButton onClick={()=> history.push("./customerAccountPage")}>Save Details</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>
