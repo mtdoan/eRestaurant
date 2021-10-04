@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { deviceSize } from "../../components/responsive";
 import { Navbar } from "../../components/navbar";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
+import { Container, Row, Col } from 'react-grid';
+import { Marginer } from "../../components/marginer";
 
 export function CustomerAccountDetailsPage() {
   const PageWrapper = styled.div`
@@ -21,19 +23,15 @@ const TopSectionContainer = styled.div`
   background: url(${TopSectionBackgroundImg}) no-repeat;
   background-position: 0px 0px;
   background-size: cover;
-  @media screen and (max-width: ${deviceSize.mobile}px) {
-    height: 700px;
-    background-position: 0px 0px;
-  }
+  @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
 `;
 
 const TopSectionInnerContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 20px;
+  justify-content: center;
+  //margin-top: 20px;
   background-color: white;
 `;
 
@@ -45,13 +43,75 @@ const BackgroundFilter = styled.div`
   flex-direction: column;
 `;
 
+const SubmitButton = styled.button`
+  padding: 10px;
+  width: 150px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {outline: none;}
+  &:hover { background: #fff; color: rgba(205, 2, 36, 0.9);}
+`;
+
+const Input = styled.input`
+  padding: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  height: 10x;
+  width: 290px;
+  `;
+
+  const InnerPageContainer = styled.div`
+    width: 70%;
+    min-height: 70vh;
+    flex-direction: column;
+    background: #ffffff;
+  `;
+
+  const InputHeading = styled.p`
+    justify-content: flex-left;
+  `;
+
   return (
     <PageWrapper>
       <TopSectionContainer>
         <BackgroundFilter>
             <Navbar useTransparent/>
             <TopSectionInnerContainer>
-              <h>Account Details</h>
+              <InnerPageContainer>
+              <Marginer direction="vertical" margin="1em"/> 
+              <h1>Account Details</h1>
+                    <Container>
+                        <Row>
+                            <Col sm>    
+                              <InputHeading>First Name:</InputHeading>
+                              <Input placeholder="First Name*" />
+                              <Marginer direction="vertical" margin="2em"/> 
+                              <p>Email:</p> 
+                              <Input placeholder="Email*" />
+                              <Marginer direction="vertical" margin="2em"/> 
+                              <p>Password:</p> 
+                              <Input placeholder="Password*" />
+                            </Col>
+                            <Col sm>    
+                              <p>Last Name:</p>
+                              <Input placeholder="Last Name*" />
+                              <Marginer direction="vertical" margin="2em"/> 
+                              <p>Phone Number:</p> 
+                              <Input placeholder="Phone Number" />
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Marginer direction="vertical" margin="3em"/> 
+                    <SubmitButton>Save Details</SubmitButton>
+                </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>
       </TopSectionContainer>
