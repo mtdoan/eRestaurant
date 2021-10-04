@@ -65,6 +65,7 @@ const MenuContainer = styled.div`
   background-color: white;
   margin-bottom: 20px;
   margin-top: 30px;
+  justify-content: center;
 `;
 
 const MenuItemContainer = styled.div`
