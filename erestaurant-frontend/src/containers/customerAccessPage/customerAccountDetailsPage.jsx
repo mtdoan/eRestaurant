@@ -4,7 +4,7 @@ import { deviceSize } from "../../components/responsive";
 import { Navbar } from "../../components/navbar";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
-export function CustomerAccountDetails() {
+export function CustomerAccountDetailsPage() {
   const PageWrapper = styled.div`
   width: 100%;
   min-height: 100%;
@@ -51,7 +51,7 @@ const BackgroundFilter = styled.div`
         <BackgroundFilter>
             <Navbar useTransparent/>
             <TopSectionInnerContainer>
-              <p>content</p>
+              <h>Account Details</h>
             </TopSectionInnerContainer>
         </BackgroundFilter>
       </TopSectionContainer>

@@ -12,7 +12,7 @@ import { EditStaff } from "./containers/StaffAccessPage/editStaff";
 import { AddStaff } from "./containers/StaffAccessPage/addStaff";
 import { BookingPage } from "./containers/customerAccessPage/bookingPage";
 import { BookedPage } from "./containers/customerAccessPage/bookedPage";
-import {CustomerAccountDetails} from "./containers/customerAccessPage/accountdetails"
+import {CustomerAccountDetailsPage} from "./containers/customerAccessPage/customerAccountDetailsPage"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path={buildPath("staff/add/")} exact component={AddStaff} />
           <Route path={buildPath("booking")} exact component={BookingPage} />
           <Route path={buildPath("booked")} exact component={BookedPage} />
-          <Route path={buildPath("customeraccountdetails")} exact component={CustomerAccountDetails} />
+          <Route path={buildPath("customeraccountdetails")} exact component={CustomerAccountDetailsPage} />
 
         </Switch>
       </Router>
