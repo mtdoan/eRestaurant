@@ -31,7 +31,7 @@ const TopSectionInnerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 20px;
+  // margin-top: 20px;
 `;
 
 const StandoutImage = styled.div`

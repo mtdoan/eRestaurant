@@ -14,7 +14,7 @@ const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem calc((100vw - 2000px) / 2);
+  padding: 0 1.5em;
   background-color: ${({ useTransparent }) =>
     useTransparent ? "transparent" : "rgba(205, 2, 36, 0.9)"
   };
