@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { deviceSize } from "../../components/responsive";
-import { Navbar } from "../../components/navbar";
+import { NavbarLoggedIn } from "../../components/navbar";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Container, Row, Col } from 'react-grid';
 import { Marginer } from "../../components/marginer";
@@ -66,7 +66,7 @@ const Input = styled.input`
   border-left: 1px solid black;
   border-right: 1px solid black;
   height: 10x;
-  width: 290px;
+  width: 350px;
   `;
 
   const InnerPageContainer = styled.div`
@@ -76,17 +76,13 @@ const Input = styled.input`
     background: #ffffff;
   `;
 
-  const InputHeading = styled.p`
-    justify-content: flex-left;
-  `;
-
   const history = useHistory();
 
   return (
     <PageWrapper>
       <TopSectionContainer>
         <BackgroundFilter>
-            <Navbar useTransparent/>
+            <NavbarLoggedIn useTransparent/>
             <TopSectionInnerContainer>
               <InnerPageContainer>
               <Marginer direction="vertical" margin="1em"/> 
@@ -94,7 +90,7 @@ const Input = styled.input`
                     <Container>
                         <Row>
                             <Col sm>    
-                              <InputHeading>First Name:</InputHeading>
+                              <p>First Name:</p>
                               <Input placeholder="First Name*" />
                               <Marginer direction="vertical" margin="2em"/> 
                               <p>Email:</p> 
@@ -112,7 +108,7 @@ const Input = styled.input`
                             </Col>
                         </Row>
                     </Container>
-                    <Marginer direction="vertical" margin="3em"/> 
+                    <Marginer direction="vertical" margin="4em"/> 
                     <SubmitButton onClick={()=> history.push("./customerAccountPage")}>Save Details</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
