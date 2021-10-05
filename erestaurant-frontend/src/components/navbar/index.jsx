@@ -14,7 +14,7 @@ const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem calc((100vw - 2000px) / 2);
+  padding: 0 1.5em;
   background-color: ${({ useTransparent }) =>
     useTransparent ? "transparent" : "rgba(205, 2, 36, 0.9)"
   };
@@ -108,8 +108,10 @@ export function Navbar(props) {
 
   return (
     <NavbarContainer id={props.id} useTransparent={useTransparent}>
+      <AccessibilityContainer>
       <BrandLogo id="brandLogo"/>
-      <CenterContainer id="centerMenuBar">
+      </AccessibilityContainer>
+
         <HomeMenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
@@ -123,7 +125,6 @@ export function Navbar(props) {
           <AnchorLink to={buildPath("about")}>About</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
         </HomeMenuContainer>
-      </CenterContainer>
 
       <AccessibilityContainer id="rightAccessibilityBar">
         <div style={{ marginLeft: "auto" }} />
@@ -156,6 +157,35 @@ export function NavbarLoginRegister(props) {
         <AnchorLinkLoginRegisterContainer to={buildPath("signin")}>Login</AnchorLinkLoginRegisterContainer>
         <Marginer direction="horizontal" margin={marginSize} />
       </MenuLoginRegisterContainer>
+    </NavbarContainer>
+  );
+}
+
+export function NavbarLoggedIn(props) {
+  const { useTransparent } = props;
+  const menuMarginSize = 60;
+
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+          <AccessibilityContainer>
+            <BrandLogo/>
+          </AccessibilityContainer>
+            <HomeMenuContainer>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={HomePagePath}>Home</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("about")}>About</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+            </HomeMenuContainer>
+          <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
+          <h1 >Hello User! </h1>
+          </AccessibilityContainer>
     </NavbarContainer>
   );
 }
