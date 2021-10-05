@@ -5,6 +5,7 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
+import { MenuViewPage } from "../../containers/MenuPage/MenuViewPage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,7 +15,7 @@ const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem calc((100vw - 2000px) / 2);
+  padding: 0 1.5em;
   background-color: ${({ useTransparent }) =>
     useTransparent ? "transparent" : "rgba(205, 2, 36, 0.9)"
   };
@@ -108,22 +109,22 @@ export function Navbar(props) {
 
   return (
     <NavbarContainer id={props.id} useTransparent={useTransparent}>
+      <AccessibilityContainer>
       <BrandLogo id="brandLogo"/>
-      <CenterContainer id="centerMenuBar">
+      </AccessibilityContainer>
         <HomeMenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
+          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={buildPath("about")}>About</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
         </HomeMenuContainer>
-      </CenterContainer>
 
       <AccessibilityContainer id="rightAccessibilityBar">
         <div style={{ marginLeft: "auto" }} />
