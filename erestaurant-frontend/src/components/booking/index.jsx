@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import Select from 'react-select'
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import {submitBooking } from '../utils/client';
+import {submitBooking, createBookingId } from '../utils/client';
 
 
 const SubmitButton = styled.button`
@@ -69,9 +69,14 @@ export function Booking(props) {
   const [time, setTime] = useState(-1);
   const history = useHistory();
 
+  const [bookingId, setBookingId] = useState(-1);
+  const getBookingId = () => {
+    createBookingId(setBookingId);
+  }
+
   const callback = () => {
     console.log("Call back");
-    history.push("/eRestaurant/booked");
+    history.push(`/eRestaurant/booked/${bookingId}`);
   }
 
   const submitBookingHandler = () => {
@@ -83,6 +88,9 @@ export function Booking(props) {
   console.log("setStartDate = ", startDate?.getTime());
   console.log("setTime = ", time);
 
+  useEffect(() => {
+    getBookingId();
+}, []);
   
   return (
     <BookingContainer>

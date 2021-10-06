@@ -32,8 +32,8 @@ function App() {
           <Route path={buildPath("staff/edit/:staffId")} exact component={EditStaff} />
           <Route path={buildPath("staff/add/")} exact component={AddStaff} />
           <Route path={buildPath("booking")} exact component={BookingPage} />
-          <Route path={buildPath("booked")} exact component={BookedPage} />
           <Route path={buildPath("menu")} exact component={MenuViewPage} />
+          <Route path={buildPath("booked/:bookingId")} exact component={BookedPage} />
           <Route path={buildPath("invoice")} exact component={Invoice} />
         </Switch>
       </Router>

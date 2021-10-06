@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getBooking, loadCart, getUser } from "../../components/utils/client";
+import { getBookingFromBookingId, loadItemsFromBooking, getUserFromId, getUserFromIdAsync } from "../../components/utils/client";
 import 'antd/dist/antd.css';
 
 const PageWrapper = styled.div`
@@ -44,36 +44,34 @@ const SmallColDiv = styled.div`
   text-align: left;
 `;
 
-export const Invoice = React.forwardRef((props, ref) => {
+
+export const Invoice = React.forwardRef(({ bookingId }, ref) => {
   const [booking, setBooking] = useState();
-  const [cart, setCart] = useState({ cartItems: [] });
+  const [items, setItems] = useState({ cartItems: [] });
   const [user, setUser] = useState(null);
   
-  const refreshCart = () => {
-    loadCart((cartItems) => setCart({ cartItems }));
+  const getBookingDetails = (bookingId) => {
+    getBookingFromBookingId(bookingId, booking => {
+      setBooking(booking);
+      getUserFromId(booking.userId, setUser);
+    });
+  }
+
+  const refreshItems = () => {
+    loadItemsFromBooking(bookingId, (cartItems) => setItems({ cartItems }));
   };
-
-  const getBookingDetails = () => {
-    getBooking((booking) => setBooking(booking));
-  }
-
-  const getUserName = () => {
-    getUser((user) => setUser(user));
-  }
 
   useEffect(() => {
     console.log('Call CART api');
-    getBookingDetails();
-    refreshCart();
-    getUserName();
+    getBookingDetails(bookingId);
+    refreshItems();
   }, []);
 
-  console.log("booking", booking?.bookingId);
-
   let total = 0;
-  for (let i = 0; i < cart.cartItems.length; i++) {
-    total += cart.cartItems[i].dish.price * cart.cartItems[i].count;
+  for (let i = 0; i < items.cartItems.length; i++) {
+    total += items.cartItems[i].dish.price * items.cartItems[i].count;
   }
+  console.log("total  =", total);
 
   return (
     <PageWrapper ref={ref}>
@@ -139,7 +137,7 @@ export const Invoice = React.forwardRef((props, ref) => {
               </tr>
             </thead>
             <tbody >
-            {cart.cartItems.map(cartItem => {
+            {items.cartItems.map(cartItem => {
               return (
                 <tr key={cartItem.id} >
                     <td>

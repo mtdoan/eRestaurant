@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useParams } from 'react-router-dom';
 import styled from "styled-components";
 import { NavbarLoginRegister } from "../../components/navbar";
 import { useReactToPrint } from 'react-to-print';
-import { getBooking } from "../../components/utils/client";
+import { getBookingFromBookingId } from "../../components/utils/client";
 import { Invoice } from './invoice';
 
 const FormContainer = styled.div`
@@ -82,20 +83,24 @@ const InvoiceContainer = styled.div`
   `;          
 
 export function BookedPage() {
+  const componentRef = useRef();
+
   const [booking, setBooking] = useState();
 
-  const getBookingDetails = () => {
-    getBooking((booking) => setBooking(booking));
+  const { bookingId } = useParams();
+  console.log("bookingId = ", bookingId);
+
+  const getBookingDetails = (bookingId) => {
+    getBookingFromBookingId(bookingId, setBooking);
   }
 
-  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
   useEffect(() => {
     console.log('Call CART api');
-    getBookingDetails();
+    getBookingDetails(bookingId);
   }, []);
 
   console.log("booking", booking?.bookingId);
@@ -113,21 +118,20 @@ export function BookedPage() {
                 <div>Booking number: #00A{booking?.bookingId}</div>
                 <div>Date: {(new Date(booking?.dateEpoch)).toLocaleDateString()}</div>
                 <div>Time: {(() => {
-                    switch (booking?.time) {
-                      case "1":  return 'Lunch 10:30AM';
-                      case "2":  return 'Lunch 11:00AM';
-                      case "3":  return 'Lunch 11:30AM';
-                      case "3":  return 'Lunch 11:30AM';
-                      case "4":  return 'Lunch 12:00AM';
-                      case "5":  return 'Lunch 12:30AM';
-                      case "6":  return 'Dinner 5:30PM';
-                      case "7":  return 'Dinner 6:00PM';
-                      case "8":  return 'Dinner 6:30PM';
-                      case "9":  return 'Dinner 7:00PM';
-                      case "10": return 'Dinner 7:30PM';
-                      case "11": return 'Dinner 8:00PM';
-                      case "12": return 'Dinner 8:30PM';
-                      default:   return 'Lunch 10:30AM';
+                    switch (booking?.timeSlotId) {
+                      case 1:  return 'Lunch 10:30AM';
+                      case 2:  return 'Lunch 11:00AM';
+                      case 3:  return 'Lunch 11:30AM';
+                      case 4:  return 'Lunch 12:00AM';
+                      case 5:  return 'Lunch 12:30AM';
+                      case 6:  return 'Dinner 5:30PM';
+                      case 7:  return 'Dinner 6:00PM';
+                      case 8:  return 'Dinner 6:30PM';
+                      case 9:  return 'Dinner 7:00PM';
+                      case 10: return 'Dinner 7:30PM';
+                      case 11: return 'Dinner 8:00PM';
+                      case 12: return 'Dinner 8:30PM';
+                      default: return 'Lunch 10:30AM';
                     }
                   })()}
                 </div>
@@ -135,7 +139,8 @@ export function BookedPage() {
               </ColDiv>
             </RowDiv>
             
-            <Invoice className="print-preview" ref={componentRef} />
+            <Invoice className="print-preview" ref={componentRef} bookingId={bookingId}/>
+
           </InvoiceContainer>
           <button onClick={handlePrint} style={{ width: "160px" }}>Print this out!</button>
           <p/>
