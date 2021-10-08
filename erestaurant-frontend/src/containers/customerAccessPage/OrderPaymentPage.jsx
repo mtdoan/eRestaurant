@@ -106,8 +106,7 @@ const Input = styled.input`
                         </Row>
                     </Container>
                     <Marginer direction="vertical" margin="4em"/> 
-                    {/* Still need to change button click to move to confirmation page */}
-                    <SubmitButton onClick={()=> history.push(".")}>Confirm Order</SubmitButton>
+                    <SubmitButton onClick={()=> history.push("./invoice")}>Confirm Order</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>
