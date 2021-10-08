@@ -78,6 +78,11 @@ const Input = styled.input`
 
   const history = useHistory();
 
+  const save = () => {
+    console.log("saving detail");
+    history.push("/eRestaurant/customeraccount");
+  }
+
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -109,7 +114,7 @@ const Input = styled.input`
                         </Row>
                     </Container>
                     <Marginer direction="vertical" margin="4em"/> 
-                    <SubmitButton onClick={()=> history.push("./customerAccountPage")}>Save Details</SubmitButton>
+                    <SubmitButton onClick={save}>Save Details</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>
