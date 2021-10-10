@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Marginer } from "../../components/marginer";
 import {
-  FormContainer,
-  // Input,
   MutedLink
 } from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
@@ -14,7 +11,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { FormGroup, FormControl, InputLabel, Input, Button, makeStyles, Typography } from '@material-ui/core';
+import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   container: {
@@ -48,23 +45,11 @@ const SubmitButton = styled.button`
 `;
 
 const AnchorLink = styled(Link)`
-    color: #000;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 10px 0 10px 0;
-  `;
-
-const Container = styled.div`
-  width: 100%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  img {
-    width: 50%;
-    height: 100%;
-  }
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 0 10px 0;
 `;
 
 const PageWrapper = styled.div`
@@ -77,75 +62,11 @@ const PageWrapper = styled.div`
   background: #fff;
 `;
 
-const InnerPageContainer = styled.div`
-  width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 100vh;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  `;
-
 const Heading = styled.h1`
   color: #000;
   `;
 
 function SignInForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPasswword] = useState("");
-  const history = useHistory();
-  const [errors, setErrors] = useState({});
-  const callback = () => {
-    console.log("Call back");
-    history.push("/eRestaurant/signedin");
-  }
-
-  const submitSignInFormHandler = () => {
-    submitSignInForm(email, password, callback);
-  };
-
-  return (
-    <FormContainer>
-      <Input type="text" placeholder="Email"
-        value={email} onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <div className="text-danger">{errors.email}</div>
-      <Input type="password" placeholder="Password"
-        value={password} onChange={(e) => {
-          setPasswword(e.target.value);
-        }}
-      />
-      <div className="text-danger">{errors.password}</div>
-      <MutedLink href="#">Forgot Password</MutedLink>
-      <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
-      <Marginer direction="vertical" margin="1em" />
-      <SubmitButton type="button" onClick={submitSignInFormHandler}>LOGIN</SubmitButton>
-      <Marginer direction="vertical" margin={5} />
-    </FormContainer>
-  )
-}
-
-
-
-export function LoginPage() {
-  return (
-    <PageWrapper>
-      <NavbarLoginRegister />
-      {/* <InnerPageContainer> */}
-        {/* <Container> */}
-          {/* <SignInForm /> */}
-          <Validate />
-        {/* </Container> */}
-      {/* </InnerPageContainer> */}
-    </PageWrapper>
-
-  );
-}
-
-function Validate() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -177,7 +98,7 @@ function Validate() {
       <Heading>Sign In</Heading>
       <FormControl >
         <InputLabel htmlFor="my-input">Email</InputLabel>
-        <Input 
+        <Input
           type="text" {...register('email')}
           className={`form-control ${errors.email ? 'is-invalid' : ''}`}
           placeholder="Email"
@@ -185,10 +106,14 @@ function Validate() {
           onChange={(e) => {
             setEmail(e.target.value);
           }}
-
         />
       </FormControl>
-      <div className="invalid-feedback">{errors.email?.message}</div>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.email?.message}
+      </div>
 
       <FormControl>
         <InputLabel htmlFor="my-input">Password</InputLabel>
@@ -204,13 +129,24 @@ function Validate() {
           }}
         />
       </FormControl>
-      <div className="invalid-feedback">{errors.password?.message}</div>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.password?.message}
+      </div>
       <MutedLink href="#">Forgot Password</MutedLink>
       <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
-      <Marginer direction="vertical" margin="1em" />
       <SubmitButton type="button" onClick={handleSubmit(onSubmit)}>LOGIN</SubmitButton>
-      <Marginer direction="vertical" margin={5} />
     </FormGroup>
-
   )
+}
+
+export function LoginPage() {
+  return (
+    <PageWrapper>
+      <NavbarLoginRegister />
+      <SignInForm />
+    </PageWrapper>
+  );
 }
