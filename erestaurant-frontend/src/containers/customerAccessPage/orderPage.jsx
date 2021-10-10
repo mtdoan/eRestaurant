@@ -27,27 +27,6 @@ const InnerPageContainer = styled.div`
   align-items: center;
 `;
 
-const AnchorLink = styled(Link)`
-  color: #000;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  margin: 10px 0 10px 0;
-  text-decoration: none;
-  font-size: 15px;
-  outline: none;
-  transition: all 200ms ease-in-out;
-  &:hover {
-    filter: contrast(0.6);
-  }
-`;
-
-const SeperatorLoginRegisterContainer = styled.div`
-  min-height: 35%;
-  width: 1px;
-  background-color: #000;
-`;
-
 const MenuTypeContainer = styled.div`
   height: 40px;
   display: flex;
@@ -61,8 +40,6 @@ const ContentWrapper = styled.div`
   display: flex;
   width: 100%;
 `;
-
-const MARGIN_SIZE = 60;
 
 const Tab = styled.button`
   font-size: 20px;
@@ -121,7 +98,6 @@ export function OrderPage() {
             ))}
           </ButtonGroup>
         </MenuTypeContainer>
-
         <ContentWrapper>
           <ProductScrollContainer onCartChange={refreshCart} type={active}/>
           <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />

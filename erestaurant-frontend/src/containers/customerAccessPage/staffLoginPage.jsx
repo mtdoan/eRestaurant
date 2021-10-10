@@ -114,7 +114,6 @@ function SignInForm() {
 
 export function StaffLoginPage() {
 
-
   return (
     <PageWrapper>
       <NavbarLoginRegister />
