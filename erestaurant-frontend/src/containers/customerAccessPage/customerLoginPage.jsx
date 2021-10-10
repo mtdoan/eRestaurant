@@ -64,7 +64,7 @@ const PageWrapper = styled.div`
 
 const Heading = styled.h1`
   color: #000;
-  `;
+`;
 
 function SignInForm() {
   const [email, setEmail] = useState("");
