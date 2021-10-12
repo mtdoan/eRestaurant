@@ -7,6 +7,7 @@ import {
 import { NavbarLoginRegister } from "../../components/navbar";
 import { useHistory } from "react-router-dom";
 import { submitSignUpForm } from "../../components/utils/client";
+import { buildPath } from "../../Paths";
 
 
 const SubmitButton = styled.button`
@@ -29,47 +30,18 @@ const SubmitButton = styled.button`
   }
 `;
 
-function SignUpForm() {
+export function SignUpForm() {
 
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPasswword] = useState("");
-  const history = useHistory();
-
-  const callback = () => {
-    console.log("Call back");
-    history.push("/eRestaurant/registered");
-  }
-
-  const submitSignUpFormHandler = () => {
-    submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback );
-  };
-  return (
-    <FormContainer>
-      <Input type="text" placeholder="Email*" value={email} onChange={(e) => {
-        setEmail(e.target.value);
-      }}
-      />
-      <Input type="text" placeholder="First Name*" value={firstName} onChange={(e) => {
-        setFirstName(e.target.value);
-      }}
-      />
-      <Input type="text" placeholder="Last Name*" value={lastName} onChange={(e) => {
-        setLastName(e.target.value);
-      }}
-      />
-      <Input type="text" placeholder="Phone number" value={phoneNumber} onChange={(e) => {
-        setPhoneNumber(e.target.value);
-      }}
-      />
-      <Input type="password" placeholder="Password*" value={password} onChange={(e) => {
-        setPasswword(e.target.value);
-      }}
-      />
-      <SubmitButton type="button" onClick={submitSignUpFormHandler}>Signup</SubmitButton>
-    </FormContainer>);
+    return (
+      <FormContainer method="post" action="/register">
+        <Input placeholder="Email" name="email"/>
+        <Input placeholder="First Name" name="firstName"/>
+        <Input placeholder="Last Name" name="lastName"/>
+        <Input placeholder="Phone Number" name="phoneNumber"/>
+        <Input type="password" placeholder="Password" name="password"/>
+        <SubmitButton >REGISTER</SubmitButton>
+      </FormContainer>
+    )
 }
 
 export function RegisterPage() {
