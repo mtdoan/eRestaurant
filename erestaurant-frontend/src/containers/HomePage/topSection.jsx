@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import styled from "styled-components";
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
-import TheSpecialImg from "../../images/TheSpecial.jpg";
+import TheSpecialImg from "../../images/TheSpecial edited 2.jpg";
 
 const TopSectionContainer = styled.div`
   width: 100%;
