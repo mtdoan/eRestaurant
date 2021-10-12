@@ -1,6 +1,6 @@
 import express from "express"
 import mysql from "mysql"
-import { dishListHandler } from "./dish_apis.js"
+import { dishListHandler, getDish } from "./dish_apis.js"
 
 const app = express()                           // initialises a new app
 
@@ -62,5 +62,7 @@ app.post("/register", (req, res) => {
 })
 
 app.get("/dishes", dishListHandler);
+
+app.get("/dishes/:dishId", getDish);
 
 app.listen(5000, () => console.log("Listening on port 5000")) // Start the server and have it listen to port 5000

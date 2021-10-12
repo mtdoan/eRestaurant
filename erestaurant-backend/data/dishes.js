@@ -1,30 +1,30 @@
 export const dishes = [
   {
-    "id": "0",
+    "dishId": "0",
     "name": "Eggs Benedict",
     "price": "20",
     "menuType": "Main"
   },
   {
-    "id": "1",
+    "dishId": "1",
     "name": "Eggs Benedict1",
     "price": "20",
     "menuType": "Main"
   },
   {
-    "id": "2",
+    "dishId": "2",
     "name": "Eggs Benedict2",
     "price": "20",
     "menuType": "Main"
   },
   {
-    "id": "3",
+    "dishId": "3",
     "name": "Eggs Benedict3",
     "price": "20",
     "menuType": "Main"
   },
   {
-    "id": "4",
+    "dishId": "4",
     "name": "Eggs Benedict4",
     "price": "20",
     "menuType": "Main"
