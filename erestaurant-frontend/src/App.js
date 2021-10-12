@@ -12,14 +12,13 @@ import { EditStaff } from "./containers/StaffAccessPage/editStaff";
 import { AddStaff } from "./containers/StaffAccessPage/addStaff";
 import { BookingPage } from "./containers/customerAccessPage/bookingPage";
 import { BookedPage } from "./containers/customerAccessPage/bookedPage";
-import {CustomerAccountDetailsPage} from "./containers/customerAccessPage/customerAccountDetailsPage"
+import { CustomerAccountDetailsPage } from "./containers/customerAccessPage/customerAccountDetailsPage"
 import { CustomerAccountPage } from "./containers/customerAccessPage/customerAccountPage"
 import { MenuViewPage } from "./containers/MenuPage/MenuViewPage";
 import { AboutPage } from "./containers/HomePage/aboutPage";
-import { BookingPage } from "./containers/CustomerAccessPage/bookingPage";
-import { BookedPage } from "./containers/CustomerAccessPage/bookedPage";
 import { Invoice } from "./containers/CustomerAccessPage/invoice";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { OrderPaymentPage } from "./containers/customerAccessPage/OrderPaymentPage";
 
 function App() {
   return (
@@ -38,6 +37,7 @@ function App() {
           <Route path={buildPath("staff/add/")} exact component={AddStaff} />
           <Route path={buildPath("booking")} exact component={BookingPage} />
           <Route path={buildPath("booked")} exact component={BookedPage} />
+          <Route path={buildPath("orderpayment")} exact component={OrderPaymentPage} />
           <Route path={buildPath("customeraccountdetails")} exact component={CustomerAccountDetailsPage} />
           <Route path={buildPath("customeraccount")} exact component={CustomerAccountPage} />
           <Route path={buildPath("menu")} exact component={MenuViewPage} />

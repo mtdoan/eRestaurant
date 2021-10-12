@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "react-datepicker": "^4.2.1",
+    "react-grid": "^4.0.4"
     "@popperjs/core": "^2.10.2",
     "react-datepicker": "^4.2.1",
     "react-grid": "^4.0.4"

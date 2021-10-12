@@ -95,7 +95,7 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
   }
 
   const confirmOrderHandler = () => {
-    history.push("/eRestaurant/booking");
+    history.push("./orderpayment");
   };
 
   return (
