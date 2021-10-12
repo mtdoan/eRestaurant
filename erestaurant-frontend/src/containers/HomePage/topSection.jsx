@@ -31,7 +31,7 @@ const TopSectionInnerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  // margin-top: 20px;
+  //margin-top: 20px;
 `;
 
 const StandoutImage = styled.div`
@@ -58,7 +58,6 @@ export function TopSection(props) {
               <img id="homePromotionalImg" src={TheSpecialImg} alt="The special offer" />
             </StandoutImage>
           )}
-          
         </TopSectionInnerContainer>
       </BackgroundFilter>
     </TopSectionContainer>
