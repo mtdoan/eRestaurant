@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavbarOrder } from "../../components/navbar";
 import { Link } from "react-router-dom";
-import CartScrollContainer from "../../components/cart/CartScrollContainer";
-import { ProductScrollContainer } from "../../components/products/ProductScrollContainer";
 import { getUser } from "../../components/utils/client";
 import { Booking } from "../../components/booking";
 

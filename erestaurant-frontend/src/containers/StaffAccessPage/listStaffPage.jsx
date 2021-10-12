@@ -71,7 +71,6 @@ export function ListStaffPage() {
     return (
         <PageWrapper>
             <NavbarOrder />
-
             <InnerPageContainer>
                 <Table className={classes.table}>
                     <TableHead>
