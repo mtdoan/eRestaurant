@@ -86,7 +86,7 @@ function SignInForm() {
 
   const callback = () => {
     console.log("Call back");
-    history.push("/eRestaurant/signedin");
+    history.push("/eRestaurant/customeraccount");
   }
 
   const submitSignInFormHandler = () => {
@@ -107,7 +107,6 @@ function SignInForm() {
       />
       <MutedLink href="#">Forgot Password</MutedLink>
       <AnchorLink to={buildPath("staff/signin")}>Staff Portal</AnchorLink>
-
       <Marginer direction="vertical" margin="1em" />
       <SubmitButton type="button" onClick={submitSignInFormHandler}>LOGIN</SubmitButton>
       <Marginer direction="vertical" margin={5} />

@@ -5,6 +5,7 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
+import { MenuViewPage } from "../../containers/MenuPage/MenuViewPage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
@@ -25,11 +26,12 @@ const AccessibilityContainer = styled.div`
   width: 20%;
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 `;
 
 
 const CenterContainer = styled.div`
-  height: 40px;
+  height: 100%;
   width: 60%;
   display: block;
   align-items: center;
@@ -111,14 +113,13 @@ export function Navbar(props) {
       <AccessibilityContainer>
       <BrandLogo id="brandLogo"/>
       </AccessibilityContainer>
-
         <HomeMenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
+          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <Seperator />
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -134,6 +135,36 @@ export function Navbar(props) {
         <Marginer direction="horizontal" margin={accessibilityMarginSize} />
         <AnchorLink to={buildPath("signin")}>Login</AnchorLink>
       </AccessibilityContainer>
+    </NavbarContainer>
+  );
+}
+
+export function NavbarLoggedIn(props) {
+  const { useTransparent } = props;
+  const menuMarginSize = 60;
+  const accessibilityMarginSize = 20;
+
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+          <AccessibilityContainer>
+            <BrandLogo/>
+          </AccessibilityContainer>
+            <HomeMenuContainer>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={HomePagePath}>Home</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("about")}>About</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+            </HomeMenuContainer>
+          <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
+          <h1 >Hello User! </h1>
+          </AccessibilityContainer>
     </NavbarContainer>
   );
 }
