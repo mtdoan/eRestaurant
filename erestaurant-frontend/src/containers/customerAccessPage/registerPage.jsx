@@ -1,17 +1,40 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {
-  FormContainer,
-  Input
+  FormContainer
 } from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
 import { useHistory } from "react-router-dom";
 import { submitSignUpForm } from "../../components/utils/client";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material-ui/core';
 
+const useStyles = makeStyles({
+  container: {
+    width: '50%',
+    margin: '5% 0 0 25%',
+    '& > *': {
+      marginTop: 20
+    }
+  }
+})
+
+const PageWrapper = styled.div`
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+`;
 
 const SubmitButton = styled.button`
   padding: 10px;
   width: 150px;
+  margin: auto;
   color: #fff;
   font-size: 16px;
   font-weight: 600;
@@ -29,97 +52,189 @@ const SubmitButton = styled.button`
   }
 `;
 
-function SignUpForm() {
+const Heading = styled.h1`
+  color: #000;
+`;
 
+function SignUpForm() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPasswword] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const history = useHistory();
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Email is required')
+      .email('Email is invalid'),
+    firstName: Yup.string()
+      .required('First Name is required'),
+    lastName: Yup.string()
+      .required('Last name is required'),
+    phoneNumber: Yup.string()
+      .required('Phone Number is required')
+      .min(9, 'Phone Number is invalid'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .required('Confirm Password is required')
+  });
+  const formOptions = { resolver: yupResolver(validationSchema) };
+  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { errors } = formState;
+  const classes = useStyles();
 
   const callback = () => {
     console.log("Call back");
     history.push("/eRestaurant/registered");
   }
 
-  const submitSignUpFormHandler = () => {
-    submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback );
-  };
+  function onSubmit() {
+    submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback);
+    console.log("finished");
+  }
+
   return (
-    <FormContainer>
-      <Input type="text" placeholder="Email*" value={email} onChange={(e) => {
-        setEmail(e.target.value);
-      }}
-      />
-      <Input type="text" placeholder="First Name*" value={firstName} onChange={(e) => {
-        setFirstName(e.target.value);
-      }}
-      />
-      <Input type="text" placeholder="Last Name*" value={lastName} onChange={(e) => {
-        setLastName(e.target.value);
-      }}
-      />
-      <Input type="text" placeholder="Phone number" value={phoneNumber} onChange={(e) => {
-        setPhoneNumber(e.target.value);
-      }}
-      />
-      <Input type="password" placeholder="Password*" value={password} onChange={(e) => {
-        setPasswword(e.target.value);
-      }}
-      />
-      <SubmitButton type="button" onClick={submitSignUpFormHandler}>Signup</SubmitButton>
-    </FormContainer>);
+    <FormGroup className={classes.container}>
+      <Heading>Create Account New</Heading>
+      <FormControl >
+        <InputLabel htmlFor="my-input">Email</InputLabel>
+        <Input
+          type="text" 
+          {...register('email')}
+          className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+          placeholder="Email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+      </FormControl>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.email?.message}
+      </div>
+
+      <FormControl >
+        <InputLabel htmlFor="my-input">First Name</InputLabel>
+        <Input
+          type="text" 
+          {...register('firstName')}
+          className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
+        />
+      </FormControl>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.firstName?.message}
+      </div>
+
+      <FormControl >
+        <InputLabel htmlFor="my-input">Last Name</InputLabel>
+        <Input
+          type="text" 
+          {...register('lastName')}
+          className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => {
+            setLastName(e.target.value);
+          }}
+        />
+      </FormControl>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.lastName?.message}
+      </div>
+
+      <FormControl >
+        <InputLabel htmlFor="my-input">Phone number</InputLabel>
+        <Input
+          type="text" 
+          {...register('phoneNumber')}
+          className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`}
+          placeholder="Phone number"
+          value={phoneNumber}
+          onChange={(e) => {
+            setPhoneNumber(e.target.value);
+          }}
+        />
+      </FormControl>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.phoneNumber?.message}
+      </div>
+
+      <FormControl>
+        <InputLabel htmlFor="my-input">Password</InputLabel>
+        <Input
+          name="password"
+          type="password"
+          {...register('password')}
+          className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+      </FormControl>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.password?.message}
+      </div>
+
+      <FormControl>
+        <InputLabel htmlFor="my-input">Confirm Password</InputLabel>
+        <Input
+          name="password"
+          type="password"
+          {...register('confirmPassword')}
+          className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+          placeholder="Password"
+          value={confirmPassword}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+          }}
+        />
+      </FormControl>
+      <div
+        className="invalid-feedback"
+        style={{ color: "rgba(205, 2, 36, 0.9)" }}
+      >
+        {errors.confirmPassword?.message}
+      </div>
+
+      <SubmitButton type="button" onClick={handleSubmit(onSubmit)}>Signup</SubmitButton>
+    </FormGroup>
+  )
 }
 
 export function RegisterPage() {
-  const Container = styled.div`
-  width: 100%;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  img {
-    width: 50%;
-    height: 100%;
-  }
-`;
 
-  const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-`;
-
-  const InnerPageContainer = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 100vh;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  `;
-
-  const Heading = styled.h1`
-  color: #000;
-  `;
-  
   return (
     <PageWrapper>
       <NavbarLoginRegister />
-      <InnerPageContainer>
-        <Container>
-          <Heading>Create Account</Heading>
-          <SignUpForm />
-        </Container>
-      </InnerPageContainer>
+      <SignUpForm />
     </PageWrapper>
   );
 }
