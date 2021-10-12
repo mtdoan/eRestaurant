@@ -1,6 +1,6 @@
 import express from "express"
 import mysql from "mysql"
-import helloApiHandler from "./hello_api.js"
+import { dishListHandler } from "./dish_apis.js"
 
 const app = express()                           // initialises a new app
 
@@ -61,6 +61,6 @@ app.post("/register", (req, res) => {
     res.redirect("eRestaurant")
 })
 
-app.get("/hello", helloApiHandler);
+app.get("/dishes", dishListHandler);
 
 app.listen(5000, () => console.log("Listening on port 5000")) // Start the server and have it listen to port 5000
