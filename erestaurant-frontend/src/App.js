@@ -11,6 +11,7 @@ import { ListStaffPage } from "./containers/StaffAccessPage/listStaffPage";
 import { EditStaff } from "./containers/StaffAccessPage/editStaff";
 import { AddStaff } from "./containers/StaffAccessPage/addStaff";
 import { MenuViewPage } from "./containers/MenuPage/MenuViewPage";
+import { AboutPage } from "./containers/HomePage/aboutPage";
 import { BookingPage } from "./containers/CustomerAccessPage/bookingPage";
 import { BookedPage } from "./containers/CustomerAccessPage/bookedPage";
 import { Invoice } from "./containers/CustomerAccessPage/invoice";
@@ -33,6 +34,7 @@ function App() {
           <Route path={buildPath("staff/add/")} exact component={AddStaff} />
           <Route path={buildPath("booking")} exact component={BookingPage} />
           <Route path={buildPath("menu")} exact component={MenuViewPage} />
+          <Route path={buildPath("about")} exact component={AboutPage} />
           <Route path={buildPath("booked/:bookingId")} exact component={BookedPage} />
           <Route path={buildPath("invoice")} exact component={Invoice} />
         </Switch>
