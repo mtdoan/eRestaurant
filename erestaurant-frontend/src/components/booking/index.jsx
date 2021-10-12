@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import Select from 'react-select'
-import DateComponent from "./dateComponent";
 import { useHistory } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import './react-datepicker.css';
+import {submitBooking, createBookingId } from '../utils/client';
+
 
 const SubmitButton = styled.button`
   padding: 0.8rem 2rem;
@@ -59,17 +63,44 @@ const DateContainer = styled.div`
 `;
 
 export function Booking(props) {
+  const [restaurantId, setRestaurantId] = useState(-1);
+  const [patronNumber, setPatronNumber] = useState(-1);
+  const [startDate, setStartDate] = useState(null);
+  const [time, setTime] = useState(-1);
   const history = useHistory();
 
-  const submitBooking = () => {
-    history.push("/eRestaurant/booked");
+  const [bookingId, setBookingId] = useState(-1);
+  const getBookingId = () => {
+    createBookingId(setBookingId);
+  }
+
+  const callback = () => {
+    console.log("Call back");
+    history.push(`/eRestaurant/booked/${bookingId}`);
+  }
+
+  const submitBookingHandler = () => {
+    submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
   };
 
+  console.log("setLocation = ", restaurantId);
+  console.log("setPatronNumber = ", patronNumber);
+  console.log("setStartDate = ", startDate?.getTime());
+  console.log("setTime = ", time);
+
+  useEffect(() => {
+    getBookingId();
+}, []);
+  
   return (
     <BookingContainer>
       <RowContainer>
+        <h1>Make a Booking!</h1>
+      </RowContainer>
+
+      <RowContainer>
         <InnerContainer>
-          <SmallContainer id="choose-date">  
+          <SmallContainer id="choose-location">  
             <p>Restaurant location</p>
             <Select 
               options={[
@@ -77,6 +108,9 @@ export function Booking(props) {
                 { value: 2, label: 'Mascot' }
               ]} 
               placeholder="Location"
+              onChange={(event) => {
+                setRestaurantId(event.value);
+              }}
             />
           </SmallContainer>
         </InnerContainer>
@@ -95,7 +129,9 @@ export function Booking(props) {
                 { value: 8, label: '8' }
               ]} 
               placeholder="Number of patrons"
-              
+              onChange={(event) => {
+                setPatronNumber(event.value);
+              }}
             />
           </SmallContainer>
         </InnerContainer>
@@ -105,7 +141,16 @@ export function Booking(props) {
           <SmallContainer id="choose-date">  
             <DateContainer>
               <p>Date</p>
-              <DateComponent />
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => {
+                  setStartDate(date);
+                  }
+                }
+                minDate={new Date()}
+                placeholderText="Choose date"
+                dateFormat= "dd/MM/yyyy"
+              />
             </DateContainer>
           </SmallContainer>
         </InnerContainer>
@@ -124,15 +169,18 @@ export function Booking(props) {
                 { value: 8, label: 'Dinner 6:30PM' },
                 { value: 9, label: 'Dinner 7:00PM' },
                 { value: 10, label: 'Dinner 7:30PM' },
-                { value: 11, label: 'Dinner 8:30PM' },
-                { value: 12, label: 'Dinner 9:00PM' },
+                { value: 11, label: 'Dinner 8:00PM' },
+                { value: 12, label: 'Dinner 8:30PM' },
               ]} 
               placeholder="Choose time"
+              onChange={(event) => {
+                setTime(event.value);
+              }}
             />
           </SmallContainer>
         </InnerContainer>
       </RowContainer>
-      <SubmitButton type="button" onClick={submitBooking}>Confirm Reservation</SubmitButton>
+      <SubmitButton type="button" onClick={submitBookingHandler}>Confirm Reservation</SubmitButton>
     </BookingContainer>
   );
 }

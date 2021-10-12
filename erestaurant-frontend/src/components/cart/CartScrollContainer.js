@@ -8,6 +8,7 @@ const CartItemInfo = styled.div`
   padding: 1rem;
   text-align: start;
 `;
+
 const CartItemButtonContainer = styled.div`
   width: 20%;
   display: flex;

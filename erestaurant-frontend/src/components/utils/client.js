@@ -45,6 +45,14 @@ export const loadCart = (callback) => {
   });
 };
 
+export const loadItemsFromBooking = (bookingId, callback) => {
+  instance.get(`${hostUrl}/booking/cart/${bookingId}`).then((response) => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
 export const addDishToCart = (dishId, callback) => {
   instance.post(`${hostUrl}/cartItems/add/${dishId}`).then(response => {
     if (response.status === 200) {
@@ -131,3 +139,62 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
     }
   });
 }
+
+
+export const submitBooking = (restaurantId, numberOfPatrons, dateEpoch, timeSlotId, callback ) => {
+  instance.post(`${hostUrl}/booking`, {
+    restaurantId,
+    numberOfPatrons,
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback();
+    }
+  });
+}
+
+export const getBooking = (callback) => {
+  instance.get(`${hostUrl}/booking/details`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const getBookingFromBookingId = (bookingId, callback) => {
+  instance.get(`${hostUrl}/booking/${bookingId}`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const loadOrders = (callback) => {
+  instance.get(`${hostUrl}/staff/orders`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const getUserFromId = (userId, callback) => {
+  instance.get(`${hostUrl}/user/${userId}`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export async function getUserFromIdAsync(userId) {
+  const response = await instance.get(`${hostUrl}/user/${userId}`);
+  return response.data;
+}
+
+export const createBookingId = (callback) => {
+  instance.get(`${hostUrl}/createBookingId`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
