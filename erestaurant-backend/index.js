@@ -1,10 +1,11 @@
-const express = require("express")              // import the ExpressJS framework 
+import express from "express"
+import mysql from "mysql"
+import helloApiHandler from "./hello_api.js"
+
 const app = express()                           // initialises a new app
 
 app.use(express.urlencoded({extended: true}))   // tells the app to use express.urlencoded, it's a parser, which is capable of interpreting the content of 
                                                 // forms submitted with the POST method, and to add the content to the body of the request
-
-const mysql = require("mysql")
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -59,5 +60,7 @@ app.post("/register", (req, res) => {
 
     res.redirect("eRestaurant")
 })
+
+app.get("/hello", helloApiHandler);
 
 app.listen(5000, () => console.log("Listening on port 5000")) // Start the server and have it listen to port 5000
