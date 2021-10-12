@@ -21,11 +21,11 @@ const con = mysql.createConnection({
 app.post("/login", (req, res) => {            
     console.log(req.body)
 
-	const email = req.body.email;
-	const password = req.body.password;
-	if (email && password) {
-		con.query('SELECT * FROM Customer WHERE customerEmail = ? AND customerPassword = ?', [email, password], function(error, results, fields) {
-			if (results.length > 0) {
+	const email = req.body.email; //input in email section of interface
+	const password = req.body.password; //input in password section of interface
+	if (email && password) { //check input was entered
+		con.query('SELECT * FROM Customer WHERE customerEmail = ? AND customerPassword = ?', [email, password], function(error, results, fields) { //retrieve customer account that matches username and password
+			if (results.length > 0) { //results is array containing all matches to sql query. If greater than 0, matching account found
 				res.redirect('/eRestaurant/signedin')
 			} else {
                 res.redirect('eRestaurant/signin')
