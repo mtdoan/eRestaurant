@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import Select from 'react-select'
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import {submitBooking, createBookingId } from '../utils/client';
-
+import { submitBooking } from '../utils/client';
 
 const SubmitButton = styled.button`
   padding: 0.8rem 2rem;
@@ -69,16 +68,9 @@ export function Booking(props) {
   const [time, setTime] = useState(-1);
   const history = useHistory();
 
-  const [bookingId, setBookingId] = useState(-1);
-  const getBookingId = () => {
-    createBookingId((data) => setBookingId(data.id));
-  }
 
-  const callback = () => {
-    console.log("Call back");
-    // history.push(`/eRestaurant/booked/${bookingId}`);
-    history.push(`/eRestaurant/orderpayment/${bookingId}`);
-
+  const callback = (data) => {
+    history.push(`/eRestaurant/orderpayment/${data.bookingId}`);
   }
 
   const submitBookingHandler = () => {
@@ -90,10 +82,6 @@ export function Booking(props) {
   console.log("setStartDate = ", startDate?.getTime());
   console.log("setTime = ", time);
 
-  useEffect(() => {
-    getBookingId();
-  }, []);
-  
   return (
     <BookingContainer>
       <RowContainer>
@@ -102,13 +90,13 @@ export function Booking(props) {
 
       <RowContainer>
         <InnerContainer>
-          <SmallContainer id="choose-location">  
+          <SmallContainer id="choose-location">
             <p>Restaurant location</p>
-            <Select 
+            <Select
               options={[
                 { value: 1, label: 'Haymarket' },
                 { value: 2, label: 'Mascot' }
-              ]} 
+              ]}
               placeholder="Location"
               onChange={(event) => {
                 setRestaurantId(event.value);
@@ -117,9 +105,9 @@ export function Booking(props) {
           </SmallContainer>
         </InnerContainer>
         <InnerContainer>
-          <SmallContainer id="number-of-customers">  
+          <SmallContainer id="number-of-customers">
             <p>Number of patrons</p>
-            <Select 
+            <Select
               options={[
                 { value: 1, label: '1' },
                 { value: 2, label: '2' },
@@ -129,7 +117,7 @@ export function Booking(props) {
                 { value: 6, label: '6' },
                 { value: 7, label: '7' },
                 { value: 8, label: '8' }
-              ]} 
+              ]}
               placeholder="Number of patrons"
               onChange={(event) => {
                 setPatronNumber(event.value);
@@ -140,26 +128,26 @@ export function Booking(props) {
       </RowContainer>
       <RowContainer>
         <InnerContainer>
-          <SmallContainer id="choose-date">  
+          <SmallContainer id="choose-date">
             <DateContainer>
               <p>Date</p>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => {
                   setStartDate(date);
-                  }
+                }
                 }
                 minDate={new Date()}
                 placeholderText="Choose date"
-                dateFormat= "dd/MM/yyyy"
+                dateFormat="dd/MM/yyyy"
               />
             </DateContainer>
           </SmallContainer>
         </InnerContainer>
         <InnerContainer>
-          <SmallContainer id="number-of-customers">  
+          <SmallContainer id="number-of-customers">
             <p>Time</p>
-            <Select 
+            <Select
               options={[
                 { value: 1, label: 'Lunch 10:30AM' },
                 { value: 2, label: 'Lunch 11:00AM' },
@@ -173,7 +161,7 @@ export function Booking(props) {
                 { value: 10, label: 'Dinner 7:30PM' },
                 { value: 11, label: 'Dinner 8:00PM' },
                 { value: 12, label: 'Dinner 8:30PM' },
-              ]} 
+              ]}
               placeholder="Choose time"
               onChange={(event) => {
                 setTime(event.value);

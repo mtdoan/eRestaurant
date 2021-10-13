@@ -26,7 +26,9 @@ export const createNewBookingHander = (req, res) => {
   console.log("req.body.timeSlotId", req.body.timeSlotId);
   console.log(cart);
   console.log(newBooking);
-  res.sendStatus(200);
+  res.send({"bookingId" :bookingId});
+
+  // res.sendStatus(200);
 };
 
 export const getBookingFromBookingIdHandler = (req, res) => {

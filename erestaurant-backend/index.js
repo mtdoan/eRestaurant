@@ -21,8 +21,8 @@ import cors from 'cors';
 
 const app = express()                           // initialises a new app
 
-app.use(express.urlencoded({extended: true}))   // tells the app to use express.urlencoded, it's a parser, which is capable of interpreting the content of 
-                                                // forms submitted with the POST method, and to add the content to the body of the request
+app.use(express.json())
+
 // use it before all route definitions
 app.use(cors({origin: 'http://localhost:3000'}));
 // // Add headers before the routes are defined

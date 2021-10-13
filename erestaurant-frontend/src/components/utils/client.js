@@ -62,7 +62,7 @@ export const submitBooking = (restaurantId, numberOfPatrons, dateEpoch, timeSlot
     timeSlotId
   }).then(response => {
     if (response.status === 200) {
-      callback();
+      callback(response.data);
     }
   });
 }
