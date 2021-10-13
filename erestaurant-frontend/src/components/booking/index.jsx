@@ -76,7 +76,9 @@ export function Booking(props) {
 
   const callback = () => {
     console.log("Call back");
-    history.push(`/eRestaurant/booked/${bookingId}`);
+    // history.push(`/eRestaurant/booked/${bookingId}`);
+    history.push(`/eRestaurant/orderpayment`);
+
   }
 
   const submitBookingHandler = () => {

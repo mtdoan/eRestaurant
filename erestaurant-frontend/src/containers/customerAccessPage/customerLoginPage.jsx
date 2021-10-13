@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   MutedLink
@@ -59,7 +59,7 @@ const PageWrapper = styled.div`
   margin: 0;
   flex-direction: column;
   align-items: center;
-  background: #ff8f80;
+  background: #FFFFFF;
 `;
 
 const Heading = styled.h1`

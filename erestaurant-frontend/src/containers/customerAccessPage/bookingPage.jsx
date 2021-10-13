@@ -49,6 +49,7 @@ const SeperatorLoginRegisterContainer = styled.div`
 `;
 
 const MenuTypeContainer = styled.div`
+  font-size: 1rem;
   height: 40px;
   display: flex;
   margin-top: 8px;
