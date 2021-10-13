@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { deviceSize } from "../../components/responsive";
 import { NavbarLoggedIn } from "../../components/navbar";
@@ -6,6 +6,7 @@ import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Container, Row, Col } from 'react-grid';
 import { Marginer } from "../../components/marginer";
 import { useHistory } from "react-router";
+import { useParams } from 'react-router-dom';
 
 export function OrderPaymentPage() {
   const PageWrapper = styled.div`
@@ -77,6 +78,22 @@ const Input = styled.input`
   `;
 
   const history = useHistory();
+  const { bookingId } = useParams();
+
+  // const [ resBookingId, setResBookingId] = useState(bookingId);
+
+  const callback = () => {
+    console.log("Call back");
+    history.push(`/eRestaurant/booked/${bookingId}`);
+  }
+
+  const submitPaymentHandler = () => {
+    callback();
+  };
+
+  // useEffect(() => {
+    
+  // }, []);
 
   return (
     <PageWrapper>
@@ -106,7 +123,7 @@ const Input = styled.input`
                         </Row>
                     </Container>
                     <Marginer direction="vertical" margin="4em"/> 
-                    <SubmitButton onClick={()=> history.push("./invoice")}>Confirm Order</SubmitButton>
+                    <SubmitButton onClick={submitPaymentHandler}>Confirm Order</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>

@@ -71,13 +71,13 @@ export function Booking(props) {
 
   const [bookingId, setBookingId] = useState(-1);
   const getBookingId = () => {
-    createBookingId(setBookingId);
+    createBookingId((data) => setBookingId(data.id));
   }
 
   const callback = () => {
     console.log("Call back");
     // history.push(`/eRestaurant/booked/${bookingId}`);
-    history.push(`/eRestaurant/orderpayment`);
+    history.push(`/eRestaurant/orderpayment/${bookingId}`);
 
   }
 
@@ -92,7 +92,7 @@ export function Booking(props) {
 
   useEffect(() => {
     getBookingId();
-}, []);
+  }, []);
   
   return (
     <BookingContainer>

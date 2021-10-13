@@ -36,8 +36,8 @@ function App() {
           <Route path={buildPath("staff/edit/:staffId")} exact component={EditStaff} />
           <Route path={buildPath("staff/add/")} exact component={AddStaff} />
           <Route path={buildPath("booking")} exact component={BookingPage} />
-          <Route path={buildPath("booked")} exact component={BookedPage} />
-          <Route path={buildPath("orderpayment")} exact component={OrderPaymentPage} />
+          {/* <Route path={buildPath("booked")} exact component={BookedPage} /> */}
+          <Route path={buildPath("orderpayment/:bookingId")} exact component={OrderPaymentPage} />
           <Route path={buildPath("customeraccountdetails")} exact component={CustomerAccountDetailsPage} />
           <Route path={buildPath("customeraccount")} exact component={CustomerAccountPage} />
           <Route path={buildPath("menu")} exact component={MenuViewPage} />

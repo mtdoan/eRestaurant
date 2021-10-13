@@ -1,5 +1,5 @@
 import { dishes } from "./data/dishes.js"
-import { cartItem } from "./data/cartItem.js"
+import { cartItems } from "./data/cartItems.js"
 import { users } from "./data/users.js"
 
 export const listDishesHandler = (req, res) => {
@@ -19,9 +19,9 @@ export const getDishHandler = (req, res) => {
 export const getCartItemsByUserIdHandler = (req, res) => {
   let userId = 0;
   let items = [];
-  for (let i = 0; i < cartItem.length; i++) {
-    if (cartItem[i].user.id == userId) {
-      items.push(cartItem[i]);
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].user.id == userId) {
+      items.push(cartItems[i]);
     }
   }
   res.send(items);
@@ -30,10 +30,10 @@ export const getCartItemsByUserIdHandler = (req, res) => {
 
 export const addItemToCartHandler = (req, res) => {
   let userId = 0;
-  for (let i = 0; i < cartItem.length; i++) {
-    if (cartItem[i].user.id == userId && cartItem[i].dish.id == req.params.dishId) {
-      cartItem[i].count++;
-      console.log(cartItem);
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].user.id == userId && cartItems[i].dish.id == req.params.dishId) {
+      cartItems[i].count++;
+      console.log(cartItems);
       res.sendStatus(200);
       return;
     }
@@ -41,9 +41,9 @@ export const addItemToCartHandler = (req, res) => {
   let user = getUserFromId(userId);
   let dish = getDishFromId(req.params.dishId);
   if (dish != null && user != null) {
-    cartItem.push(
+    cartItems.push(
       {
-        "id": cartItem[cartItem.length - 1].id + 1,
+        "id": cartItems[cartItems.length - 1].id + 1,
         "user": user,
         "dish": dish,
         "count": 1
@@ -57,13 +57,13 @@ export const addItemToCartHandler = (req, res) => {
 
 export const deleteItemFromCartHandler = (req, res) => {
   let userId = 0;
-  for (let i = 0; i < cartItem.length; i++) {
-    if (cartItem[i].user.id == userId && cartItem[i].dish.id == req.params.dishId) {
-      cartItem[i].count--;
-      if (cartItem[i].count == 0) {
-        cartItem.splice(i, 1);
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].user.id == userId && cartItems[i].dish.id == req.params.dishId) {
+      cartItems[i].count--;
+      if (cartItems[i].count == 0) {
+        cartItems.splice(i, 1);
       }
-      console.log(cartItem);
+      console.log(cartItems);
       res.sendStatus(200);
       return;
     }

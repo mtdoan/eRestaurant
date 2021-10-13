@@ -1,11 +1,22 @@
 import express from "express"
 import mysql from "mysql"
-import { listDishesHandler, 
+import { 
+  listDishesHandler, 
   getDishHandler, 
   getCartItemsByUserIdHandler, 
   addItemToCartHandler,
-  deleteItemFromCartHandler
+  deleteItemFromCartHandler,
 } from "./dish_apis.js"
+import { 
+  getBookingFromBookingIdHandler,
+  getNewBookingIdHandler,
+  createNewBookingHander,
+  getItemsFromBookingHander
+} from "./booking_apis.js"
+
+import {
+  getUserFromId
+} from "./user_apis.js"
 import cors from 'cors';
 
 const app = express()                           // initialises a new app
@@ -99,6 +110,17 @@ app.post("/cartItems/add/:dishId", addItemToCartHandler); //add item to cart
 
 app.post("/cartItems/del/:dishId", deleteItemFromCartHandler); //delete item from cart
 
+// Booking APIs 
+app.get("/booking/:bookingId", getBookingFromBookingIdHandler); // get Booking From BookingId
+
+app.get("/createBookingId", getNewBookingIdHandler); // get new BookingId
+
+app.post("/booking", createNewBookingHander); //submit a booking form
+
+app.get("/booking/cart/:bookingId", getItemsFromBookingHander); //get items from booking
+
+// User APIs 
+app.get("/user/:userId", getUserFromId); // get User From UserId
 
 // Start the server and have it listen to port 5000
 app.listen(5000, () => console.log("Listening on port 5000")) 
