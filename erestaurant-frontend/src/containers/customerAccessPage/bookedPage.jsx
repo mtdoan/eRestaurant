@@ -88,11 +88,9 @@ export function BookedPage() {
   const [booking, setBooking] = useState();
 
   const { bookingId } = useParams();
-  console.log("bookingId=",bookingId);
+  console.log("bookingId = ", bookingId);
 
   const getBookingDetails = (bookingId) => {
-    console.log("getBookingDetails bookingId=",bookingId);
-
     getBookingFromBookingId(bookingId, setBooking);
   }
 
@@ -105,7 +103,7 @@ export function BookedPage() {
     getBookingDetails(bookingId);
   }, []);
 
-  console.log("booking =", booking);
+  console.log("booking", booking?.bookingId);
 
   return (
     <PageWrapper>
@@ -117,7 +115,7 @@ export function BookedPage() {
             <RowDiv>
               <SmallColDiv />
               <ColDiv >
-                <div>Booking number: #00A{booking?.id}</div>
+                <div>Booking number: #00A{booking?.bookingId}</div>
                 <div>Date: {(new Date(booking?.dateEpoch)).toLocaleDateString()}</div>
                 <div>Time: {(() => {
                     switch (booking?.timeSlotId) {

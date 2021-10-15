@@ -77,7 +77,6 @@ export const ProductInfo = styled.div`
 
 export const ProductDescription = styled.p`
   margin-bottom: 0.5rem;
-  font-size: 0.8rem;
 `;
 
 export const ProductPrice = styled.p`
@@ -88,7 +87,7 @@ export const ProductPrice = styled.p`
 
 export const ProductButton = styled.button`
   height: fit-content;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   border: none;
   outline: none;
   background: rgb(205, 2, 36);

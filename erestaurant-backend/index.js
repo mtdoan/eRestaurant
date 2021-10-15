@@ -1,50 +1,10 @@
-import express from "express"
-import mysql from "mysql"
-import { 
-  listDishesHandler, 
-  getDishHandler, 
-  getCartItemsByUserIdHandler, 
-  addItemToCartHandler,
-  deleteItemFromCartHandler,
-} from "./dish_apis.js"
-import { 
-  getBookingFromBookingIdHandler,
-  getNewBookingIdHandler,
-  createNewBookingHander,
-  getItemsFromBookingHander
-} from "./booking_apis.js"
-
-import {
-  getUserFromId
-} from "./user_apis.js"
-import cors from 'cors';
-
+const express = require("express")              // import the ExpressJS framework 
 const app = express()                           // initialises a new app
 
-app.use(express.json())
+app.use(express.urlencoded({extended: true}))   // tells the app to use express.urlencoded, it's a parser, which is capable of interpreting the content of 
+                                                // forms submitted with the POST method, and to add the content to the body of the request
 
-// use it before all route definitions
-app.use(cors({origin: 'http://localhost:3000'}));
-// // Add headers before the routes are defined
-// app.use(function (req, res, next) {
-
-//   // Website you wish to allow to connect
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-//   // Request methods you wish to allow
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//   // Request headers you wish to allow
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-//   // Set to true if you need the website to include cookies in the requests sent
-//   // to the API (e.g. in case you use sessions)
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-
-//   // Pass to next layer of middleware
-//   next();
-// });
-                                              
+const mysql = require("mysql")
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -56,7 +16,8 @@ const con = mysql.createConnection({
     if (err) throw err;
     console.log('Connected');
   });
-  
+
+
 app.post("/login", (req, res) => {            
     console.log(req.body)
 
@@ -99,28 +60,4 @@ app.post("/register", (req, res) => {
     res.redirect("eRestaurant")
 })
 
-// Dish APIs 
-app.get("/dishes", listDishesHandler);
-
-app.get("/dishes/:dishId", getDishHandler);
-
-app.get("/cartItems", getCartItemsByUserIdHandler); //list cart items for current user 
-
-app.post("/cartItems/add/:dishId", addItemToCartHandler); //add item to cart
-
-app.post("/cartItems/del/:dishId", deleteItemFromCartHandler); //delete item from cart
-
-// Booking APIs 
-app.get("/booking/:bookingId", getBookingFromBookingIdHandler); // get Booking From BookingId
-
-app.get("/createBookingId", getNewBookingIdHandler); // get new BookingId
-
-app.post("/booking", createNewBookingHander); //submit a booking form
-
-app.get("/booking/cart/:bookingId", getItemsFromBookingHander); //get items from booking
-
-// User APIs 
-app.get("/user/:userId", getUserFromId); // get User From UserId
-
-// Start the server and have it listen to port 5000
-app.listen(5000, () => console.log("Listening on port 5000")) 
+app.listen(5000, () => console.log("Listening on port 5000")) // Start the server and have it listen to port 5000

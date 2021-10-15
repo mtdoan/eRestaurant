@@ -31,7 +31,7 @@ const AccessibilityContainer = styled.div`
 
 
 const CenterContainer = styled.div`
-  height: 100%;
+  height: 40px;
   width: 60%;
   display: block;
   align-items: center;
@@ -135,36 +135,6 @@ export function Navbar(props) {
         <Marginer direction="horizontal" margin={accessibilityMarginSize} />
         <AnchorLink to={buildPath("signin")}>Login</AnchorLink>
       </AccessibilityContainer>
-    </NavbarContainer>
-  );
-}
-
-export function NavbarLoggedIn(props) {
-  const { useTransparent } = props;
-  const menuMarginSize = 60;
-  const accessibilityMarginSize = 20;
-
-  return (
-    <NavbarContainer useTransparent={useTransparent}>
-          <AccessibilityContainer>
-            <BrandLogo/>
-          </AccessibilityContainer>
-            <HomeMenuContainer>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <AnchorLink to={HomePagePath}>Home</AnchorLink>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <Seperator />
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <Seperator />
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <AnchorLink to={buildPath("about")}>About</AnchorLink>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-            </HomeMenuContainer>
-          <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
-          <h1 >Hello User! </h1>
-          </AccessibilityContainer>
     </NavbarContainer>
   );
 }
