@@ -1,17 +1,17 @@
 import axios from 'axios';
 
-const hostUrl = "http://localhost:8081";
+const hostUrl = "http://localhost:5000";
 const instance = axios.create({
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Methods': '*'
   },
-  withCredentials: true
+  // withCredentials: true
 });
 
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
-  instance.post(`${hostUrl}/signUp`, {
+  instance.post(`${hostUrl}/register`, {
     email,
     firstName,
     lastName,
@@ -27,7 +27,7 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
 ;
 
 export const submitSignInForm = (email, password, callback) => {
-  instance.post(`${hostUrl}/signIn`, {
+  instance.post(`${hostUrl}/signin`, {
     email,
     password
   }).then(response => {
