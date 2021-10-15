@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const hostUrl = "http://localhost:8081";
+const hostUrl = "http://localhost:5000";
 const instance = axios.create({
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Methods': '*'
   },
-  withCredentials: true
+  // withCredentials: true
 });
 
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
@@ -37,6 +37,52 @@ export const submitSignInForm = (email, password, callback) => {
   });
 };
 
+export const getUser = (callback) => {
+  instance.get(`${hostUrl}/myAccount`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+//-----------Booking
+export const loadItemsFromBooking = (bookingId, callback) => {
+  instance.get(`${hostUrl}/booking/cart/${bookingId}`).then((response) => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const submitBooking = (restaurantId, numberOfPatrons, dateEpoch, timeSlotId, callback ) => {
+  instance.post(`${hostUrl}/booking`, {
+    restaurantId,
+    numberOfPatrons,
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+}
+
+export const getBooking = (callback) => {
+  instance.get(`${hostUrl}/booking/details`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const getBookingFromBookingId = (bookingId, callback) => {
+  instance.get(`${hostUrl}/booking/${bookingId}`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+//-----------Cart
 export const loadCart = (callback) => {
   instance.get(`${hostUrl}/cartItems`).then((response) => {
     if (response.status === 200) {
@@ -45,8 +91,9 @@ export const loadCart = (callback) => {
   });
 };
 
-export const loadItemsFromBooking = (bookingId, callback) => {
-  instance.get(`${hostUrl}/booking/cart/${bookingId}`).then((response) => {
+//-----------Dish
+export const loadDishes = (callback) => {
+  instance.get(`${hostUrl}/dishes`).then(response => {
     if (response.status === 200) {
       callback(response.data);
     }
@@ -61,14 +108,6 @@ export const addDishToCart = (dishId, callback) => {
   });
 };
 
-export const loadDishes = (callback) => {
-  instance.get(`${hostUrl}/dishes`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
-
 export const removeDishFromCart = (dishId, callback) => {
   instance.post(`${hostUrl}/cartItems/del/${dishId}`).then(response => {
     if (response.status === 200) {
@@ -77,6 +116,7 @@ export const removeDishFromCart = (dishId, callback) => {
   });
 };
 
+//-----------Staff
 export const loadStaff = (callback) => {
   instance.get(`${hostUrl}/staff/list`).then(response => {
     if (response.status === 200) {
@@ -108,13 +148,7 @@ export const editStaff = (staffId, firstName, lastName, phoneNumber, position, r
 };
 
 
-export const getUser = (callback) => {
-  instance.get(`${hostUrl}/myAccount`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
+
 
 export const getStaff = (staffId, callback) => {
   instance.get(`${hostUrl}/staff/${staffId}`).then(response => {
@@ -141,34 +175,7 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
 }
 
 
-export const submitBooking = (restaurantId, numberOfPatrons, dateEpoch, timeSlotId, callback ) => {
-  instance.post(`${hostUrl}/booking`, {
-    restaurantId,
-    numberOfPatrons,
-    dateEpoch,
-    timeSlotId
-  }).then(response => {
-    if (response.status === 200) {
-      callback();
-    }
-  });
-}
 
-export const getBooking = (callback) => {
-  instance.get(`${hostUrl}/booking/details`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
-
-export const getBookingFromBookingId = (bookingId, callback) => {
-  instance.get(`${hostUrl}/booking/${bookingId}`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
 
 export const loadOrders = (callback) => {
   instance.get(`${hostUrl}/staff/orders`).then(response => {

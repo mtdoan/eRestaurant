@@ -28,6 +28,7 @@ const InnerPageContainer = styled.div`
 `;
 
 const MenuTypeContainer = styled.div`
+font-size: 1rem;
   height: 40px;
   display: flex;
   margin-top: 8px;
@@ -59,7 +60,7 @@ const Tab = styled.button`
 const ButtonGroup = styled.div`
   display: flex;
 `;
-const types = ['Entree', 'Main', 'Desserts', 'Drinks' ];
+const types = ['Entree', 'Main', 'Dessert', 'Drink' ];
 
 export function OrderPage() {
   const [cart, setCart] = useState({ cartItems: [] });

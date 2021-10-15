@@ -42,13 +42,8 @@ const AnchorLink = styled(Link)`
   }
 `;
 
-const SeperatorLoginRegisterContainer = styled.div`
-  min-height: 35%;
-  width: 1px;
-  background-color: #000;
-`;
-
 const MenuTypeContainer = styled.div`
+  font-size: 1rem;
   height: 40px;
   display: flex;
   margin-top: 8px;
@@ -56,33 +51,6 @@ const MenuTypeContainer = styled.div`
   align-items: center;
   background-color: transparent;
 `;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
-const MARGIN_SIZE = 60;
-
-const Tab = styled.button`
-  font-size: 20px;
-  padding: 10px 60px;
-  cursor: pointer;
-  opacity: 0.6;
-  background: white;
-  border: 0;
-  outline: 0;
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid black;
-    opacity: 1;
-  `}
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-`;
-const types = ['Entree', 'Main', 'Desserts', 'Drinks'];
 
 export function BookingPage() {
   const [userName, setUserName] = useState("customer");

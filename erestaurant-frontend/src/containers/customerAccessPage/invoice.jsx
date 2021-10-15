@@ -95,11 +95,11 @@ export const Invoice = React.forwardRef(({ bookingId }, ref) => {
           <table style={{ fontSize: "16px", textAlign: "left" }}>
             <tr>
               <th>Invoice # :</th>
-              <td>0001</td>
+              <td>000{bookingId}</td>
             </tr>
             <tr>
               <th>Invoice Date :</th>
-              <td>01-10-2021</td>
+              <td>{new Date().toLocaleDateString()}</td>
             </tr>
             <tr>
               <th>&nbsp;</th>
