@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import {
   ProductTitle,
   ProductInfo,
@@ -20,7 +21,6 @@ export function ProductScrollContainer({ onCartChange, type }) {
   }, []);
 
   console.log('Render');
-  console.log('dishes', data);
   if (!data) {
     return "No post!";
   }
@@ -32,15 +32,15 @@ export function ProductScrollContainer({ onCartChange, type }) {
             addToCart(product.id);
           };
           return (
-            <div key={product.id} style={{ alignItems: "center", width: "100%", margin: "auto" }}>
+            <div key={product.id} style={{ display: "flex", alignItems: "center", width: "100%" }}>
               {product.menuType === type ? 
-              <div style = {{display: "flex", margin: "10px 10px" }}>
+              <>
                 <ProductInfo>
                   <ProductTitle>{product.name} ${product.price}</ProductTitle>
                   <ProductDescription>{product.description}</ProductDescription>
                 </ProductInfo>
                 <ProductButton onClick={addHandler}>Add to cart</ProductButton> 
-              </div>
+              </>
               : "" }
             </div>
           )

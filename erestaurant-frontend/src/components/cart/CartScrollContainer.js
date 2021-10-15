@@ -39,7 +39,7 @@ const ItemTitle = styled.h2`
 
 const Button = styled.button`
   height: fit-content;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   border: none;
   outline: none;
   background: rgb(205, 2, 36);
@@ -95,7 +95,7 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
   }
 
   const confirmOrderHandler = () => {
-    history.push("./booking");
+    history.push("/eRestaurant/booking");
   };
 
   return (
@@ -115,13 +115,13 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
                 <ItemTitle>
                   {cartItem.dish.name} ${cartItem.dish.price}
                 </ItemTitle>
-                <p style={{ fontSize: "0.8rem"}}>
+                <p>
                   {cartItem.dish.description}
                 </p>
               </CartItemInfo>
               <CartItemButtonContainer>
                 <input type="button" value="-" className="minus" style={{ margin: "0 0 0 40px " }} onClick={deleteHandler} />
-                <p style={{ margin: "0 8px 0 8px ", fontSize: "0.9rem" }}>{cartItem.count}</p>
+                <p style={{ margin: "0 8px 0 8px " }}>{cartItem.count}</p>
                 <input type="button" value="+" className="plus" onClick={addHandler} />
               </CartItemButtonContainer>
             </div>
@@ -129,7 +129,7 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
         })}
       </CartScrollDiv>
       <ConfirmContainer>
-        <p style={{ margin: "auto", fontSize: "0.9rem"}}>Total ${total}</p>
+        <p style={{ margin: "auto"}}>Total = ${total}</p>
         <Button onClick={confirmOrderHandler}>Confirm Order</Button>
       </ConfirmContainer>
     </CartContainer>
