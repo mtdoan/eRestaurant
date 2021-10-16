@@ -71,10 +71,6 @@ const DateContainer = styled.div`
 `;
 
 export function EditBooking(props) {
-  // const [restaurantId, setRestaurantId] = useState(-1);
-  // const [patronNumber, setPatronNumber] = useState(-1);
-  // const [startDate, setStartDate] = useState(null);
-  // const [time, setTime] = useState(-1);
   const history = useHistory();
 
   const [booking, setBooking] = useState({

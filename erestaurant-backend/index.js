@@ -30,10 +30,6 @@ import {
   editStaff
 } from "./staff_apis.js";
 
-import {
-  getAllInvoices
-} from "./invoice_apis.js";
-
 import cors from 'cors';
 
 const app = express();
@@ -117,7 +113,6 @@ app.get("/booking/cart/:bookingId", getItemsFromBookingHander); //get items from
 
 app.post("/booking/edit/:bookingId", editBookingHander); //get items from booking
 
-
 // Staff APIs 
 app.get("/staff/list", listStaff); // list all Staff 
 
@@ -128,9 +123,6 @@ app.post("/staff/add", addStaff); //add a new staff
 app.post("/staff/del/:staffId", deleteStaff); //delete staff
 
 app.post("/staff/edit/:staffId", editStaff); //edit staff
-
-// Invoice APIs
-app.get("/invoice/all", getAllInvoices); // get all invoices of current user 
 
 // Start the server and have it listen to port 5000
 app.listen(5000, () => console.log("Listening on port 5000"))

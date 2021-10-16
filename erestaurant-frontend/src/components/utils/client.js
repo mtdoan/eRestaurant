@@ -7,7 +7,7 @@ const instance = axios.create({
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Methods': '*'
   },
-  // withCredentials: true
+  withCredentials: true
 });
 
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
@@ -23,8 +23,6 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
     }
   });
 };
-
-;
 
 export const submitSignInForm = (email, password, callback) => {
   instance.post(`${hostUrl}/signIn`, {
@@ -82,6 +80,21 @@ export const getBookingFromBookingId = (bookingId, callback) => {
     }
   });
 };
+
+export const editBooking = (bookingId, callback) => {
+  instance.post(`${hostUrl}/booking/edit/${bookingId}`, {
+    bookingId,
+    restaurantId,
+    numberOfPatrons,
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback();
+    }
+  });
+};
+
 //-----------Cart
 export const loadCart = (callback) => {
   instance.get(`${hostUrl}/cartItems`).then((response) => {
@@ -147,9 +160,6 @@ export const editStaff = (staffId, firstName, lastName, phoneNumber, position, r
   });
 };
 
-
-
-
 export const getStaff = (staffId, callback) => {
   instance.get(`${hostUrl}/staff/${staffId}`).then(response => {
     if (response.status === 200) {
@@ -173,9 +183,6 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
     }
   });
 }
-
-
-
 
 export const loadOrders = (callback) => {
   instance.get(`${hostUrl}/staff/orders`).then(response => {
