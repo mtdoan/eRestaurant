@@ -13,7 +13,7 @@ const customStyles = {
         ...defaultStyles,
         color: '#000',
     }
-}
+  }
 };
 
 const SubmitButton = styled.button`
@@ -97,8 +97,6 @@ export function EditBooking(props) {
   const editBookingHandler = () => {
     editBooking(bookingId, booking.restaurantId, booking.numberOfPatrons, booking.dateEpoch, booking.timeSlotId, callback);
   };
-
-  console.log("booking = ", booking);
 
   return (
     <BookingContainer>

@@ -22,10 +22,6 @@ export const createNewBookingHander = (req, res) => {
     "timeSlotId": req.body.timeSlotId
   }
   bookings.push(newBooking);
-  console.log("req.body.restaurantId", req.body.restaurantId);
-  console.log("req.body.timeSlotId", req.body.timeSlotId);
-  console.log(cart);
-  console.log(newBooking);
   res.send({"bookingId" :bookingId});
 };
 
@@ -37,7 +33,6 @@ export const getBookingFromBookingIdHandler = (req, res) => {
     return;
   }
   res.send(booking);
-
 };
 
 export const getNewBookingIdHandler = (req, res) => {
@@ -77,11 +72,9 @@ export const editBookingHander = (req, res) => {
 export const getBookingFromBookingId = (bookingId) => {
   for (let i = 0; i < bookings.length; i++) {
     if (bookings[i].id == bookingId) {
-      console.log("co booking");
       return bookings[i];
     }
   }
-  console.log("khong co booking");
   return null;
 };
 
