@@ -1,27 +1,44 @@
-import express from "express"
-import mysql from "mysql"
+import express from "express";
+import mysql from "mysql";
+
 import {
   listDishesHandler,
   getDishHandler,
   getCartItemsByUserIdHandler,
   addItemToCartHandler,
   deleteItemFromCartHandler,
-} from "./dish_apis.js"
+} from "./dish_apis.js";
+
 import {
   getBookingFromBookingIdHandler,
   getNewBookingIdHandler,
   createNewBookingHander,
-  getItemsFromBookingHander
-} from "./booking_apis.js"
+  getItemsFromBookingHander,
+  editBookingHander
+} from "./booking_apis.js";
 
 import {
-  getUserFromId
-} from "./user_apis.js"
+  getUserFromId,
+  getUserId1
+} from "./user_apis.js";
+
+import {
+  listStaff,
+  getStaffFromId,
+  addStaff,
+  deleteStaff,
+  editStaff
+} from "./staff_apis.js";
+
+import {
+  getAllInvoices
+} from "./invoice_apis.js";
+
 import cors from 'cors';
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 
@@ -39,11 +56,11 @@ con.connect(function (err) {
 
 app.post("/signin", (req, res) => {
   console.log(req.body)
-  const email = req.body.email; //input in email section of interface
-  const password = req.body.password; //input in password section of interface
-  if (email && password) { //check input was entered
+  const email = req.body.email; 
+  const password = req.body.password; 
+  if (email && password) {
     con.query('SELECT * FROM Customer WHERE customerEmail = ? AND customerPassword = ?', [email, password], function (error, results, fields) { //retrieve customer account that matches username and password
-      if (results.length > 0) { //results is array containing all matches to sql query. If greater than 0, matching account found
+      if (results.length > 0) { 
         res.sendStatus(200);
       } else {
         res.sendStatus(401);
@@ -73,6 +90,11 @@ app.post("/register", (req, res) => {
   res.sendStatus(401);
 })
 
+// User APIs 
+app.get("/user/:userId", getUserFromId); // get User From UserId
+
+app.get("/myAccount", getUserId1); // get User From UserId
+
 // Dish APIs 
 app.get("/dishes", listDishesHandler);
 
@@ -93,8 +115,22 @@ app.post("/booking", createNewBookingHander); //submit a booking form
 
 app.get("/booking/cart/:bookingId", getItemsFromBookingHander); //get items from booking
 
-// User APIs 
-app.get("/user/:userId", getUserFromId); // get User From UserId
+app.post("/booking/edit/:bookingId", editBookingHander); //get items from booking
+
+
+// Staff APIs 
+app.get("/staff/list", listStaff); // list all Staff 
+
+app.get("/staff/:staffId", getStaffFromId); // get Staff From StaffId
+
+app.post("/staff/add", addStaff); //add a new staff
+
+app.post("/staff/del/:staffId", deleteStaff); //delete staff
+
+app.post("/staff/edit/:staffId", editStaff); //edit staff
+
+// Invoice APIs
+app.get("/invoice/all", getAllInvoices); // get all invoices of current user 
 
 // Start the server and have it listen to port 5000
 app.listen(5000, () => console.log("Listening on port 5000"))

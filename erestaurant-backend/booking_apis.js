@@ -27,8 +27,6 @@ export const createNewBookingHander = (req, res) => {
   console.log(cart);
   console.log(newBooking);
   res.send({"bookingId" :bookingId});
-
-  // res.sendStatus(200);
 };
 
 export const getBookingFromBookingIdHandler = (req, res) => {
@@ -57,13 +55,32 @@ export const getItemsFromBookingHander = (req, res) => {
   res.send(booking.cartItems);
 };
 
+export const editBookingHander = (req, res) => {
+  for (let i = 0; i < bookings.length; i++) {
+    if (bookings[i].id == req.params.bookingId) {
+      bookings[i] = {
+        ...bookings[i],
+        "restaurantId": req.body.restaurantId,
+        "numberOfPatrons": req.body.numberOfPatrons,
+        "dateEpoch": req.body.dateEpoch,
+        "timeSlotId": req.body.timeSlotId
+      }
+      res.sendStatus(200);
+      return;
+    }
+  }
+  res.sendStatus(401);
+};
+
+
 //functions
-const getBookingFromBookingId = (bookingId) => {
+export const getBookingFromBookingId = (bookingId) => {
   for (let i = 0; i < bookings.length; i++) {
     if (bookings[i].id == bookingId) {
       return bookings[i];
     }
   }
+  console.log("khong co booking");
   return null;
 };
 

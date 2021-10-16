@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { NavbarOrder } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { getUser } from "../../components/utils/client";
-import { Booking } from "../../components/booking/booking";
+import { EditBooking } from "../../components/booking/editBooking";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -20,7 +20,6 @@ const InnerPageContainer = styled.div`
   width: 100%;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
   min-height: 100vh;
-  ${'' /* padding: 1em; */}
   padding: 0.5rem calc((100vw - 2000px) / 2);
   display: flex;
   flex-direction: column;
@@ -52,7 +51,7 @@ const MenuTypeContainer = styled.div`
   background-color: transparent;
 `;
 
-export function BookingPage() {
+export function EditBookingPage() {
   const [userName, setUserName] = useState("customer");
 
   const getUserName = () => {
@@ -69,7 +68,7 @@ export function BookingPage() {
       <NavbarOrder />
       <InnerPageContainer>
         <MenuTypeContainer>Hello, {userName}</MenuTypeContainer>
-        <Booking />
+        <EditBooking />
       </InnerPageContainer>
     </PageWrapper>
   );
