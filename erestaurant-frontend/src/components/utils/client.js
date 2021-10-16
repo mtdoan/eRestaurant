@@ -7,11 +7,12 @@ const instance = axios.create({
     'Access-Control-Allow-Headers': '*',
     'Access-Control-Allow-Methods': '*'
   },
-  // withCredentials: true
+  withCredentials: true
 });
 
+//Signin & signup
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
-  instance.post(`${hostUrl}/signUp`, {
+  instance.post(`${hostUrl}/register`, {
     email,
     firstName,
     lastName,
@@ -24,10 +25,8 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
   });
 };
 
-;
-
 export const submitSignInForm = (email, password, callback) => {
-  instance.post(`${hostUrl}/signIn`, {
+  instance.post(`${hostUrl}/signin`, {
     email,
     password
   }).then(response => {
@@ -37,15 +36,17 @@ export const submitSignInForm = (email, password, callback) => {
   });
 };
 
-export const getUser = (callback) => {
-  instance.get(`${hostUrl}/myAccount`).then(response => {
+
+
+//-----------Booking
+export const createBookingId = (callback) => {
+  instance.get(`${hostUrl}/createBookingId`).then(response => {
     if (response.status === 200) {
       callback(response.data);
     }
   });
 };
 
-//-----------Booking
 export const loadItemsFromBooking = (bookingId, callback) => {
   instance.get(`${hostUrl}/booking/cart/${bookingId}`).then((response) => {
     if (response.status === 200) {
@@ -82,7 +83,29 @@ export const getBookingFromBookingId = (bookingId, callback) => {
     }
   });
 };
+
+export const editBooking = (bookingId, restaurantId, numberOfPatrons, dateEpoch, timeSlotId, callback) => {
+  instance.post(`${hostUrl}/booking/edit/${bookingId}`, {
+    restaurantId,
+    numberOfPatrons,
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback();
+    }
+  });
+};
+
 //-----------Cart
+export const loadOrders = (callback) => {
+  instance.get(`${hostUrl}/staff/orders`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
 export const loadCart = (callback) => {
   instance.get(`${hostUrl}/cartItems`).then((response) => {
     if (response.status === 200) {
@@ -147,9 +170,6 @@ export const editStaff = (staffId, firstName, lastName, phoneNumber, position, r
   });
 };
 
-
-
-
 export const getStaff = (staffId, callback) => {
   instance.get(`${hostUrl}/staff/${staffId}`).then(response => {
     if (response.status === 200) {
@@ -174,16 +194,11 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
   });
 }
 
-
-
-
-export const loadOrders = (callback) => {
-  instance.get(`${hostUrl}/staff/orders`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
+//Users
+export async function getUserFromIdAsync(userId) {
+  const response = await instance.get(`${hostUrl}/user/${userId}`);
+  return response.data;
+}
 
 export const getUserFromId = (userId, callback) => {
   instance.get(`${hostUrl}/user/${userId}`).then(response => {
@@ -193,13 +208,17 @@ export const getUserFromId = (userId, callback) => {
   });
 };
 
-export async function getUserFromIdAsync(userId) {
-  const response = await instance.get(`${hostUrl}/user/${userId}`);
-  return response.data;
-}
+export const getUser = (callback) => {
+  instance.get(`${hostUrl}/myAccount`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
 
-export const createBookingId = (callback) => {
-  instance.get(`${hostUrl}/createBookingId`).then(response => {
+//Invoice
+export const getAllInvoices = (callback) => {
+  instance.get(`${hostUrl}/invoice/all`).then(response => {
     if (response.status === 200) {
       callback(response.data);
     }
