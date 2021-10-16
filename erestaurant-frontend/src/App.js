@@ -19,6 +19,7 @@ import { AboutPage } from "./containers/HomePage/aboutPage";
 import { Invoice } from "./containers/customerAccessPage/invoice";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { OrderPaymentPage } from "./containers/customerAccessPage/OrderPaymentPage";
+import { EditBookingPage } from "./containers/customerAccessPage/editBookingPage";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
           <Route path={buildPath("staff/edit/:staffId")} exact component={EditStaff} />
           <Route path={buildPath("staff/add/")} exact component={AddStaff} />
           <Route path={buildPath("booking")} exact component={BookingPage} />
-          {/* <Route path={buildPath("booked")} exact component={BookedPage} /> */}
+          <Route path={buildPath("booking/edit/:bookingId")} exact component={EditBookingPage} />
           <Route path={buildPath("orderpayment/:bookingId")} exact component={OrderPaymentPage} />
           <Route path={buildPath("customeraccountdetails")} exact component={CustomerAccountDetailsPage} />
           <Route path={buildPath("customeraccount")} exact component={CustomerAccountPage} />

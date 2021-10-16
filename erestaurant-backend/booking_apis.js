@@ -77,6 +77,7 @@ export const editBookingHander = (req, res) => {
 export const getBookingFromBookingId = (bookingId) => {
   for (let i = 0; i < bookings.length; i++) {
     if (bookings[i].id == bookingId) {
+      console.log("co booking");
       return bookings[i];
     }
   }

@@ -151,7 +151,6 @@ export function EditBooking(props) {
                 }
               })()}
               onChange={(event) => {
-                // setPatronNumber(event.value);
                 setBooking({...booking, numberOfPatrons: event.value});
               }}
             />

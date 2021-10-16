@@ -81,7 +81,8 @@ export const getBookingFromBookingId = (bookingId, callback) => {
   });
 };
 
-export const editBooking = (bookingId, callback) => {
+export const editBooking = (bookingId, restaurantId, numberOfPatrons, dateEpoch,
+  timeSlotId, callback) => {
   instance.post(`${hostUrl}/booking/edit/${bookingId}`, {
     bookingId,
     restaurantId,
@@ -91,6 +92,14 @@ export const editBooking = (bookingId, callback) => {
   }).then(response => {
     if (response.status === 200) {
       callback();
+    }
+  });
+};
+
+export const createBookingId = (callback) => {
+  instance.get(`${hostUrl}/createBookingId`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
     }
   });
 };
@@ -184,6 +193,7 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
   });
 }
 
+// 
 export const loadOrders = (callback) => {
   instance.get(`${hostUrl}/staff/orders`).then(response => {
     if (response.status === 200) {
@@ -205,10 +215,3 @@ export async function getUserFromIdAsync(userId) {
   return response.data;
 }
 
-export const createBookingId = (callback) => {
-  instance.get(`${hostUrl}/createBookingId`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
