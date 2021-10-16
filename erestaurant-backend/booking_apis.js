@@ -22,13 +22,7 @@ export const createNewBookingHander = (req, res) => {
     "timeSlotId": req.body.timeSlotId
   }
   bookings.push(newBooking);
-  console.log("req.body.restaurantId", req.body.restaurantId);
-  console.log("req.body.timeSlotId", req.body.timeSlotId);
-  console.log(cart);
-  console.log(newBooking);
   res.send({"bookingId" :bookingId});
-
-  // res.sendStatus(200);
 };
 
 export const getBookingFromBookingIdHandler = (req, res) => {
@@ -39,7 +33,6 @@ export const getBookingFromBookingIdHandler = (req, res) => {
     return;
   }
   res.send(booking);
-
 };
 
 export const getNewBookingIdHandler = (req, res) => {
@@ -57,8 +50,26 @@ export const getItemsFromBookingHander = (req, res) => {
   res.send(booking.cartItems);
 };
 
+export const editBookingHander = (req, res) => {
+  for (let i = 0; i < bookings.length; i++) {
+    if (bookings[i].id == req.params.bookingId) {
+      bookings[i] = {
+        ...bookings[i],
+        "restaurantId": req.body.restaurantId,
+        "numberOfPatrons": req.body.numberOfPatrons,
+        "dateEpoch": req.body.dateEpoch,
+        "timeSlotId": req.body.timeSlotId
+      }
+      res.sendStatus(200);
+      return;
+    }
+  }
+  res.sendStatus(401);
+};
+
+
 //functions
-const getBookingFromBookingId = (bookingId) => {
+export const getBookingFromBookingId = (bookingId) => {
   for (let i = 0; i < bookings.length; i++) {
     if (bookings[i].id == bookingId) {
       return bookings[i];
