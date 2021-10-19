@@ -90,7 +90,7 @@ const Input = styled.input`
             <NavbarLoggedIn useTransparent/>
             <TopSectionInnerContainer>
               <InnerPageContainer>
-              <Marginer direction="vertical" margin="1em"/> 
+              <Marginer direction="vertical" margin="4em"/> 
               <h1>Account Details</h1>
                     <Container>
                         <Row>

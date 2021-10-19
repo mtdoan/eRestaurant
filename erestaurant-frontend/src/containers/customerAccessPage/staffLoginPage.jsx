@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material-ui/core';
+import { deviceSize } from "../../components/responsive";
+import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
 const useStyles = makeStyles({
   container: {
@@ -76,7 +78,7 @@ function SignInForm() {
 
   const callback = () => {
     console.log("Call back");
-    history.push("/eRestaurant/signedin");
+    history.push("/eRestaurant/staff/list");
   }
 
   function onSubmit() {
@@ -133,10 +135,51 @@ function SignInForm() {
 }
 
 export function StaffLoginPage() {
+  const TopSectionContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    background: url(${TopSectionBackgroundImg}) no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
+  `;
+
+  const TopSectionInnerContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    //margin-top: 20px;
+    background-color: white;
+  `;
+
+  const BackgroundFilter = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(234, 125, 125, 0.8);
+    display: flex;
+    flex-direction: column;
+  `;
+
+  const InnerPageContainer = styled.div`
+    width: 70%;
+    min-height: 70vh;
+    flex-direction: column;
+    background: #ffffff;
+  `;
+
   return (
     <PageWrapper>
-      <NavbarLoginRegister />
-      <SignInForm />
+      <TopSectionContainer>
+        <BackgroundFilter>
+        <NavbarLoginRegister useTransparent/>
+        <TopSectionInnerContainer>
+          <InnerPageContainer>
+            <SignInForm />
+          </InnerPageContainer>
+        </TopSectionInnerContainer>
+        </BackgroundFilter>
+      </TopSectionContainer>
     </PageWrapper>
   );
 }
