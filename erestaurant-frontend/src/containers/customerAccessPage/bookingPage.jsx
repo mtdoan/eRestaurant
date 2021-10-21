@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { NavbarOrder } from "../../components/navbar";
+import { NavbarLoggedIn, NavbarOrder } from "../../components/navbar";
 import { Link } from "react-router-dom";
-import { getUser } from "../../components/utils/client";
-import { Booking } from "../../components/booking/booking";
+import { Booking } from "../../components/booking";
+import { deviceSize } from "../../components/responsive";
+import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -53,24 +54,45 @@ const MenuTypeContainer = styled.div`
 `;
 
 export function BookingPage() {
-  const [userName, setUserName] = useState("customer");
 
-  const getUserName = () => {
-    getUser((user) => setUserName(user.firstName));
-  }
+  const TopSectionContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    background: url(${TopSectionBackgroundImg}) no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
+  `;
 
-  useEffect(() => {
-    console.log('Call CART api at Booking page');
-    getUserName();
-  }, []);
+  const TopSectionInnerContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    //margin-top: 20px;
+    background-color: white;
+  `;
+
+  const BackgroundFilter = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(234, 125, 125, 0.8);
+    display: flex;
+    flex-direction: column;
+  `;
 
   return (
     <PageWrapper>
-      <NavbarOrder />
-      <InnerPageContainer>
-        <MenuTypeContainer>Hello, {userName}</MenuTypeContainer>
-        <Booking />
-      </InnerPageContainer>
+      <TopSectionContainer>
+        <BackgroundFilter>
+        <NavbarLoggedIn useTransparent/>
+        <TopSectionInnerContainer>
+          <InnerPageContainer>
+            <Booking />
+        </InnerPageContainer>
+        </TopSectionInnerContainer>
+        </BackgroundFilter>
+      </TopSectionContainer>
     </PageWrapper>
   );
 }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { NavbarOrder } from "../../components/navbar";
+import { NavbarLoggedIn } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import CartScrollContainer from "../../components/cart/CartScrollContainer";
 import { ProductScrollContainer } from "../../components/products/ProductScrollContainer";
 import { loadCart, getUser } from "../../components/utils/client";
+import { deviceSize } from "../../components/responsive";
+import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -81,29 +83,60 @@ export function OrderPage() {
     getUserName();
   }, []);
 
+  const TopSectionContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    background: url(${TopSectionBackgroundImg}) no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
+  `;
+
+  const TopSectionInnerContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    //margin-top: 20px;
+    background-color: white;
+  `;
+
+  const BackgroundFilter = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(234, 125, 125, 0.8);
+    display: flex;
+    flex-direction: column;
+  `;
+
   return (
     <PageWrapper>
-      <InnerPageContainer>
-        <NavbarOrder />
-        <MenuTypeContainer>Hello, {userName}</MenuTypeContainer>
-        <MenuTypeContainer>
-          <ButtonGroup>
-            {types.map(type => (
-              <Tab
-                key={type}
-                active={active === type}
-                onClick={() => setActive(type)}
-              >
-                {type}
-              </Tab>
-            ))}
-          </ButtonGroup>
-        </MenuTypeContainer>
-        <ContentWrapper>
-          <ProductScrollContainer onCartChange={refreshCart} type={active}/>
-          <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />
-        </ContentWrapper>
-      </InnerPageContainer>
+      <TopSectionContainer>
+        <BackgroundFilter>
+          <NavbarLoggedIn useTransparent/>
+          <TopSectionInnerContainer>
+            <InnerPageContainer>
+              <MenuTypeContainer>
+                <ButtonGroup>
+                  {types.map(type => (
+                    <Tab
+                      key={type}
+                      active={active === type}
+                      onClick={() => setActive(type)}
+                    >
+                      {type}
+                    </Tab>
+                  ))}
+                </ButtonGroup>
+              </MenuTypeContainer>
+              <ContentWrapper>
+                <ProductScrollContainer onCartChange={refreshCart} type={active}/>
+                <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />
+              </ContentWrapper>
+            </InnerPageContainer>
+          </TopSectionInnerContainer>
+        </BackgroundFilter>
+      </TopSectionContainer>
     </PageWrapper>
   );
 }

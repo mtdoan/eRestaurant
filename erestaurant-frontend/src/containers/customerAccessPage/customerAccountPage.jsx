@@ -118,6 +118,11 @@ const invoice = () => {
   console.log("go to invoice");
 }
 
+const myBookings = () => {
+  console.log("go to made bookings");
+  history.push("/eRestaurant/editbooking")
+}
+
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -129,6 +134,7 @@ const invoice = () => {
                 <SideNavContainer>
                   <Button onClick={goToDetails}>Account Details</Button>
                   <Button onClick={invoice}>Invoices</Button>
+                  <Button onClick={myBookings}>My Bookings</Button>
                   <Button onClick={logout}>Log Out</Button>
                 </SideNavContainer>
                 <Operationsontainer>
@@ -142,5 +148,4 @@ const invoice = () => {
       </TopSectionContainer>
     </PageWrapper>
   );
-
 }

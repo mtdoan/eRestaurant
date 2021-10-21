@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
 import { Marginer } from "../marginer";
@@ -8,6 +8,7 @@ import { buildPath } from "../../Paths";
 import { MenuViewPage } from "../../containers/MenuPage/MenuViewPage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { getUser } from "../../components/utils/client";
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -144,6 +145,17 @@ export function NavbarLoggedIn(props) {
   const menuMarginSize = 60;
   const accessibilityMarginSize = 20;
 
+  const [userName, setUserName] = useState("customer");
+
+  const getUserName = () => {
+    getUser((user) => setUserName(user.firstName));
+  }
+
+  useEffect(() => {
+    console.log('Call CART api at Booking page');
+    getUserName();
+  }, []);
+
   return (
     <NavbarContainer useTransparent={useTransparent}>
           <AccessibilityContainer>
@@ -163,7 +175,7 @@ export function NavbarLoggedIn(props) {
               <Marginer direction="horizontal" margin={menuMarginSize} />
             </HomeMenuContainer>
           <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
-          <h1 >Hello User! </h1>
+          <h1 >Hello {userName}!</h1>
           </AccessibilityContainer>
     </NavbarContainer>
   );
@@ -171,7 +183,7 @@ export function NavbarLoggedIn(props) {
 
 export function NavbarLoginRegister(props) {
   const { useTransparent } = props;
-  const marginSize = 24;
+  const marginSize = 20;
   return (
     <NavbarContainer useTransparent={useTransparent}>
       <BrandLogo />
@@ -200,8 +212,7 @@ export function NavbarOrder(props) {
   return (
     <NavbarContainer useTransparent={useTransparent}>
       <BrandLogo />
-      <CenterContainer>
-        <MenuContainer>
+        <HomeMenuContainer>
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={HomePagePath}>Home</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
@@ -213,8 +224,7 @@ export function NavbarOrder(props) {
           <Marginer direction="horizontal" margin={menuMarginSize} />
           <AnchorLink to={buildPath("about")}>About</AnchorLink>
           <Marginer direction="horizontal" margin={menuMarginSize} />
-        </MenuContainer>
-      </CenterContainer>
+        </HomeMenuContainer>
 
       <AccessibilityContainer>
         <div style={{ marginLeft: "auto" }} />

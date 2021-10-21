@@ -123,7 +123,7 @@ const Input = styled.input`
                         </Row>
                     </Container>
                     <Marginer direction="vertical" margin="4em"/> 
-                    <SubmitButton onClick={submitPaymentHandler}>Confirm Order</SubmitButton>
+                    <SubmitButton onClick={()=> history.push("./booked")}>Confirm Order</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>
