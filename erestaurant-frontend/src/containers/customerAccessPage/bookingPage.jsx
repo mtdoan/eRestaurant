@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavbarLoggedIn, NavbarOrder } from "../../components/navbar";
 import { Link } from "react-router-dom";
-import { Booking } from "../../components/booking";
+import { Booking } from "../../components/booking/booking";
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
@@ -69,7 +69,6 @@ export function BookingPage() {
     height: 100%;
     display: flex;
     justify-content: center;
-    //margin-top: 20px;
     background-color: white;
   `;
 

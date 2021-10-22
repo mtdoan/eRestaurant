@@ -49,7 +49,7 @@ export const bookings = [
   },
   {
     "id": 1,
-    "userId": 1,
+    "userId": 0,
     "cartItems": [
       {
         "id": 1,

@@ -4,7 +4,7 @@ import {
   MutedLink,
 } from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
-import { submitSignInForm } from "../../components/utils/client";
+import { submitStaffSignInForm } from "../../components/utils/client";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -58,7 +58,7 @@ const Heading = styled.h1`
   color: #000;
   `;
 
-function SignInForm() {
+function StaffSignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -82,8 +82,10 @@ function SignInForm() {
   }
 
   function onSubmit() {
-    submitSignInForm(email, password, callback);
-    console.log("loggg");
+    try {
+      submitStaffSignInForm(email, password, callback);
+    } catch (error) {
+    }
   }
 
   return (
@@ -175,7 +177,7 @@ export function StaffLoginPage() {
         <NavbarLoginRegister useTransparent/>
         <TopSectionInnerContainer>
           <InnerPageContainer>
-            <SignInForm />
+            <StaffSignInForm />
           </InnerPageContainer>
         </TopSectionInnerContainer>
         </BackgroundFilter>

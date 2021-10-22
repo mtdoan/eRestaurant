@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import {addDishToCart, removeDishFromCart } from '../utils/client';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const CartItemInfo = styled.div`
   width: 80%;
@@ -71,8 +71,8 @@ const ConfirmContainer = styled.div`
 const CartScrollContainer = ({ cartItems, onCartChange }) => {
   const [cart, setCart] = useState({ cartItems: cartItems });
   const history = useHistory();
-  
-  const addToCart = (productId) => {
+
+   const addToCart = (productId) => {
     addDishToCart(productId, onCartChange);
   };
 
@@ -95,7 +95,7 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
   }
 
   const confirmOrderHandler = () => {
-    history.push("./booking");
+    history.push("./order/details");
   };
 
   return (

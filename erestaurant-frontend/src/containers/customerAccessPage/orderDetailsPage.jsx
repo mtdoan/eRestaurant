@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
-import { Link } from "react-router-dom";
-import { getUser } from "../../components/utils/client";
-import { EditBooking } from "../../components/booking/editBooking";
+import { OrderBooking } from "../../components/booking/orderBooking";
+import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 
 const PageWrapper = styled.div`
@@ -27,29 +26,21 @@ const InnerPageContainer = styled.div`
   align-items: center;
 `;
 
-const AnchorLink = styled(Link)`
-  color: #000;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  margin: 10px 0 10px 0;
-  text-decoration: none;
-  font-size: 15px;
-  outline: none;
-  transition: all 200ms ease-in-out;
-  &:hover {
-    filter: contrast(0.6);
-  }
+const TopSectionContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  background: url(${TopSectionBackgroundImg}) no-repeat;
+  background-position: 0px 0px;
+  background-size: cover;
+  @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
 `;
 
-const MenuTypeContainer = styled.div`
-  font-size: 1rem;
-  height: 40px;
+const TopSectionInnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  align-items: center;
-  background-color: transparent;
+  justify-content: center;
+  background-color: white;
 `;
 
 const BackgroundFilter = styled.div`
@@ -60,34 +51,7 @@ const BackgroundFilter = styled.div`
   flex-direction: column;
 `;
 
-const TopSectionContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: url(${TopSectionBackgroundImg}) no-repeat;
-  background-position: 0px 0px;
-  background-size: cover;
-`;
-
-const TopSectionInnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  //margin-top: 20px;
-  background-color: white;
-`;
-
-export function EditBookingPage() {
-  const [userName, setUserName] = useState("customer");
-
-  const getUserName = () => {
-    getUser((user) => setUserName(user.firstName));
-  }
-
-  useEffect(() => {
-    getUserName();
-  }, []);
-
+export function OrderDetailsPage() {
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -95,7 +59,7 @@ export function EditBookingPage() {
           <NavbarLoggedIn useTransparent/>
           <TopSectionInnerContainer>
             <InnerPageContainer>
-              <EditBooking />
+              <OrderBooking />
             </InnerPageContainer>
           </TopSectionInnerContainer>
         </BackgroundFilter>

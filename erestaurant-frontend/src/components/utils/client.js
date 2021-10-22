@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {toast} from 'react-toastify'
 
 const hostUrl = "http://localhost:5000";
 const instance = axios.create({
@@ -11,34 +12,63 @@ const instance = axios.create({
 });
 
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
-  instance.post(`${hostUrl}/signUp`, {
+  instance.post(`${hostUrl}/register`, {
     email,
     firstName,
     lastName,
     phoneNumber,
-    password,
-  }).then(response => {
+    password
+  })
+  .then(response => {
     if (response.status === 200) {
+      toast.success("You have registered susseccfully");
       callback();
     }
+  })
+  .catch(err => { 
+    console.log(err);
+    toast.error("Please retry!", {autoClose: 3000});
   });
 };
 
 export const submitSignInForm = (email, password, callback) => {
-  instance.post(`${hostUrl}/signIn`, {
+  instance.post(`${hostUrl}/signin`, {
     email,
     password
-  }).then(response => {
+  })
+  .then(response => {
     if (response.status === 200) {
+      toast.success("You have signed in");
       callback();
     }
-  });
+  })
+  .catch(err => { 
+    console.log(err);
+    toast.error("The email address or password is incorrect. Please retry!", {autoClose: 3000});
+  })
+  ;
 };
+
+
 
 export const getUser = (callback) => {
   instance.get(`${hostUrl}/myAccount`).then(response => {
     if (response.status === 200) {
       callback(response.data);
+    }
+  });
+};
+
+export const editUser = (userId, firstName, lastName, phoneNumber, email, password, callback) => {
+  instance.post(`${hostUrl}/myAccount/edit/${userId}`, {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    password
+  }).then(response => {
+    if (response.status === 200) {
+      callback();
     }
   });
 };
@@ -73,6 +103,22 @@ export const getBooking = (callback) => {
   });
 };
 
+export const listUserBooking = (callback) => {
+  instance.get(`${hostUrl}/booking/list`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const listUserOrder = (callback) => {
+  instance.get(`${hostUrl}/order/list`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
 export const getBookingFromBookingId = (bookingId, callback) => {
   instance.get(`${hostUrl}/booking/${bookingId}`).then(response => {
     if (response.status === 200) {
@@ -89,11 +135,13 @@ export const editBooking = (bookingId, restaurantId, numberOfPatrons, dateEpoch,
     numberOfPatrons,
     dateEpoch,
     timeSlotId
-  }).then(response => {
+  })
+  .then(response => {
     if (response.status === 200) {
       callback();
     }
-  });
+  })
+  ;
 };
 
 export const createBookingId = (callback) => {
@@ -177,6 +225,14 @@ export const getStaff = (staffId, callback) => {
   });
 };
 
+export const getStaffUser = (callback) => {
+  instance.get(`${hostUrl}/staff/myAccount`).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
 export const submitStaffForm = (firstName, lastName, email, password, phoneNumber, position, restaurantId, callback ) => {
   instance.post(`${hostUrl}/staff/add`, {
     firstName,
@@ -193,6 +249,23 @@ export const submitStaffForm = (firstName, lastName, email, password, phoneNumbe
   });
 }
 
+export const submitStaffSignInForm = (email, password, callback) => {
+  instance.post(`${hostUrl}/staff/signin`, {
+    email,
+    password
+  })
+  .then(response => {
+    if (response.status === 200) {
+      toast.success("You have signed in");
+      callback();
+    }
+  })
+  .catch(err => { 
+    console.log(err);
+    toast.error("The email address or password is incorrect. Please retry!", {autoClose: 3000});
+  })
+  ;
+};
 // 
 export const loadOrders = (callback) => {
   instance.get(`${hostUrl}/staff/orders`).then(response => {

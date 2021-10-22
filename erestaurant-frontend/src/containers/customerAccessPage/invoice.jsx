@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getBookingFromBookingId, loadItemsFromBooking, getUserFromId, getUserFromIdAsync } from "../../components/utils/client";
+import { getBookingFromBookingId, loadItemsFromBooking, getUser } from "../../components/utils/client";
 import 'antd/dist/antd.css';
 
 const PageWrapper = styled.div`
@@ -45,30 +45,24 @@ const SmallColDiv = styled.div`
 `;
 
 
-export const Invoice = React.forwardRef(({ bookingId }, ref) => {
+export const Invoice = React.forwardRef(({ id }, ref) => {
   const [booking, setBooking] = useState();
   const [items, setItems] = useState({ cartItems: [] });
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   
-  const getBookingDetails = (bookingId) => {
-    getBookingFromBookingId(bookingId, booking => {
-      setBooking(booking);
-      getUserFromId(booking.userId, setUser);
-    });
+  const getInvoiceDetails = (id) => {
+    getBookingFromBookingId(id, setBooking);
+    loadItemsFromBooking(id, setItems);
+    getUser((user) => setUser(user));
   }
-
-  const refreshItems = () => {
-    loadItemsFromBooking(bookingId, (cartItems) => setItems({ cartItems }));
-  };
 
   useEffect(() => {
     console.log('Call CART api');
-    getBookingDetails(bookingId);
-    refreshItems();
+    getInvoiceDetails(id);
   }, []);
 
   let total = 0;
-  for (let i = 0; i < items.cartItems.length; i++) {
+  for (let i = 0; i < items?.cartItems?.length; i++) {
     total += items.cartItems[i].dish.price * items.cartItems[i].count;
   }
   console.log("total  =", total);
@@ -86,7 +80,7 @@ export const Invoice = React.forwardRef(({ bookingId }, ref) => {
         <ColDiv >
           <h3>Le Bistro D'Andre</h3>
           <div>Address: 1B King Road</div>
-          <div>Haymarket, NSW 2000</div>
+          <div>North Sydney, NSW 2060</div>
           <div>Phone: 1300 367 283</div>
         </ColDiv>
         <SmallColDiv />
@@ -94,8 +88,8 @@ export const Invoice = React.forwardRef(({ bookingId }, ref) => {
         <ColDiv >
           <table style={{ fontSize: "16px", textAlign: "left" }}>
             <tr>
-              <th>Invoice # :</th>
-              <td>000{bookingId}</td>
+              <th>Invoice No :</th>
+              <td>#I00{id}</td>
             </tr>
             <tr>
               <th>Invoice Date :</th>
@@ -137,7 +131,7 @@ export const Invoice = React.forwardRef(({ bookingId }, ref) => {
               </tr>
             </thead>
             <tbody >
-            {items.cartItems.map(cartItem => {
+            {items?.cartItems?.map(cartItem => {
               return (
                 <tr key={cartItem.id} >
                     <td>

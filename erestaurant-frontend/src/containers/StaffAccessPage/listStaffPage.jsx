@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { NavbarLoggedIn } from "../../components/navbar";
+import { NavbarStaff } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { buildPath } from "../../Paths";
 import { Table, TableHead, TableCell, Paper, TableRow, TableBody, Button, makeStyles } from '@material-ui/core'
@@ -100,7 +100,7 @@ export function ListStaffPage() {
         <PageWrapper>
             <TopSectionContainer>
                 <BackgroundFilter>
-                    <NavbarLoggedIn useTransparent/>
+                    <NavbarStaff useTransparent />
                     <TopSectionInnerContainer>
                         <InnerPageContainer>
                             <Table className={classes.table}>

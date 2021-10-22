@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  FormContainer
-} from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
 import { useHistory } from "react-router-dom";
 import { submitSignUpForm } from "../../components/utils/client";
@@ -94,12 +91,14 @@ function SignUpForm() {
 
   const callback = () => {
     console.log("Call back");
-    history.push("/eRestaurant/customeraccount");
+    history.push("/eRestaurant/signin");
   }
 
   function onSubmit() {
-    submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback);
-    console.log("finished");
+    try {
+      submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback);
+    } catch (error) {
+    }
   }
 
   return (

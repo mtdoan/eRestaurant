@@ -88,12 +88,15 @@ function SignInForm() {
   const classes = useStyles();
 
   const callback = () => {
-    console.log("Call back");
-    history.push("/eRestaurant/customeraccount");
+      console.log("Call back");
+      history.push("/eRestaurant/customeraccount");
   }
 
   function onSubmit() {
-    submitSignInForm(email, password, callback);
+    try {
+      submitSignInForm(email, password, callback);
+    } catch (error) {
+    }
   }
 
   return (
@@ -196,8 +199,3 @@ export function LoginPage() {
     </PageWrapper>
   );
 }
-// Ok I realised I couldnt comment in the HTML that is returned above, but basically I modified
-// line 66 to make it such that when the form is submitted, the request method is POST and the path is /login 
-// (look at server.js for the handler for that specific method and path)
-// I then added a name attribute to the email and password input fields (lines 68 and 69 (nice) respectively)
-// these are needed for the express.urlencoded parser (see server.js) to know what name to give to the attributes of the request body

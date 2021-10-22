@@ -2,7 +2,7 @@ import { bookings } from "./data/bookings.js";
 import { cartItems } from "./data/cartItems.js"
 
 export const createNewBookingHander = (req, res) => {
-  let userId = 0;
+  let userId = req.session.userid;
   let bookingId = bookings[bookings.length - 1].id + 1;
 
   let cart = [];
@@ -22,7 +22,7 @@ export const createNewBookingHander = (req, res) => {
     "timeSlotId": req.body.timeSlotId
   }
   bookings.push(newBooking);
-  res.send({"bookingId" :bookingId});
+  res.send({"bookingId": bookingId});
 };
 
 export const getBookingFromBookingIdHandler = (req, res) => {
@@ -67,6 +67,29 @@ export const editBookingHander = (req, res) => {
   res.sendStatus(401);
 };
 
+export const listUserBookingHander = (req, res) => {
+  let userId = req.session.userid;
+  console.log("req.session.userid=", req.session.userid)
+  let bookingList = [];
+  for (let i = 0; i < bookings.length; i++) {
+    if (bookings[i].userId == userId && bookings[i].cartItems.length == 0) {
+      bookingList.push(bookings[i])
+    }
+  }
+  res.send(bookingList);
+};
+
+export const listUserOrderHander = (req, res) => {
+  let userId = req.session.userid;
+  console.log("req.session.userid=", req.session.userid)
+  let orderList = [];
+  for (let i = 0; i < bookings.length; i++) {
+    if (bookings[i].userId == userId && bookings[i].cartItems.length > 0) {
+      orderList.push(bookings[i])
+    }
+  }
+  res.send(orderList);
+};
 
 //functions
 export const getBookingFromBookingId = (bookingId) => {

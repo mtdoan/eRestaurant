@@ -100,27 +100,24 @@ const goToDetails = () => {
 }
 
 const logout = () => {
-  console.log("Logging Out");
   history.push("/eRestaurant/");
 }
 
 const order = () => {
-  console.log("making an order");
   history.push("/eRestaurant/order")
 }
 
 const book = () => {
-  console.log("making an booking");
   history.push("/eRestaurant/booking")
 }
 
 const invoice = () => {
-  console.log("go to invoice");
+  history.push("/eRestaurant/order/list")
+
 }
 
 const myBookings = () => {
-  console.log("go to made bookings");
-  history.push("/eRestaurant/editbooking")
+  history.push("/eRestaurant/booking/list")
 }
 
   return (
@@ -133,7 +130,7 @@ const myBookings = () => {
                 <Title>Welcome to Le Bistrot D'André</Title>
                 <SideNavContainer>
                   <Button onClick={goToDetails}>Account Details</Button>
-                  <Button onClick={invoice}>Invoices</Button>
+                  <Button onClick={invoice}>My Invoices</Button>
                   <Button onClick={myBookings}>My Bookings</Button>
                   <Button onClick={logout}>Log Out</Button>
                 </SideNavContainer>

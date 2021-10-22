@@ -5,8 +5,7 @@ import { NavbarLoggedIn } from "../../components/navbar";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Container, Row, Col } from 'react-grid';
 import { Marginer } from "../../components/marginer";
-import { useHistory } from "react-router";
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export function OrderPaymentPage() {
   const PageWrapper = styled.div`
@@ -84,16 +83,12 @@ const Input = styled.input`
 
   const callback = () => {
     console.log("Call back");
-    history.push(`/eRestaurant/booked/${bookingId}`);
+    history.push(`/eRestaurant/ordered/${bookingId}`);
   }
 
   const submitPaymentHandler = () => {
     callback();
   };
-
-  // useEffect(() => {
-    
-  // }, []);
 
   return (
     <PageWrapper>
@@ -123,7 +118,7 @@ const Input = styled.input`
                         </Row>
                     </Container>
                     <Marginer direction="vertical" margin="4em"/> 
-                    <SubmitButton onClick={()=> history.push("./booked")}>Confirm Order</SubmitButton>
+                    <SubmitButton onClick={submitPaymentHandler}>Confirm Payment</SubmitButton>
                 </InnerPageContainer>
             </TopSectionInnerContainer>
         </BackgroundFilter>

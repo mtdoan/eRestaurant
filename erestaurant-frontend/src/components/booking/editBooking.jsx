@@ -111,10 +111,9 @@ export function EditBooking(props) {
             <Select
               styles={customStyles}
               options={[
-                { value: 1, label: "Haymarket" },
-                { value: 2, label: "Mascot" }
+                { value: 1, label: "North Sydney" },
               ]}
-              placeholder={booking?.restaurantId === 1 ? "Haymarket" : "Mascot"}
+              placeholder= "North Sydney"
               onChange={(event) => {
                 setBooking({...booking, restaurantId: event.value});
               }}

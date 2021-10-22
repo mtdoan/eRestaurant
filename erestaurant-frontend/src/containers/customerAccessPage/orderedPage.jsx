@@ -19,7 +19,7 @@ const FormContainer = styled.div`
   position: relative;
 `;
 
-const BookingContainer = styled.div`
+const InvoiceContainer = styled.div`
   width: 800px;
   flex-direction: column;
   text-align: left;
@@ -108,14 +108,16 @@ const BookingContainer = styled.div`
   background: #ffffff;
 `;
 
-export function BookedPage() {
+export function OrderedPage() {
   const componentRef = useRef();
 
   const [booking, setBooking] = useState();
 
   const { bookingId } = useParams();
+  console.log("bookingId=",bookingId);
 
   const getBookingDetails = (bookingId) => {
+    console.log("getBookingDetails bookingId=",bookingId);
     getBookingFromBookingId(bookingId, setBooking);
   }
 
@@ -128,12 +130,9 @@ export function BookedPage() {
     getBookingDetails(bookingId);
   }, []);
 
-  console.log("booking =", booking);
-
   const history = useHistory();
 
   const accountpage = () => {
-    console.log("making an booking");
     history.push("/eRestaurant/customeraccount")
   }
 
@@ -161,8 +160,8 @@ export function BookedPage() {
             <InnerPageContainer>
               <FormContainer>
                 <Marginer direction="vertical" margin="2em"/> 
-                <Heading>Thank you, your booking has been placed successfully.</Heading>
-                <BookingContainer>
+                <Heading>Your order has been placed successfully.</Heading>
+                <InvoiceContainer>
                   <RowDiv>
                     <SmallColDiv />
                     <ColDiv >
@@ -189,8 +188,12 @@ export function BookedPage() {
                       <div>Location: 1B King Road, North Sydney, NSW 2060 </div>
                     </ColDiv>
                   </RowDiv>
-                </BookingContainer>
+                  <Invoice className="print-preview" ref={componentRef} id={bookingId}/>
+                </InvoiceContainer>
+                <button onClick={handlePrint} style={{ width: "160px" }}>Print this out!</button>
+                <Marginer direction="vertical" margin="2em"/> 
                 <SubmitButton onClick={accountpage}>Return to Account Page</SubmitButton>
+                <Marginer direction="vertical" margin="2em"/> 
               </FormContainer>
             </InnerPageContainer>
           </TopSectionInnerContainer>

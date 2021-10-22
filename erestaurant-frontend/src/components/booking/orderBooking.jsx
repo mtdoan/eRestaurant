@@ -61,7 +61,7 @@ const DateContainer = styled.div`
   width: 100%;
 `;
 
-export function Booking(props) {
+export function OrderBooking(props) {
   const [restaurantId, setRestaurantId] = useState(-1);
   const [patronNumber, setPatronNumber] = useState(-1);
   const [startDate, setStartDate] = useState(null);
@@ -70,7 +70,7 @@ export function Booking(props) {
 
 
   const callback = (data) => {
-    history.push(`/eRestaurant/booked/${data.bookingId}`);
+    history.push(`/eRestaurant/orderpayment/${data.bookingId}`);
   }
 
   const submitBookingHandler = () => {
@@ -85,7 +85,7 @@ export function Booking(props) {
   return (
     <BookingContainer>
       <RowContainer>
-        <h1>Make a Booking!</h1>
+        <h1>Select your order details</h1>
       </RowContainer>
 
       <RowContainer>
@@ -105,23 +105,6 @@ export function Booking(props) {
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
-            <p>Number of patrons</p>
-            <Select
-              options={[
-                { value: 1, label: '1' },
-                { value: 2, label: '2' },
-                { value: 3, label: '3' },
-                { value: 4, label: '4' },
-                { value: 5, label: '5' },
-                { value: 6, label: '6' },
-                { value: 7, label: '7' },
-                { value: 8, label: '8' }
-              ]}
-              placeholder="Number of patrons"
-              onChange={(event) => {
-                setPatronNumber(event.value);
-              }}
-            />
           </SmallContainer>
         </InnerContainer>
       </RowContainer>

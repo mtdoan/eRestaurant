@@ -1,5 +1,7 @@
 import express from "express";
 import mysql from "mysql";
+import cookieParser from "cookie-parser";
+import session from "express-session";
 
 import {
   listDishesHandler,
@@ -14,12 +16,16 @@ import {
   getNewBookingIdHandler,
   createNewBookingHander,
   getItemsFromBookingHander,
-  editBookingHander
+  editBookingHander,
+  listUserBookingHander,
+  listUserOrderHander
 } from "./booking_apis.js";
 
 import {
+  addNewUser,
+  userSignIn,
   getUserFromId,
-  getUserId1
+  getUserFromCookies
 } from "./user_apis.js";
 
 import {
@@ -27,7 +33,9 @@ import {
   getStaffFromId,
   addStaff,
   deleteStaff,
-  editStaff
+  editStaff,
+  staffSignIn,
+  getStaffFromCookies
 } from "./staff_apis.js";
 
 import cors from 'cors';
@@ -36,60 +44,27 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cookieParser());
+
 app.use(cors({ origin: 'http://localhost:3000' }));
 
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "studio1agroup2",
-  database: "MMOCCD"
-});
+app.use(session({ 		
+  secret: 'secretkey',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}));
 
-con.connect(function (err) {
-  if (err) throw err;
-  console.log('Connected');
-});
+// User sign in APIs
 
-app.post("/signin", (req, res) => {
-  console.log(req.body)
-  const email = req.body.email; 
-  const password = req.body.password; 
-  if (email && password) {
-    con.query('SELECT * FROM Customer WHERE customerEmail = ? AND customerPassword = ?', [email, password], function (error, results, fields) { //retrieve customer account that matches username and password
-      if (results.length > 0) { 
-        res.sendStatus(200);
-      } else {
-        res.sendStatus(401);
-      }
-    });
-  } else {
-    res.sendStatus(401);
-  }
-})
+app.post("/register", addNewUser);
 
-app.post("/register", (req, res) => {
-  let { email, firstName, lastName, phoneNumber, password } = req.body
-  console.log(req.body)
-  let query = `INSERT INTO Customer (customerFname, customerLname, customerEmail, customerPassword, customerPhoneNumber) VALUES ('${firstName}', '${lastName}', '${email}', '${password}', ${phoneNumber})`
-  try {
-    con.query(query)
-    console.log(`${firstName}'s details added to database.'`)
-    con.query("SELECT * FROM Customer", function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-    });
-    res.sendStatus(200);
-  } catch (error) {
-    console.log(error.message)
-    res.status(422).send(error.message)
-  }
-  res.sendStatus(401);
-})
+app.post("/signin", userSignIn);
 
 // User APIs 
 app.get("/user/:userId", getUserFromId); // get User From UserId
 
-app.get("/myAccount", getUserId1); // get User From UserId
+app.get("/myAccount", getUserFromCookies); // get User From cookie
 
 // Dish APIs 
 app.get("/dishes", listDishesHandler);
@@ -103,6 +78,10 @@ app.post("/cartItems/add/:dishId", addItemToCartHandler); //add item to cart
 app.post("/cartItems/del/:dishId", deleteItemFromCartHandler); //delete item from cart
 
 // Booking APIs 
+app.get("/order/list", listUserOrderHander); //list all booking of current user
+
+app.get("/booking/list", listUserBookingHander); //list all booking of current user
+
 app.get("/booking/:bookingId", getBookingFromBookingIdHandler); // get Booking From BookingId
 
 app.get("/createBookingId", getNewBookingIdHandler); // get new BookingId
@@ -118,11 +97,21 @@ app.get("/staff/list", listStaff); // list all Staff
 
 app.get("/staff/:staffId", getStaffFromId); // get Staff From StaffId
 
+app.get("/staff/myAccount", getStaffFromCookies); // get current Staff 
+
 app.post("/staff/add", addStaff); //add a new staff
 
 app.post("/staff/del/:staffId", deleteStaff); //delete staff
 
 app.post("/staff/edit/:staffId", editStaff); //edit staff
 
+app.post("/staff/signin", staffSignIn);
+
+
 // Start the server and have it listen to port 5000
 app.listen(5000, () => console.log("Listening on port 5000"))
+
+/*
+/bookings
+/booking/{id}
+*/
