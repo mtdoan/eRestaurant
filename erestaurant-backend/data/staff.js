@@ -27,7 +27,7 @@ export const staff = [
     "password": "admin123",
     "phoneNumber": "0401123456",
     "position": "Manager",
-    "restaurantId": 2
+    "restaurantId": 1
   },
   {
     "id": 3,
@@ -67,7 +67,7 @@ export const staff = [
     "password": "admin123",
     "phoneNumber": "0401123456",
     "position": "Chef",
-    "restaurantId": 2
+    "restaurantId": 1
   },
   {
     "id": 7,
@@ -77,7 +77,7 @@ export const staff = [
     "password": "admin123",
     "phoneNumber": "0401123456",
     "position": "Cashier",
-    "restaurantId": 2
+    "restaurantId": 1
   },
   {
     "id": 8,
@@ -87,6 +87,6 @@ export const staff = [
     "password": "admin123",
     "phoneNumber": "0401123456",
     "position": "Cashier",
-    "restaurantId": 2
+    "restaurantId": 1
   },
 ]

@@ -105,6 +105,27 @@ export function OrderBooking(props) {
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
+            <p>Time</p>
+            <Select
+              options={[
+                { value: 1, label: 'Lunch 10:30AM' },
+                { value: 2, label: 'Lunch 11:00AM' },
+                { value: 3, label: 'Lunch 11:30AM' },
+                { value: 4, label: 'Lunch 12:00AM' },
+                { value: 5, label: 'Lunch 12:30AM' },
+                { value: 6, label: 'Dinner 5:30PM' },
+                { value: 7, label: 'Dinner 6:00PM' },
+                { value: 8, label: 'Dinner 6:30PM' },
+                { value: 9, label: 'Dinner 7:00PM' },
+                { value: 10, label: 'Dinner 7:30PM' },
+                { value: 11, label: 'Dinner 8:00PM' },
+                { value: 12, label: 'Dinner 8:30PM' },
+              ]}
+              placeholder="Choose time"
+              onChange={(event) => {
+                setTime(event.value);
+              }}
+            />
           </SmallContainer>
         </InnerContainer>
       </RowContainer>
@@ -127,28 +148,7 @@ export function OrderBooking(props) {
           </SmallContainer>
         </InnerContainer>
         <InnerContainer>
-          <SmallContainer id="number-of-customers">
-            <p>Time</p>
-            <Select
-              options={[
-                { value: 1, label: 'Lunch 10:30AM' },
-                { value: 2, label: 'Lunch 11:00AM' },
-                { value: 3, label: 'Lunch 11:30AM' },
-                { value: 4, label: 'Lunch 12:00AM' },
-                { value: 5, label: 'Lunch 12:30AM' },
-                { value: 6, label: 'Dinner 5:30PM' },
-                { value: 7, label: 'Dinner 6:00PM' },
-                { value: 8, label: 'Dinner 6:30PM' },
-                { value: 9, label: 'Dinner 7:00PM' },
-                { value: 10, label: 'Dinner 7:30PM' },
-                { value: 11, label: 'Dinner 8:00PM' },
-                { value: 12, label: 'Dinner 8:30PM' },
-              ]}
-              placeholder="Choose time"
-              onChange={(event) => {
-                setTime(event.value);
-              }}
-            />
+          <SmallContainer>
           </SmallContainer>
         </InnerContainer>
       </RowContainer>

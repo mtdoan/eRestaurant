@@ -52,7 +52,8 @@ export const Invoice = React.forwardRef(({ id }, ref) => {
   
   const getInvoiceDetails = (id) => {
     getBookingFromBookingId(id, setBooking);
-    loadItemsFromBooking(id, setItems);
+    loadItemsFromBooking(id, (cartItems) => setItems({cartItems: cartItems}));
+    console.log(items);
     getUser((user) => setUser(user));
   }
 

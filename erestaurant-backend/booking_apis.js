@@ -47,6 +47,7 @@ export const getItemsFromBookingHander = (req, res) => {
     res.sendStatus(404);
     return;
   }
+  console.log("booking.cartItems=", booking.cartItems);
   res.send(booking.cartItems);
 };
 

@@ -18,8 +18,6 @@ async function example() {
   await driver.findElement(By.id("customerEmailInput"));
   // checks if customerPasswordInput exists. 
   await driver.findElement(By.id("customerPasswordInput"));
-  // checks if customerForgotPasswordLink exists. 
-  await driver.findElement(By.id("customerForgotPasswordLink"));
   // checks if customerLoginButton exists. 
   await driver.findElement(By.id("customerLoginButton"));
   
