@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { getUser, getStaffUser } from "../../components/utils/client";
+import { logout } from '../../components/utils/client';
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -97,6 +99,8 @@ const SeperatorLoginRegisterContainer = styled.div`
 `;
 
 export function Navbar(props) {
+  const history = useHistory();
+
   const { useTransparent } = props;
   const menuMarginSize = 60;
   const accessibilityMarginSize = 20;
@@ -111,6 +115,12 @@ export function Navbar(props) {
   useEffect(() => {
     checkUser();
   }, []);
+
+  const logoutHandler = () => {
+    logout();
+    setIsUser(false);
+    history.push("/eRestaurant/");
+  }
 
   return (
     <NavbarContainer id={props.id} useTransparent={useTransparent}>
@@ -142,7 +152,9 @@ export function Navbar(props) {
         </AccessibilityContainer>
         : <AccessibilityContainer id="rightAccessibilityBar">
           <div style={{ marginLeft: "auto" }} />
-          <AnchorLink to={buildPath("logout")}>Logout</AnchorLink>
+          <AnchorLink >
+            <span onClick={logoutHandler}>Logout</span>  
+          </AnchorLink>
         </AccessibilityContainer>
       }
     </NavbarContainer>

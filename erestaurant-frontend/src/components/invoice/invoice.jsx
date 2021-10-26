@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getBookingFromBookingId, loadItemsFromBooking, getUser } from "../../components/utils/client";
+import { getBookingFromBookingId, loadItemsFromBooking, getUser } from "../utils/client";
 import 'antd/dist/antd.css';
 
 const PageWrapper = styled.div`

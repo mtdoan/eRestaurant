@@ -103,7 +103,7 @@ function SignUpForm() {
 
   return (
     <FormGroup className={classes.container}>
-      <Heading>Create Account New</Heading>
+      <Heading>Create A New Account</Heading>
       <FormControl >
         <InputLabel htmlFor="my-input">Email</InputLabel>
         <Input

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
 import { useReactToPrint } from 'react-to-print';
 import { getBookingFromBookingId } from "../../components/utils/client";
-import { Invoice } from './invoice';
+import { Invoice } from '../../components/invoice/invoice';
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Marginer } from "../../components/marginer";

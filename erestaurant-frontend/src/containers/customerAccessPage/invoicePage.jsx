@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
 import { useReactToPrint } from 'react-to-print';
-import { getBookingFromBookingId } from "../../components/utils/client";
-import { Invoice } from './invoice';
+import { Invoice } from "../../components/invoice/invoice.jsx";
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Marginer } from "../../components/marginer";
@@ -50,27 +49,6 @@ const InvoiceContainer = styled.div`
     display: inline-block;
     flex-direction: column;
     align-items: center;
-    text-align: left;
-    font-size: 16px;
-  `;
-
-  const SmallColDiv = styled.div`
-    width: 7%;
-    padding: 0;
-    margin: "auto"
-    display: inline-block;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-  `;
-
-
-  const RowDiv = styled.div`
-    width: 100%;
-    min-height: 100%;
-    padding: 0;
-    margin: 1rem;
-    display: flex;
     text-align: left;
     font-size: 16px;
   `;

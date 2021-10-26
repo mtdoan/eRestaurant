@@ -1,5 +1,5 @@
 import express from "express";
-import mysql from "mysql";
+// import mysql from "mysql";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 
@@ -24,8 +24,8 @@ import {
 import {
   addNewUser,
   userSignIn,
-  getUserFromId,
-  getUserFromCookies
+  getUserFromCookies,
+  logout
 } from "./user_apis.js";
 
 import {
@@ -55,14 +55,16 @@ app.use(session({
   cookie: { maxAge: 60000 }
 }));
 
-// User sign in APIs
+// Logout APIs
+app.get("/logout", logout);
 
+// User sign in APIs
 app.post("/register", addNewUser);
 
 app.post("/signin", userSignIn);
 
+
 // User APIs 
-app.get("/user/:userId", getUserFromId); // get User From UserId
 
 app.get("/myAccount", getUserFromCookies); // get User From cookie
 
@@ -78,9 +80,9 @@ app.post("/cartItems/add/:dishId", addItemToCartHandler); //add item to cart
 app.post("/cartItems/del/:dishId", deleteItemFromCartHandler); //delete item from cart
 
 // Booking APIs 
-app.get("/order/list", listUserOrderHander); //list all booking of current user
+app.get("/order/list", listUserOrderHander); //list all orders of current user
 
-app.get("/booking/list", listUserBookingHander); //list all booking of current user
+app.get("/booking/list", listUserBookingHander); //list all bookings of current user
 
 app.get("/booking/:bookingId", getBookingFromBookingIdHandler); // get Booking From BookingId
 
@@ -110,8 +112,3 @@ app.post("/staff/signin", staffSignIn);
 
 // Start the server and have it listen to port 5000
 app.listen(5000, () => console.log("Listening on port 5000"))
-
-/*
-/bookings
-/booking/{id}
-*/

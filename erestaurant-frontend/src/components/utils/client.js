@@ -11,6 +11,17 @@ const instance = axios.create({
   withCredentials: true
 });
 
+// Logout
+export const logout = () =>{
+  instance.get(`${hostUrl}/logout`).then(response => {
+    if (response.status === 200) {
+      toast.success("You've been logged out");
+      localStorage.clear();
+    }
+  })
+}
+
+// Sign in
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
   instance.post(`${hostUrl}/register`, {
     email,
@@ -21,7 +32,7 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
   })
   .then(response => {
     if (response.status === 200) {
-      toast.success("You have registered susseccfully");
+      toast.success("You've been registered susseccfully");
       callback();
     }
   })
@@ -38,7 +49,7 @@ export const submitSignInForm = (email, password, callback) => {
   })
   .then(response => {
     if (response.status === 200) {
-      toast.success("You have signed in");
+      toast.success("You've been signed in");
       callback();
     }
   })
@@ -144,13 +155,13 @@ export const editBooking = (bookingId, restaurantId, numberOfPatrons, dateEpoch,
   ;
 };
 
-export const createBookingId = (callback) => {
-  instance.get(`${hostUrl}/createBookingId`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
+// export const createBookingId = (callback) => {
+//   instance.get(`${hostUrl}/createBookingId`).then(response => {
+//     if (response.status === 200) {
+//       callback(response.data);
+//     }
+//   });
+// };
 
 //-----------Cart
 export const loadCart = (callback) => {
@@ -256,7 +267,7 @@ export const submitStaffSignInForm = (email, password, callback) => {
   })
   .then(response => {
     if (response.status === 200) {
-      toast.success("You have signed in");
+      toast.success("You've been signed in");
       callback();
     }
   })
@@ -275,13 +286,6 @@ export const loadOrders = (callback) => {
   });
 };
 
-export const getUserFromId = (userId, callback) => {
-  instance.get(`${hostUrl}/user/${userId}`).then(response => {
-    if (response.status === 200) {
-      callback(response.data);
-    }
-  });
-};
 
 export async function getUserFromIdAsync(userId) {
   const response = await instance.get(`${hostUrl}/user/${userId}`);

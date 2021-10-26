@@ -6,6 +6,7 @@ import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { useHistory } from 'react-router-dom';
 import { Button } from "@material-ui/core";
 import { Marginer } from "../../components/marginer";
+import { logout } from '../../components/utils/client';
 
 export function CustomerAccountPage() {
 const PageWrapper = styled.div`
@@ -99,7 +100,8 @@ const goToDetails = () => {
   history.push("/eRestaurant/customeraccountdetails")
 }
 
-const logout = () => {
+const logoutHandler = () => {
+  logout();
   history.push("/eRestaurant/");
 }
 
@@ -132,7 +134,7 @@ const myBookings = () => {
                   <Button onClick={goToDetails}>Account Details</Button>
                   <Button onClick={invoice}>My Invoices</Button>
                   <Button onClick={myBookings}>My Bookings</Button>
-                  <Button onClick={logout}>Log Out</Button>
+                  <Button onClick={logoutHandler}>Log Out</Button>
                 </SideNavContainer>
                 <Operationsontainer>
                   <OperationsButton onClick={order}>Order</OperationsButton>

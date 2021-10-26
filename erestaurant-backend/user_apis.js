@@ -14,21 +14,19 @@ export const getUserFromCookies = (req, res) => {
   res.sendStatus(401);
 };
 
-export const getUserFromId = (req, res) => {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].id == req.params.userId) {
-      res.send(users[i]);
-      return;
-    }
-  }
-  res.sendStatus(401);
-};
 
 export const getUserId1 = (req, res) => {
   res.send(users[1]);
 };
 
 export const addNewUser = (req, res) => {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].email == req.body.email) {
+      res.sendStatus(401);
+      return;
+    }
+  }
+
   let newUser = {
     "id": users[users.length - 1].id + 1,
     "email": req.body.email,
@@ -37,7 +35,7 @@ export const addNewUser = (req, res) => {
     "phoneNumber": req.body.phoneNumber,
     "password": req.body.password
   };
-  users.push(newUser);
+  users.push(newUser); 
   res.sendStatus(200);
 };
 
@@ -55,3 +53,10 @@ export const userSignIn = (req, res) => {
   }
   res.sendStatus(401);
 };
+
+export const logout = (req, res) => {
+  req.session.destroy();
+  res.sendStatus(200);
+};
+
+  
