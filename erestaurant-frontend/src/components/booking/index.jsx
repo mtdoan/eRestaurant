@@ -23,7 +23,7 @@ const SubmitButton = styled.button`
     outline: none;
   }
   &:hover {
-    background: #ffd6d6;
+    background: #fff;
     color: rgba(205, 2, 36, 0.9);
   }
 `;

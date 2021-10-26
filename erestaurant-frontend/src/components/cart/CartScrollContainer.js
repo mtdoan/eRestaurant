@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import {addDishToCart, removeDishFromCart } from '../utils/client';
 import { useHistory } from "react-router-dom";
+import { Marginer } from '../marginer';
 
 const CartItemInfo = styled.div`
   width: 80%;
@@ -68,6 +69,21 @@ const ConfirmContainer = styled.div`
 
 `;
 
+const SubmitButton = styled.button`
+  padding: 7px;
+  width: 220px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {outline: none;}
+  &:hover { background: #fff; color: rgba(205, 2, 36, 0.9);}
+`;
+
 const CartScrollContainer = ({ cartItems, onCartChange }) => {
   const [cart, setCart] = useState({ cartItems: cartItems });
   const history = useHistory();
@@ -130,7 +146,8 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
       </CartScrollDiv>
       <ConfirmContainer>
         <p style={{ margin: "auto"}}>Total = ${total}</p>
-        <Button onClick={confirmOrderHandler}>Confirm Order</Button>
+        <Marginer direction="vertical" margin="1em"/> 
+        <SubmitButton onClick={confirmOrderHandler}>Confirm Order</SubmitButton>
       </ConfirmContainer>
     </CartContainer>
   )

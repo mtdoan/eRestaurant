@@ -62,6 +62,7 @@ const SideNavContainer = styled.div`
 `;
 
 const OperationsButton = styled.button`
+  padding: 10px;
   font-size: 40px;
   color: white;
   cursor: pointer;
@@ -69,12 +70,17 @@ const OperationsButton = styled.button`
   background: rgba(205, 2, 36, 0.9);
   padding: 15px 40px;
   border-radius: 10px;
-  border: 4px solid rgba(205, 2, 36, 0.9);
+  border: none;
   // box-shadow: 4px 4px 10px grey;
-  transition: all 200ms ease-in-out;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {
+    outline: none;
+  }
   &:hover {
+    background: #fff;
     color: rgba(205, 2, 36, 0.9);
-    background: white;
+  }
   }
 `;
 
@@ -123,6 +129,27 @@ const myBookings = () => {
   history.push("/eRestaurant/editbooking")
 }
 
+const SubmitButton = styled.button`
+  padding: 10px;
+  margin: auto;
+  width: 150px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
+  }
+`;
+
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -130,6 +157,7 @@ const myBookings = () => {
             <NavbarLoggedIn useTransparent/>
             <TopSectionInnerContainer>
               <InnerPageContainer>
+                <Marginer direction="vertical" margin="2em"/> 
                 <Title>Welcome to Le Bistrot D'André</Title>
                 <SideNavContainer>
                   <Button onClick={goToDetails}>Account Details</Button>

@@ -128,7 +128,6 @@ function SignInForm() {
       >
         {errors.password?.message}
       </div>
-      <MutedLink href="#">Forgot Password</MutedLink>
       <SubmitButton type="button" onClick={handleSubmit(onSubmit)}>LOGIN</SubmitButton>
     </FormGroup>
   )
