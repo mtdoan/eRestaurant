@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import { submitBooking } from '../utils/client';
+import { submitBooking, checkExistingOrder } from '../utils/client';
+import {toast} from 'react-toastify';
 
 const SubmitButton = styled.button`
   padding: 0.8rem 2rem;
@@ -68,19 +69,25 @@ export function OrderBooking(props) {
   const [time, setTime] = useState(-1);
   const history = useHistory();
 
-
   const callback = (data) => {
     history.push(`/eRestaurant/orderpayment/${data.bookingId}`);
   }
 
   const submitBookingHandler = () => {
-    submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+    checkExistingOrder(startDate?.getTime(), time, (data) => {
+      if (data.existing) {
+        if (restaurantId != -1 && startDate != null && time != -1) {
+          submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+        } else {
+          toast.error("Please select restaurant location, date and time!", {autoClose: 3000});
+        }
+      } else {
+        toast.error("You've made an order at this time!", {autoClose: 3000});
+      }
+    });
   };
 
-  console.log("setLocation = ", restaurantId);
-  console.log("setPatronNumber = ", patronNumber);
-  console.log("setStartDate = ", startDate?.getTime());
-  console.log("setTime = ", time);
+  let date = new Date();
 
   return (
     <BookingContainer>
@@ -140,7 +147,7 @@ export function OrderBooking(props) {
                   setStartDate(date);
                 }
                 }
-                minDate={new Date()}
+                minDate={new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1))}
                 placeholderText="Choose date"
                 dateFormat="dd/MM/yyyy"
               />

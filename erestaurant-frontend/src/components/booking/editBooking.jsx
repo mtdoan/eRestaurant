@@ -5,7 +5,8 @@ import { useHistory, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import { editBooking, getBookingFromBookingId } from '../utils/client';
+import { editBooking, getBookingFromBookingId, checkExistingBooking } from '../utils/client';
+import {toast} from 'react-toastify';
 
 const customStyles = {
   placeholder: (defaultStyles) => {
@@ -95,8 +96,15 @@ export function EditBooking(props) {
   }
 
   const editBookingHandler = () => {
-    editBooking(bookingId, booking.restaurantId, booking.numberOfPatrons, booking.dateEpoch, booking.timeSlotId, callback);
+    checkExistingBooking(bookingId, booking.dateEpoch, booking.timeSlotId, (data) => {
+      if (data.existing) {
+        editBooking(bookingId, booking.restaurantId, booking.numberOfPatrons, booking.dateEpoch, booking.timeSlotId, callback);
+      } else {
+        toast.error("You've made a reservation at this time!", {autoClose: 3000});
+      }
+    });
   };
+  let date = new Date();
 
   return (
     <BookingContainer>
@@ -164,7 +172,7 @@ export function EditBooking(props) {
                   setBooking({...booking, dateEpoch: date.getTime()});
                 }
                 }
-                minDate={new Date()}
+                minDate={new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1))}
                 placeholderText="Choose date"
                 dateFormat="dd/MM/yyyy"
                 value={(new Date(booking?.dateEpoch)).toLocaleDateString()}

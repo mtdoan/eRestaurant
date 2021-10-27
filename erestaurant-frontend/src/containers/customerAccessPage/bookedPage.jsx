@@ -94,7 +94,7 @@ export function BookedPage() {
                   <RowDiv>
                     <SmallColDiv />
                     <ColDiv >
-                      <div>Booking number: #00A{booking?.id}</div>
+                      <div>Booking number: #B00{booking?.id}</div>
                       <div>Date: {(new Date(booking?.dateEpoch)).toLocaleDateString()}</div>
                       <div>Time: {(() => {
                           switch (booking?.timeSlotId) {
@@ -115,7 +115,8 @@ export function BookedPage() {
                         })()}
                       </div>
                       <div>Number of patrons: {booking?.numberOfPatrons}</div>
-                      <div>Location: 1B King Road, North Sydney, NSW 2060 </div>
+                      <div>Location: 1B King Road, </div>
+                      <div>North Sydney, NSW 2060</div>
                     </ColDiv>
                   </RowDiv>
                 </BookingContainer>

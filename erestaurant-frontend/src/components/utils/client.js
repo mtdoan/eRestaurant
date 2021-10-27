@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {toast} from 'react-toastify'
+import {toast} from 'react-toastify';
 
 const hostUrl = "http://localhost:5000";
 const instance = axios.create({
@@ -21,7 +21,7 @@ export const logout = () =>{
   })
 }
 
-// Sign in
+//-----------Register
 export const submitSignUpForm = (email, firstName, lastName, phoneNumber, password, callback) => {
   instance.post(`${hostUrl}/register`, {
     email,
@@ -35,13 +35,10 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
       toast.success("You've been registered susseccfully");
       callback();
     }
-  })
-  .catch(err => { 
-    console.log(err);
-    toast.error("Please retry!", {autoClose: 3000});
   });
 };
 
+//-----------Sign in
 export const submitSignInForm = (email, password, callback) => {
   instance.post(`${hostUrl}/signin`, {
     email,
@@ -61,7 +58,7 @@ export const submitSignInForm = (email, password, callback) => {
 };
 
 
-
+//-----------User
 export const getUser = (callback) => {
   instance.get(`${hostUrl}/myAccount`).then(response => {
     if (response.status === 200) {
@@ -155,17 +152,40 @@ export const editBooking = (bookingId, restaurantId, numberOfPatrons, dateEpoch,
   ;
 };
 
-// export const createBookingId = (callback) => {
-//   instance.get(`${hostUrl}/createBookingId`).then(response => {
-//     if (response.status === 200) {
-//       callback(response.data);
-//     }
-//   });
-// };
+export const checkExistingOrder = (dateEpoch, timeSlotId, callback) => {
+  instance.post(`${hostUrl}/check/order`, {
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const checkExistingBooking = (bookingId, dateEpoch, timeSlotId, callback) => {
+  instance.post(`${hostUrl}/check/booking`, {
+    bookingId,
+    dateEpoch,
+    timeSlotId
+  }).then(response => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
 
 //-----------Cart
 export const loadCart = (callback) => {
   instance.get(`${hostUrl}/cartItems`).then((response) => {
+    if (response.status === 200) {
+      callback(response.data);
+    }
+  });
+};
+
+export const resetCart = (callback) => {
+  instance.get(`${hostUrl}/resetCart`).then((response) => {
     if (response.status === 200) {
       callback(response.data);
     }

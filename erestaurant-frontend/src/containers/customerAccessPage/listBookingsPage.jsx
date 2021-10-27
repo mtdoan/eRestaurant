@@ -74,11 +74,11 @@ const BackgroundFilter = styled.div`
 `;
 
 export function ListBookingsPage() {
-  const [data, setData] = useState({ allBooking: [] });
+  const [data, setData] = useState({ allBookings: [] });
   const classes = useStyles();
 
   useEffect(() => {
-    listUserBooking((allBooking) => setData({ allBooking }));
+    listUserBooking((allBookings) => setData({ allBookings: allBookings }));
   }, []);
 
   console.log('Render');
@@ -105,27 +105,27 @@ export function ListBookingsPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data.allBooking.map((booking) => (
+                  {data.allBookings.map((booking) => (
                     <TableRow className={classes.row} key={booking?.id}>
-                      <TableCell> #00A{booking?.id}</TableCell>
+                      <TableCell> #B00{booking?.id}</TableCell>
                       <TableCell>{(new Date(booking?.dateEpoch)).toLocaleDateString()}</TableCell>
                       <TableCell>{(() => {
-                          switch (booking?.timeSlotId) {
-                            case 1:  return 'Lunch 10:30AM';
-                            case 2:  return 'Lunch 11:00AM';
-                            case 3:  return 'Lunch 11:30AM';
-                            case 4:  return 'Lunch 12:00PM';
-                            case 5:  return 'Lunch 12:30PM';
-                            case 6:  return 'Dinner 5:30PM';
-                            case 7:  return 'Dinner 6:00PM';
-                            case 8:  return 'Dinner 6:30PM';
-                            case 9:  return 'Dinner 7:00PM';
-                            case 10: return 'Dinner 7:30PM';
-                            case 11: return 'Dinner 8:00PM';
-                            case 12: return 'Dinner 8:30PM';
-                            default: return 'Lunch 10:30AM';
-                          }
-                        })()}
+                        switch (booking?.timeSlotId) {
+                          case 1: return 'Lunch 10:30AM';
+                          case 2: return 'Lunch 11:00AM';
+                          case 3: return 'Lunch 11:30AM';
+                          case 4: return 'Lunch 12:00PM';
+                          case 5: return 'Lunch 12:30PM';
+                          case 6: return 'Dinner 5:30PM';
+                          case 7: return 'Dinner 6:00PM';
+                          case 8: return 'Dinner 6:30PM';
+                          case 9: return 'Dinner 7:00PM';
+                          case 10: return 'Dinner 7:30PM';
+                          case 11: return 'Dinner 8:00PM';
+                          case 12: return 'Dinner 8:30PM';
+                          default: return 'Lunch 10:30AM';
+                        }
+                      })()}
                       </TableCell>
                       <TableCell>1B King Road, North Sydney, NSW 2060 </TableCell>
                       <TableCell>

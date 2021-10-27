@@ -99,6 +99,7 @@ export function ListOrdersPage() {
                   <TableRow className={classes.thead}>
                     <TableCell>Invoice No</TableCell>
                     <TableCell>Date</TableCell>
+                    <TableCell>Time</TableCell>
                     <TableCell> .</TableCell>
                   </TableRow>
                 </TableHead>
@@ -107,6 +108,25 @@ export function ListOrdersPage() {
                     <TableRow className={classes.row} key={order?.id}>
                       <TableCell> #I00{order?.id}</TableCell>
                       <TableCell>{(new Date(order?.dateEpoch)).toLocaleDateString()}</TableCell>
+                      <TableCell>{(() => {
+                        switch (order?.timeSlotId) {
+                          case 1: return 'Lunch 10:30AM';
+                          case 2: return 'Lunch 11:00AM';
+                          case 3: return 'Lunch 11:30AM';
+                          case 4: return 'Lunch 12:00PM';
+                          case 5: return 'Lunch 12:30PM';
+                          case 6: return 'Dinner 5:30PM';
+                          case 7: return 'Dinner 6:00PM';
+                          case 8: return 'Dinner 6:30PM';
+                          case 9: return 'Dinner 7:00PM';
+                          case 10: return 'Dinner 7:30PM';
+                          case 11: return 'Dinner 8:00PM';
+                          case 12: return 'Dinner 8:30PM';
+                          default: return 'Lunch 10:30AM';
+                        }
+                      })()}
+                      </TableCell>
+
                       <TableCell>
                         <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={buildPath(`invoice/${order.id}`)}>View</Button>
                       </TableCell>

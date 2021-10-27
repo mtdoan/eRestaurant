@@ -68,6 +68,7 @@ export const Invoice = React.forwardRef(({ id }, ref) => {
   }
   console.log("total  =", total);
 
+  let count = 1;
   return (
     <PageWrapper ref={ref}>
       <RowDiv style={{ flexDirection: "column" }}>
@@ -136,7 +137,7 @@ export const Invoice = React.forwardRef(({ id }, ref) => {
               return (
                 <tr key={cartItem.id} >
                     <td>
-                      {cartItem.id}
+                      {count++}
                     </td>
                     <td>
                       {cartItem.dish.name} 

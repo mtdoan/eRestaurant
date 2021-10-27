@@ -165,7 +165,7 @@ export function OrderedPage() {
                   <RowDiv>
                     <SmallColDiv />
                     <ColDiv >
-                      <div>Booking number: #00A{booking?.id}</div>
+                      <div>Booking number: #B00{booking?.id}</div>
                       <div>Date: {(new Date(booking?.dateEpoch)).toLocaleDateString()}</div>
                       <div>Time: {(() => {
                           switch (booking?.timeSlotId) {

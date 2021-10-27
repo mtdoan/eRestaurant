@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import {addDishToCart, removeDishFromCart } from '../utils/client';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import {toast} from 'react-toastify';
 
 const CartItemInfo = styled.div`
   width: 80%;
@@ -95,7 +96,11 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
   }
 
   const confirmOrderHandler = () => {
-    history.push("./order/details");
+    if (total != 0) {
+      history.push("./order/details");
+    } else {
+      toast.error("Please choose your meal!", {autoClose: 3000});
+    }
   };
 
   return (

@@ -77,6 +77,18 @@ export const deleteItemFromCartHandler = (req, res) => {
 };
 
 
+export const resetCartHandler = (req, res) => {
+  let userId = req.session.userid;
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].user.id == userId) {
+      cartItems.splice(i, cartItems.length);
+      res.sendStatus(200);
+      return;
+    }
+  }
+  res.sendStatus(200);
+};
+
 // functions
 const getUserFromId = (userId) => {
   for (let i = 0; i < users.length; i++) {

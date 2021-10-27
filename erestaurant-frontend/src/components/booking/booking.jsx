@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import Select from 'react-select'
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import { submitBooking } from '../utils/client';
+import { submitBooking, checkExistingBooking, resetCart } from '../utils/client';
+import { toast } from 'react-toastify';
 
 const SubmitButton = styled.button`
   padding: 0.8rem 2rem;
@@ -62,6 +63,7 @@ const DateContainer = styled.div`
 `;
 
 export function Booking(props) {
+  const [cart, setCart] = useState({ cartItems: [] });
   const [restaurantId, setRestaurantId] = useState(-1);
   const [patronNumber, setPatronNumber] = useState(-1);
   const [startDate, setStartDate] = useState(null);
@@ -74,14 +76,26 @@ export function Booking(props) {
   }
 
   const submitBookingHandler = () => {
-    submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+    checkExistingBooking(-1, startDate.getTime(), time, (data) => {
+      if (data.existing) {
+        submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+      } else {
+        toast.error("You've made a reservation at this time!", {autoClose: 3000});
+      }
+    });
   };
+
+  useEffect(() => {
+    resetCart((cartItems) => {
+      setCart({ cartItems })
+    });
+  }, []);
 
   console.log("setLocation = ", restaurantId);
   console.log("setPatronNumber = ", patronNumber);
   console.log("setStartDate = ", startDate?.getTime());
   console.log("setTime = ", time);
-
+  let date = new Date();
   return (
     <BookingContainer>
       <RowContainer>
@@ -136,7 +150,7 @@ export function Booking(props) {
                   setStartDate(date);
                 }
                 }
-                minDate={new Date()}
+                minDate={new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1))}
                 placeholderText="Choose date"
                 dateFormat="dd/MM/yyyy"
               />

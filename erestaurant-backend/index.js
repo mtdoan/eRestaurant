@@ -9,6 +9,7 @@ import {
   getCartItemsByUserIdHandler,
   addItemToCartHandler,
   deleteItemFromCartHandler,
+  resetCartHandler
 } from "./dish_apis.js";
 
 import {
@@ -18,7 +19,9 @@ import {
   getItemsFromBookingHander,
   editBookingHander,
   listUserBookingHander,
-  listUserOrderHander
+  listUserOrderHander,
+  checkExistingOrderHandler,
+  checkExistingBookingHandler
 } from "./booking_apis.js";
 
 import {
@@ -52,7 +55,7 @@ app.use(session({
   secret: 'secretkey',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 6000000 }
 }));
 
 // Logout APIs
@@ -79,6 +82,9 @@ app.post("/cartItems/add/:dishId", addItemToCartHandler); //add item to cart
 
 app.post("/cartItems/del/:dishId", deleteItemFromCartHandler); //delete item from cart
 
+app.get("/resetCart", resetCartHandler); //reset Cart items
+
+
 // Booking APIs 
 app.get("/order/list", listUserOrderHander); //list all orders of current user
 
@@ -93,6 +99,11 @@ app.post("/booking", createNewBookingHander); //submit a booking form
 app.get("/booking/cart/:bookingId", getItemsFromBookingHander); //get items from booking
 
 app.post("/booking/edit/:bookingId", editBookingHander); //get items from booking
+
+app.post("/check/order", checkExistingOrderHandler); //check Existing Order
+
+app.post("/check/booking", checkExistingBookingHandler); //check Existing Booking
+
 
 // Staff APIs 
 app.get("/staff/list", listStaff); // list all Staff 

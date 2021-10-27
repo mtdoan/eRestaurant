@@ -3,7 +3,10 @@ import { cartItems } from "./data/cartItems.js"
 
 export const createNewBookingHander = (req, res) => {
   let userId = req.session.userid;
-  let bookingId = bookings[bookings.length - 1].id + 1;
+  let bookingId = 1;
+  if (bookings.length != 0) {
+    bookingId = bookings[bookings.length - 1].id + 1;
+  }
 
   let cart = [];
   for (let i = 0; i < cartItems.length; i++) {
@@ -92,6 +95,46 @@ export const listUserOrderHander = (req, res) => {
   res.send(orderList);
 };
 
+export const checkExistingOrderHandler = (req, res) => {
+  let userId = req.session.userid;
+  for (let i = 0; i < bookings.length; i++) {
+    if (bookings[i].userId == userId) {
+      console.log("have booking with userId");
+      console.log("bookings[i].dateEpoch=", bookings[i].dateEpoch);
+      console.log("req.body.dateEpoch=", req.body.dateEpoch);
+
+      console.log("bookings[i].timeSlotId=", bookings[i].timeSlotId);
+      console.log("req.body.timeSlotId=", req.body.timeSlotId);
+
+      if (bookings[i].dateEpoch == req.body.dateEpoch && bookings[i].timeSlotId == req.body.timeSlotId) {
+        console.log("have the same booking");
+        res.send({"existing": false});
+        return;
+      }
+    }
+  }
+  res.send({"existing": true});
+};
+
+export const checkExistingBookingHandler = (req, res) => {
+  let userId = req.session.userid;
+  for (let i = 0; i < bookings.length; i++) {
+    if (bookings[i].userId == userId && bookings[i].id != req.body.bookingId) {
+      console.log("have booking with userId");
+      console.log("bookings[i].dateEpoch=", bookings[i].dateEpoch);
+      console.log("req.body.dateEpoch=", req.body.dateEpoch);
+      console.log("bookings[i].timeSlotId=", bookings[i].timeSlotId);
+      console.log("req.body.timeSlotId=", req.body.timeSlotId);
+
+      if (bookings[i].dateEpoch == req.body.dateEpoch && bookings[i].timeSlotId == req.body.timeSlotId) {
+        console.log("have the same booking");
+        res.send({"existing": false});
+        return;
+      }
+    }
+  }
+  res.send({"existing": true});
+};
 //functions
 export const getBookingFromBookingId = (bookingId) => {
   for (let i = 0; i < bookings.length; i++) {
