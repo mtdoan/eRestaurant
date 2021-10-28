@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { buildPath } from "../../Paths";
 import { Table, TableHead, TableCell, TableRow, TableBody, Button, makeStyles } from '@material-ui/core'
 import { listUserOrder } from "../../components/utils/client";
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
+import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer, Heading, SubmitButton } from "../../components/commonStyle/commonStyle";
 
 const useStyles = makeStyles({
   table: {
@@ -27,55 +25,10 @@ const useStyles = makeStyles({
   }
 })
 
-const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const InnerPageContainer = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 100vh;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TopSectionContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: url(${TopSectionBackgroundImg}) no-repeat;
-  background-position: 0px 0px;
-  background-size: cover;
-  @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-`;
-
-const TopSectionInnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  //margin-top: 20px;
-  background-color: white;
-`;
-
-const BackgroundFilter = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(234, 125, 125, 0.8);
-  display: flex;
-  flex-direction: column;
-`;
-
 export function ListOrdersPage() {
-  const [data, setData] = useState({ allOrders: [] });
+  const history = useHistory();
   const classes = useStyles();
+  const [data, setData] = useState({ allOrders: [] });
 
   useEffect(() => {
     listUserOrder((allOrders) => setData({ allOrders: allOrders }));
@@ -87,6 +40,10 @@ export function ListOrdersPage() {
     return "No post!";
   }
 
+  const returnAccountPage = () => {
+    history.push("/eRestaurant/customeraccount")
+  }
+
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -94,46 +51,56 @@ export function ListOrdersPage() {
           <NavbarLoggedIn useTransparent />
           <TopSectionInnerContainer>
             <InnerPageContainer>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow className={classes.thead}>
-                    <TableCell>Invoice No</TableCell>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Time</TableCell>
-                    <TableCell> .</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.allOrders.map((order) => (
-                    <TableRow className={classes.row} key={order?.id}>
-                      <TableCell> #I00{order?.id}</TableCell>
-                      <TableCell>{(new Date(order?.dateEpoch)).toLocaleDateString()}</TableCell>
-                      <TableCell>{(() => {
-                        switch (order?.timeSlotId) {
-                          case 1: return 'Lunch 10:30AM';
-                          case 2: return 'Lunch 11:00AM';
-                          case 3: return 'Lunch 11:30AM';
-                          case 4: return 'Lunch 12:00PM';
-                          case 5: return 'Lunch 12:30PM';
-                          case 6: return 'Dinner 5:30PM';
-                          case 7: return 'Dinner 6:00PM';
-                          case 8: return 'Dinner 6:30PM';
-                          case 9: return 'Dinner 7:00PM';
-                          case 10: return 'Dinner 7:30PM';
-                          case 11: return 'Dinner 8:00PM';
-                          case 12: return 'Dinner 8:30PM';
-                          default: return 'Lunch 10:30AM';
-                        }
-                      })()}
-                      </TableCell>
+              <p/>
+              <Heading style={{ marginBottom: "-30px" }}>Invoice list</Heading>
+              {
+                data.allOrders.length == 0 ?
+                  <h3>You have no invoices.</h3>
+                  : <>
+                    <Table className={classes.table}>
+                      <TableHead>
+                        <TableRow className={classes.thead}>
+                          <TableCell>Invoice Number</TableCell>
+                          <TableCell>Date</TableCell>
+                          <TableCell>Time</TableCell>
+                          <TableCell> .</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {data.allOrders.map((order) => (
+                          <TableRow className={classes.row} key={order?.id}>
+                            <TableCell> #I00{order?.id}</TableCell>
+                            <TableCell>{(new Date(order?.dateEpoch)).toLocaleDateString()}</TableCell>
+                            <TableCell>{(() => {
+                              switch (order?.timeSlotId) {
+                                case 1: return 'Lunch 10:30AM';
+                                case 2: return 'Lunch 11:00AM';
+                                case 3: return 'Lunch 11:30AM';
+                                case 4: return 'Lunch 12:00PM';
+                                case 5: return 'Lunch 12:30PM';
+                                case 6: return 'Dinner 5:30PM';
+                                case 7: return 'Dinner 6:00PM';
+                                case 8: return 'Dinner 6:30PM';
+                                case 9: return 'Dinner 7:00PM';
+                                case 10: return 'Dinner 7:30PM';
+                                case 11: return 'Dinner 8:00PM';
+                                case 12: return 'Dinner 8:30PM';
+                                default: return 'Lunch 10:30AM';
+                              }
+                            })()}
+                            </TableCell>
 
-                      <TableCell>
-                        <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={buildPath(`invoice/${order.id}`)}>View</Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                            <TableCell>
+                              <Button color="primary" variant="contained" style={{ marginRight: 10 }} component={Link} to={buildPath(`invoice/${order.id}`)}>View</Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </>
+              }
+              <SubmitButton type="button" onClick={returnAccountPage}>Return Account Page</SubmitButton>
+
             </InnerPageContainer>
           </TopSectionInnerContainer>
         </BackgroundFilter>

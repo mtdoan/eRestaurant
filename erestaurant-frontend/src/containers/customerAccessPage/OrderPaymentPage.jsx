@@ -1,80 +1,61 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { deviceSize } from "../../components/responsive";
 import { NavbarLoggedIn } from "../../components/navbar";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Container, Row, Col } from 'react-grid';
 import { Marginer } from "../../components/marginer";
 import { useHistory, useParams } from 'react-router-dom';
+import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, Heading, SubmitButton,
+  RowContainer } from "../../components/commonStyle/commonStyle";
+import { FormGroup, FormControl, InputLabel, makeStyles } from '@material-ui/core';
 
-export function OrderPaymentPage() {
-  const PageWrapper = styled.div`
+// const Input = styled.input`
+//   padding: 5px;
+//   border-bottom: 1px solid black;
+//   border-top: 1px solid black;
+//   border-left: 1px solid black;
+//   border-right: 1px solid black;
+//   height: 10x;
+//   width: 350px;
+//   `;
+
+const InnerPageContainer = styled.div`
   width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
 `;
 
-const TopSectionContainer = styled.div`
+const BookingContainer = styled.div`
+  display: block;
+  justify-content: space-between;
   width: 100%;
-  height: 100vh;
-  background: url(${TopSectionBackgroundImg}) no-repeat;
-  background-position: 0px 0px;
-  background-size: cover;
-  @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
 `;
 
-const TopSectionInnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
+const SmallContainer = styled.div`
+  align-items: center;
   justify-content: center;
-  //margin-top: 20px;
-  background-color: white;
-`;
-
-const BackgroundFilter = styled.div`
+  ${'' /* margin: 10px; */}
   width: 100%;
-  height: 100%;
-  background-color: rgba(234, 125, 125, 0.8);
-  display: flex;
-  flex-direction: column;
 `;
 
-const SubmitButton = styled.button`
-  padding: 10px;
-  width: 220px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all, 240ms ease-in-out;
-  background: rgba(205, 2, 36, 0.9); 
-  &:focus {outline: none;}
-  &:hover { background: #fff; color: rgba(205, 2, 36, 0.9);}
+const InnerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${'' /* margin: 10px; */}
+  width: 100%;
 `;
 
 const Input = styled.input`
   padding: 5px;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  height: 10x;
-  width: 350px;
-  `;
+  border: 1px solid black;
+  height: 20x;
+  width: 100%;
+`;
 
-  const InnerPageContainer = styled.div`
-    width: 70%;
-    min-height: 70vh;
-    flex-direction: column;
-    background: #ffffff;
-  `;
+export function OrderPaymentPage() {
+
+
 
   const history = useHistory();
   const { bookingId } = useParams();
@@ -94,35 +75,89 @@ const Input = styled.input`
     <PageWrapper>
       <TopSectionContainer>
         <BackgroundFilter>
-            <NavbarLoggedIn useTransparent/>
-            <TopSectionInnerContainer>
-              <InnerPageContainer>
-              <Marginer direction="vertical" margin="2em"/> 
-              <h1>Card Details</h1>
-                    <Container>
-                        <Row>
-                            <Col sm>    
-                              <p>Card Holder Name:</p>
-                              <Input placeholder="Name*" />
-                              <Marginer direction="vertical" margin="2em"/> 
-                              <p>Card CCV:</p> 
-                              <Input placeholder="Card CCV*" />
-                            </Col>  
-                            <Col sm>    
-                              <p>Card Number:</p>
-                              <Input placeholder="Card Number*" />
-                              <Marginer direction="vertical" margin="2em"/> 
-                              <p>Card Expiry Date:</p> 
-                              <Input placeholder="Date (e.g DD/MM/YYYY)*" />
-                            </Col>
-                        </Row>
-                    </Container>
-                    <Marginer direction="vertical" margin="4em"/> 
-                    <SubmitButton onClick={submitPaymentHandler}>Confirm Payment</SubmitButton>
-                </InnerPageContainer>
-            </TopSectionInnerContainer>
+          <NavbarLoggedIn useTransparent />
+          <TopSectionInnerContainer>
+            <InnerPageContainer>
+              <BookingContainer>
+                <RowContainer>
+                  <Heading>Select your order details</Heading>
+                </RowContainer>
+
+                <RowContainer>
+                  <InnerContainer>
+                    <SmallContainer >
+                      <FormControl style={{ width: "50%" }}>
+                        <h3>Card Holder Name</h3>
+                        <Input placeholder="Name*" />
+                      </FormControl>
+                    </SmallContainer>
+                  </InnerContainer>
+                  <InnerContainer>
+                    <SmallContainer >
+                    <FormControl style={{ width: "50%" }}>
+                        <h3>Card Number</h3>
+                        <Input placeholder="Card Number*" />
+                      </FormControl>
+                    </SmallContainer>
+                  </InnerContainer>
+                </RowContainer>
+
+                <Marginer direction="vertical" margin="4em" />
+
+                <RowContainer>
+                  <InnerContainer>
+                    <SmallContainer >
+                      <FormControl style={{ width: "50%" }}>
+                        <h3>Card CCV</h3>
+                        <Input placeholder="Card CCV*" />
+                      </FormControl>
+                    </SmallContainer>
+                  </InnerContainer>
+                  <InnerContainer>
+                    <SmallContainer >
+                    <FormControl style={{ width: "50%" }}>
+                        <h3>Card Expiry Date</h3>
+                        <Input placeholder="MM/YYYY**" />
+                      </FormControl>
+                    </SmallContainer>
+                  </InnerContainer>
+                </RowContainer>
+
+              </BookingContainer>
+
+              <Marginer direction="vertical" margin="4em" />
+              <SubmitButton onClick={submitPaymentHandler}>Confirm Payment</SubmitButton>
+
+            </InnerPageContainer>
+          </TopSectionInnerContainer>
         </BackgroundFilter>
       </TopSectionContainer>
     </PageWrapper>
+
+
   );
 }
+
+
+<Container>
+  <Row>
+    <Col sm>
+      <h3>Card Holder Name:</h3>
+      <Input placeholder="Name*" />
+      <Marginer direction="vertical" margin="2em" />
+      {/* <h3>Card CCV:</h3>
+                    <Input placeholder="Card CCV*" /> */}
+      <FormControl >
+        <InputLabel htmlFor="my-input">Card CCV</InputLabel>
+        <Input placeholder="Card CCV*" />
+      </FormControl>
+    </Col>
+    <Col sm>
+      <h3>Card Number:</h3>
+      <Input placeholder="Card Number*" />
+      <Marginer direction="vertical" margin="2em" />
+      <h3>Card Expiry Date:</h3>
+      <Input placeholder="MM/YYYY*" />
+    </Col>
+  </Row>
+</Container>

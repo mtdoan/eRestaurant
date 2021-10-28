@@ -10,6 +10,7 @@ import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material
 import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Marginer } from "../../components/marginer";
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles({
   container: {
@@ -98,6 +99,7 @@ function SignUpForm() {
     try {
       submitSignUpForm(email, firstName, lastName, phoneNumber, password, callback);
     } catch (error) {
+      toast.error("This email has been registered!", {autoClose: 3000});
     }
   }
 

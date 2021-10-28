@@ -1,77 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import styled from "styled-components";
-import Select from 'react-select'
 import { useHistory, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
 import { editBooking, getBookingFromBookingId, checkExistingBooking } from '../utils/client';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
+import { SubmitButton, RowContainer, InnerContainer, SmallContainer, DateContainer } from "../../components/commonStyle/commonStyle";
 
-const customStyles = {
-  placeholder: (defaultStyles) => {
-    return {
-        ...defaultStyles,
-        color: '#000',
-    }
-  }
-};
-
-const SubmitButton = styled.button`
-  padding: 0.8rem 2rem;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 2rem;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all, 240ms ease-in-out;
-  background: rgba(205, 2, 36, 0.9); 
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    background: #ffd6d6;
-    color: rgba(205, 2, 36, 0.9);
-  }
-`;
-
-const BookingContainer = styled.div`
+export const BookingContainer = styled.div`
   display: block;
   justify-content: space-between;
   width: 100%;
 `;
 
-const RowContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 100%;
-`;
+const customStyles = {
+  placeholder: (defaultStyles) => {
+    return {
+      ...defaultStyles,
+      color: '#000',
+    }
+  }
+};
 
-const InnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-
-const SmallContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-const DateContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-export function EditBooking(props) {
+export function EditBooking() {
   const history = useHistory();
 
   const [booking, setBooking] = useState({
@@ -100,7 +53,7 @@ export function EditBooking(props) {
       if (data.existing) {
         editBooking(bookingId, booking.restaurantId, booking.numberOfPatrons, booking.dateEpoch, booking.timeSlotId, callback);
       } else {
-        toast.error("You've made a reservation at this time!", {autoClose: 3000});
+        toast.error("You've made a reservation at this time!", { autoClose: 3000 });
       }
     });
   };
@@ -115,22 +68,22 @@ export function EditBooking(props) {
       <RowContainer>
         <InnerContainer>
           <SmallContainer id="choose-location">
-            <p>Restaurant location</p>
+            <h3>Restaurant location</h3>
             <Select
               styles={customStyles}
               options={[
                 { value: 1, label: "North Sydney" },
               ]}
-              placeholder= "North Sydney"
+              placeholder="North Sydney"
               onChange={(event) => {
-                setBooking({...booking, restaurantId: event.value});
+                setBooking({ ...booking, restaurantId: event.value });
               }}
             />
           </SmallContainer>
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
-            <p>Number of patrons</p>
+            <h3>Number of patrons</h3>
             <Select
               styles={customStyles}
               options={[
@@ -156,7 +109,7 @@ export function EditBooking(props) {
                 }
               })()}
               onChange={(event) => {
-                setBooking({...booking, numberOfPatrons: event.value});
+                setBooking({ ...booking, numberOfPatrons: event.value });
               }}
             />
           </SmallContainer>
@@ -166,10 +119,10 @@ export function EditBooking(props) {
         <InnerContainer>
           <SmallContainer id="choose-date">
             <DateContainer>
-              <p>Date</p>
+              <h3>Date</h3>
               <DatePicker
                 onChange={(date) => {
-                  setBooking({...booking, dateEpoch: date.getTime()});
+                  setBooking({ ...booking, dateEpoch: date.getTime() });
                 }
                 }
                 minDate={new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1))}
@@ -182,10 +135,9 @@ export function EditBooking(props) {
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
-            <p>Time</p>
+            <h3>Time</h3>
             <Select
               styles={customStyles}
-
               options={[
                 { value: 1, label: 'Lunch 10:30AM' },
                 { value: 2, label: 'Lunch 11:00AM' },
@@ -217,7 +169,7 @@ export function EditBooking(props) {
                 }
               })()}
               onChange={(event) => {
-                setBooking({...booking, timeSlotId: event.value});
+                setBooking({ ...booking, timeSlotId: event.value });
               }}
             />
           </SmallContainer>

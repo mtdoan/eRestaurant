@@ -115,7 +115,7 @@ export function InvoicePage() {
 
   const history = useHistory();
 
-  const accountpage = () => {
+  const returnAccountPage = () => {
     history.push("/eRestaurant/customeraccount")
   }
 
@@ -133,9 +133,9 @@ export function InvoicePage() {
                 <InvoiceContainer>
                   <Invoice className="print-preview" ref={componentRef} id={orderId}/>
                 </InvoiceContainer>
-                <button onClick={handlePrint} style={{ width: "160px" }}>Print this out!</button>
+                <SubmitButton onClick={handlePrint} style={{ width: "160px" }}>Print this out!</SubmitButton>
                 <Marginer direction="vertical" margin="2em"/> 
-                <SubmitButton onClick={accountpage}>Return to Account Page</SubmitButton>
+                <SubmitButton onClick={returnAccountPage}>Return Account Page</SubmitButton>
                 <Marginer direction="vertical" margin="2em"/> 
               </FormContainer>
             </InnerPageContainer>

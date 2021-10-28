@@ -165,7 +165,7 @@ export function OrderedPage() {
                   <RowDiv>
                     <SmallColDiv />
                     <ColDiv >
-                      <div>Booking number: #B00{booking?.id}</div>
+                      <div>Order number: #I00{booking?.id}</div>
                       <div>Date: {(new Date(booking?.dateEpoch)).toLocaleDateString()}</div>
                       <div>Time: {(() => {
                           switch (booking?.timeSlotId) {
@@ -190,7 +190,7 @@ export function OrderedPage() {
                   </RowDiv>
                   <Invoice className="print-preview" ref={componentRef} id={bookingId}/>
                 </InvoiceContainer>
-                <button onClick={handlePrint} style={{ width: "160px" }}>Print this out!</button>
+                <SubmitButton onClick={handlePrint} style={{ width: "160px" }}> Print this out!</SubmitButton>
                 <Marginer direction="vertical" margin="2em"/> 
                 <SubmitButton onClick={accountpage}>Return to Account Page</SubmitButton>
                 <Marginer direction="vertical" margin="2em"/> 

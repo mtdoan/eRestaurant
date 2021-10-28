@@ -29,7 +29,7 @@ const CartContainer = styled.div`
   border: 1px solid red;
   width: 40%;
   height: 700px;
-  margin: 0 0 1rem 1rem;
+  margin: 0 1rem 1rem 1rem;
 
 `;
 

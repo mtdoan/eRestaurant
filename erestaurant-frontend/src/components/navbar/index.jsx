@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
 import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
 import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -43,17 +42,6 @@ const HomeMenuContainer = styled.div`
   border-radius: 4px;
 `;
 
-const LoggedInMenuContainer = styled.div`
-  height: 50px;
-  width: 600px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  padding: 4px;
-  background: rgba(205, 2, 36, 0.9);
-  border-radius: 4px;
-`;
 
 const MenuLoginRegisterContainer = styled.div`
   height: 40px;
@@ -99,17 +87,17 @@ const SeperatorLoginRegisterContainer = styled.div`
 `;
 
 export function Navbar(props) {
-  const history = useHistory();
-
   const { useTransparent } = props;
   const menuMarginSize = 60;
   const accessibilityMarginSize = 20;
   const [isUser, setIsUser] = useState(false);
 
   const checkUser = () => {
-    getUser((user) => {
-      setIsUser(user != null)
-    });
+    getUser(
+      (user) => {
+        setIsUser(user != null)
+      }
+    );
   }
 
   useEffect(() => {
@@ -117,9 +105,7 @@ export function Navbar(props) {
   }, []);
 
   const logoutHandler = () => {
-    logout();
-    setIsUser(false);
-    history.push("/eRestaurant/");
+    logout(() => setIsUser(false));
   }
 
   return (
@@ -153,7 +139,7 @@ export function Navbar(props) {
         : <AccessibilityContainer id="rightAccessibilityBar">
           <div style={{ marginLeft: "auto" }} />
           <AnchorLink >
-            <span onClick={logoutHandler}>Logout</span>  
+            <span onClick={logoutHandler}>Logout</span>
           </AnchorLink>
         </AccessibilityContainer>
       }

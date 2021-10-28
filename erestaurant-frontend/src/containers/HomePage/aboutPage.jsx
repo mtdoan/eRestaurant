@@ -1,7 +1,6 @@
-import { React, useState, useEffect } from "react";
-import { Navbar, NavbarLoggedIn } from "../../components/navbar";
+import { React } from "react";
+import { Navbar } from "../../components/navbar";
 import styled from "styled-components";
-import { deviceSize } from "../../components/responsive";
 import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Fade } from "react-slideshow-image";
 import 'react-slideshow-image/dist/styles.css'
@@ -10,57 +9,11 @@ import slideImg2 from "../../images/slideImg2.jpeg";
 import slideImg3 from "../../images/slideImg3.jpeg";
 import slideImg4 from "../../images/slideImg4.jpeg";
 import slideImg5 from "../../images/slideImg5.jpeg";
-import { getUser } from "../../components/utils/client";
-
-const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TopSectionContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: url(${TopSectionBackgroundImg}) no-repeat;
-  background-position: 0px 0px;
-  background-size: cover;
-  @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-`;
-
-const TopSectionInnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: white;
-`;
-
-const BackgroundFilter = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(234, 125, 125, 0.8);
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-`;
-
-const InnerPageContainer = styled.div`
-  // width: 70%;
-  // min-height: 70vh;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-`;
+import {
+  PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer, Heading
+} from "../../components/commonStyle/commonStyle";
 
 const HeaderContainer = styled.div`
-  // width: 70%;
-  // min-height: 70vh;
-  // flex-direction: column;
   width: 100%;
   height: 50%;
   background: url(${TopSectionBackgroundImg}) no-repeat;
@@ -69,10 +22,8 @@ const HeaderContainer = styled.div`
 
 const ContentContainer = styled.div`
   width: 85%;
-  // min-height: 70vh;
   flex-direction: column;
   margin: 0 auto;
-  //border: 2px solid black;
   padding-bottom: 30px;
 `;
 
@@ -80,9 +31,7 @@ const InnerContentContainer = styled.div`
   width: 100%;
   display:flex;
   flex-direction: row;
-  // align-items: center;
-  justify-content:space-between;
-  //border: 2px solid black;
+  justify-content: space-between;
 `;
 
 const TextContainer = styled.div`
@@ -90,13 +39,11 @@ const TextContainer = styled.div`
   height: 100%;
   padding: 15px;
   text-align:justify;
-  // border: 2px solid black;
 `;
 
 const SlidesContainer = styled.div`
   width: 45%;
   height: 100%;
-  //border: 2px solid black;
 `;
 
 const FadeSlides = () => {
@@ -142,32 +89,16 @@ const FadeSlides = () => {
 };
 
 export function AboutPage() {
-  const [isUser, setIsUser] = useState(false);
-
-  const checkUser = () => {
-    getUser((user) => {
-      setIsUser(user != null)
-    });
-  }
-
-  useEffect(() => {
-    checkUser();
-  }, []);
-
   return (
     <PageWrapper>
       <TopSectionContainer>
         <BackgroundFilter>
-          {
-            !isUser
-            ? <Navbar useTransparent />
-            : <NavbarLoggedIn useTransparent />
-          }
+          <Navbar useTransparent />
           <TopSectionInnerContainer>
             <InnerPageContainer>
               <HeaderContainer></HeaderContainer>
               <ContentContainer>
-                <h1 style={{ margin: "10px 8px"}}>About Us</h1>
+                <Heading>About Us</Heading>
                 <InnerContentContainer>
                   <TextContainer>
                     <p style={{ fontSize: "0.9rem" }}>
@@ -180,9 +111,8 @@ export function AboutPage() {
                       Located in North Sydney, the Bistrot d'André welcomes you from Monday to Sunday, all year round.
                     </p>
                   </TextContainer>
-
                   <SlidesContainer>
-                    <FadeSlides></FadeSlides>
+                    <FadeSlides/>
                   </SlidesContainer>
                 </InnerContentContainer>
               </ContentContainer>

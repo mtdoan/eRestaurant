@@ -1,64 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
-import { useReactToPrint } from 'react-to-print';
 import { getBookingFromBookingId } from "../../components/utils/client";
 import { Marginer } from "../../components/marginer";
 import { useHistory } from "react-router";
-import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer, Heading, ReturnButton } from "../../components/commonStyle/commonStyle";
-
-const FormContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-`;
-
-const BookingContainer = styled.div`
-  width: 800px;
-  flex-direction: column;
-  text-align: left;
-  margin: auto;
-  padding: 1rem 0;  
-  display: flex;
-`;
-
-const ColDiv = styled.div`
-  width: 30%;
-  padding: 0;
-  margin: "auto"
-  display: inline-block;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
-  font-size: 16px;
-`;
-
-const SmallColDiv = styled.div`
-  width: 7%;
-  padding: 0;
-  margin: "auto"
-  display: inline-block;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
-`;
-
-const RowDiv = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 1rem;
-  display: flex;
-  text-align: left;
-  font-size: 16px;
-`;
+import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer, Heading, SubmitButton,
+  FormContainer, BookingContainer, ColDiv, SmallColDiv, RowDiv } from "../../components/commonStyle/commonStyle";
   
 export function BookedPage() {
-  const componentRef = useRef();
   const [booking, setBooking] = useState();
   const { bookingId } = useParams();
 
@@ -120,7 +69,7 @@ export function BookedPage() {
                     </ColDiv>
                   </RowDiv>
                 </BookingContainer>
-                <ReturnButton onClick={accountpage}>Return to Account Page</ReturnButton>
+                <SubmitButton onClick={accountpage}>Return to Account Page</SubmitButton>
               </FormContainer>
             </InnerPageContainer>
           </TopSectionInnerContainer>

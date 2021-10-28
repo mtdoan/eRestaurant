@@ -12,6 +12,7 @@ export const ProductWrapper = styled.div`
  `;
 
 export const ProductScrollDiv = styled.div`
+  margin-left: 1rem;
   overflow-y: scroll;
   border:1px solid red;
   width: 60%;
@@ -43,14 +44,6 @@ export const ProductCard = styled.div`
   padding: 10px;
   background-color: #fff;
 `;
-
-// export const ProductImg = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   max-height: 300px;
-//   display: block;
-//   object-fit: cover;
-// `;
 
 export const CardBox = styled.img`
   margin: 15px 0;

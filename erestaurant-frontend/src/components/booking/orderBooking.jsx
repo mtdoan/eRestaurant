@@ -6,63 +6,16 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
 import { submitBooking, checkExistingOrder } from '../utils/client';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
+import { RowContainer, InnerContainer, SmallContainer, DateContainer, SubmitButton, Heading } from "../../components/commonStyle/commonStyle";
 
-const SubmitButton = styled.button`
-  padding: 0.8rem 2rem;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 2rem;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all, 240ms ease-in-out;
-  background: rgba(205, 2, 36, 0.9); 
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    background: #ffd6d6;
-    color: rgba(205, 2, 36, 0.9);
-  }
-`;
-
-const BookingContainer = styled.div`
+export const BookingContainer = styled.div`
   display: block;
   justify-content: space-between;
   width: 100%;
 `;
 
-const RowContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 100%;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-
-const SmallContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-const DateContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-export function OrderBooking(props) {
+export function OrderBooking() {
   const [restaurantId, setRestaurantId] = useState(-1);
   const [patronNumber, setPatronNumber] = useState(-1);
   const [startDate, setStartDate] = useState(null);
@@ -79,10 +32,10 @@ export function OrderBooking(props) {
         if (restaurantId != -1 && startDate != null && time != -1) {
           submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
         } else {
-          toast.error("Please select restaurant location, date and time!", {autoClose: 3000});
+          toast.error("Please select restaurant location, date and time!", { autoClose: 3000 });
         }
       } else {
-        toast.error("You've made an order at this time!", {autoClose: 3000});
+        toast.error("You've made an order at this time!", { autoClose: 3000 });
       }
     });
   };
@@ -92,13 +45,13 @@ export function OrderBooking(props) {
   return (
     <BookingContainer>
       <RowContainer>
-        <h1>Select your order details</h1>
+        <Heading>Select your order details</Heading>
       </RowContainer>
 
       <RowContainer>
         <InnerContainer>
           <SmallContainer id="choose-location">
-            <p>Restaurant location</p>
+            <h3>Restaurant location</h3>
             <Select
               options={[
                 { value: 1, label: 'North Sydney' }
@@ -112,7 +65,7 @@ export function OrderBooking(props) {
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
-            <p>Time</p>
+            <h3>Time</h3>
             <Select
               options={[
                 { value: 1, label: 'Lunch 10:30AM' },
@@ -140,13 +93,10 @@ export function OrderBooking(props) {
         <InnerContainer>
           <SmallContainer id="choose-date">
             <DateContainer>
-              <p>Date</p>
+              <h3>Date</h3>
               <DatePicker
                 selected={startDate}
-                onChange={(date) => {
-                  setStartDate(date);
-                }
-                }
+                onChange={(date) => setStartDate(date)}
                 minDate={new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1))}
                 placeholderText="Choose date"
                 dateFormat="dd/MM/yyyy"

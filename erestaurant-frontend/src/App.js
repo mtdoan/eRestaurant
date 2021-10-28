@@ -1,11 +1,9 @@
 import "./App.css";
-import { HomePage } from "./containers/HomePage";
+import { HomePage } from "./containers/HomePage/homePage";
 import { buildPath, HomePagePath } from "./Paths";
 import { LoginPage } from "./containers/customerAccessPage/customerLoginPage";
-import { LoggedInPage } from "./containers/customerAccessPage/loggedInPage";
 import { StaffLoginPage } from "./containers/StaffAccessPage/staffLoginPage";
 import { RegisterPage } from "./containers/customerAccessPage/registerPage";
-import { RegisteredPage } from "./containers/customerAccessPage/registeredPage";
 import { OrderPage } from "./containers/customerAccessPage/orderPage";
 import { ListStaffPage } from "./containers/StaffAccessPage/listStaffPage";
 import { EditStaff } from "./containers/StaffAccessPage/editStaff";
@@ -34,10 +32,8 @@ function App() {
         <Switch>
           <Route path={HomePagePath} exact component={HomePage} />
           <Route path={buildPath("signin")} exact component={LoginPage} />
-          <Route path={buildPath("signedin")} exact component={LoggedInPage} />
           <Route path={buildPath("staff/signin")} exact component={StaffLoginPage} />
           <Route path={buildPath("register")} exact component={RegisterPage} />
-          <Route path={buildPath("registered")} exact component={RegisteredPage} />
           <Route path={buildPath("order")} exact component={OrderPage} />
           <Route path={buildPath("ordered/:bookingId")} exact component={OrderedPage} />
           <Route path={buildPath("order/details")} exact component={OrderDetailsPage} />

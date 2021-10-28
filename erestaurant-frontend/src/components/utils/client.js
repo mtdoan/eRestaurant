@@ -12,11 +12,12 @@ const instance = axios.create({
 });
 
 // Logout
-export const logout = () =>{
+export const logout = (callback) =>{
   instance.get(`${hostUrl}/logout`).then(response => {
     if (response.status === 200) {
-      toast.success("You've been logged out");
       localStorage.clear();
+      toast.success("You've been logged out");
+      callback();
     }
   })
 }
@@ -35,6 +36,10 @@ export const submitSignUpForm = (email, firstName, lastName, phoneNumber, passwo
       toast.success("You've been registered susseccfully");
       callback();
     }
+  })
+  .catch(err => { 
+    console.log(err);
+    toast.error("This email has been registered!", {autoClose: 3000});
   });
 };
 
@@ -63,7 +68,7 @@ export const getUser = (callback) => {
   instance.get(`${hostUrl}/myAccount`).then(response => {
     if (response.status === 200) {
       callback(response.data);
-    }
+    } 
   });
 };
 

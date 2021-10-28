@@ -7,62 +7,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
 import { submitBooking, checkExistingBooking, resetCart } from '../utils/client';
 import { toast } from 'react-toastify';
+import { SubmitButton, RowContainer, InnerContainer, SmallContainer, DateContainer, Heading } from "../commonStyle/commonStyle";
 
-const SubmitButton = styled.button`
-  padding: 0.8rem 2rem;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 2rem;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all, 240ms ease-in-out;
-  background: rgba(205, 2, 36, 0.9); 
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    background: #ffd6d6;
-    color: rgba(205, 2, 36, 0.9);
-  }
-`;
-
-const BookingContainer = styled.div`
+export const BookingContainer = styled.div`
   display: block;
   justify-content: space-between;
   width: 100%;
 `;
 
-const RowContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 100%;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-
-const SmallContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-const DateContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-export function Booking(props) {
+export function Booking() {
   const [cart, setCart] = useState({ cartItems: [] });
   const [restaurantId, setRestaurantId] = useState(-1);
   const [patronNumber, setPatronNumber] = useState(-1);
@@ -76,9 +29,13 @@ export function Booking(props) {
   }
 
   const submitBookingHandler = () => {
-    checkExistingBooking(-1, startDate.getTime(), time, (data) => {
+    checkExistingBooking(-1, startDate?.getTime(), time, (data) => {
       if (data.existing) {
-        submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+        if (restaurantId != -1 && patronNumber != 1 &&startDate != null && time != -1) {
+          submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+        } else {
+          toast.error("Please select restaurant location, number of patrons, date and time!", {autoClose: 3000});
+        }
       } else {
         toast.error("You've made a reservation at this time!", {autoClose: 3000});
       }
@@ -99,13 +56,13 @@ export function Booking(props) {
   return (
     <BookingContainer>
       <RowContainer>
-        <h1>Make a Booking!</h1>
+        <Heading>Make a Booking!</Heading>
       </RowContainer>
 
       <RowContainer>
         <InnerContainer>
           <SmallContainer id="choose-location">
-            <p>Restaurant location</p>
+            <h3>Restaurant location</h3>
             <Select
               options={[
                 { value: 1, label: 'North Sydney' }
@@ -119,7 +76,7 @@ export function Booking(props) {
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
-            <p>Number of patrons</p>
+            <h3>Number of patrons</h3>
             <Select
               options={[
                 { value: 1, label: '1' },
@@ -143,7 +100,7 @@ export function Booking(props) {
         <InnerContainer>
           <SmallContainer id="choose-date">
             <DateContainer>
-              <p>Date</p>
+              <h3>Date</h3>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => {
@@ -159,7 +116,7 @@ export function Booking(props) {
         </InnerContainer>
         <InnerContainer>
           <SmallContainer id="number-of-customers">
-            <p>Time</p>
+            <h3>Time</h3>
             <Select
               options={[
                 { value: 1, label: 'Lunch 10:30AM' },
