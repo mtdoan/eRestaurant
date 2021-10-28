@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
 import { NavbarStaff } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { buildPath } from "../../Paths";
 import { Table, TableHead, TableCell, Paper, TableRow, TableBody, Button, makeStyles } from '@material-ui/core'
 import { loadStaff, removeStaffFromList } from "../../components/utils/client";
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer, Heading } from "../../components/commonStyle/commonStyle";
   
     const useStyles = makeStyles({

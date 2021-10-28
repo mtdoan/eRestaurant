@@ -5,10 +5,9 @@ import { NavbarLoggedIn } from "../../components/navbar";
 import { useReactToPrint } from 'react-to-print';
 import { getBookingFromBookingId } from "../../components/utils/client";
 import { Invoice } from '../../components/invoice/invoice';
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Marginer } from "../../components/marginer";
 import { useHistory } from "react-router";
+import { PageWrapper, BackgroundFilter, TopSectionContainer, TopSectionInnerContainer, Heading } from "../../components/commonStyle/commonStyle";
 
 const FormContainer = styled.div`
   width: 100%;
@@ -28,80 +27,39 @@ const InvoiceContainer = styled.div`
   display: flex;
 `;
 
-  const PageWrapper = styled.div`
+const ColDiv = styled.div`
+  width: 30%;
+  padding: 0;
+  margin: "auto"
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  font-size: 16px;
+`;
+
+const SmallColDiv = styled.div`
+  width: 7%;
+  padding: 0;
+  margin: "auto"
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+`;
+
+
+const RowDiv = styled.div`
   width: 100%;
   min-height: 100%;
   padding: 0;
-  margin: 0;
+  margin: 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
+  text-align: left;
+  font-size: 16px;
 `;
 
-  const Heading = styled.h1`
-  color: #000;
-  `;
-
-  const ColDiv = styled.div`
-    width: 30%;
-    padding: 0;
-    margin: "auto"
-    display: inline-block;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-    font-size: 16px;
-  `;
-
-  const SmallColDiv = styled.div`
-    width: 7%;
-    padding: 0;
-    margin: "auto"
-    display: inline-block;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-  `;
-
-
-  const RowDiv = styled.div`
-    width: 100%;
-    min-height: 100%;
-    padding: 0;
-    margin: 1rem;
-    display: flex;
-    text-align: left;
-    font-size: 16px;
-  `;
-  
-  const TopSectionContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    background: url(${TopSectionBackgroundImg}) no-repeat;
-    background-position: 0px 0px;
-    background-size: cover;
-    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-  `;
-
-  const TopSectionInnerContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    //margin-top: 20px;
-    background-color: white;
-  `;
-
-  const BackgroundFilter = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(234, 125, 125, 0.8);
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const InnerPageContainer = styled.div`
+const InnerPageContainer = styled.div`
   width: 70%;
   min-height: 70vh;
   flex-direction: column;
@@ -114,10 +72,10 @@ export function OrderedPage() {
   const [booking, setBooking] = useState();
 
   const { bookingId } = useParams();
-  console.log("bookingId=",bookingId);
+  console.log("bookingId=", bookingId);
 
   const getBookingDetails = (bookingId) => {
-    console.log("getBookingDetails bookingId=",bookingId);
+    console.log("getBookingDetails bookingId=", bookingId);
     getBookingFromBookingId(bookingId, setBooking);
   }
 
@@ -155,45 +113,45 @@ export function OrderedPage() {
     <PageWrapper>
       <TopSectionContainer>
         <BackgroundFilter>
-          <NavbarLoggedIn useTransparent/>
+          <NavbarLoggedIn useTransparent />
           <TopSectionInnerContainer>
             <InnerPageContainer>
               <FormContainer>
-                <Marginer direction="vertical" margin="2em"/> 
+                <Marginer direction="vertical" margin="2em" />
                 <Heading>Your order has been placed successfully.</Heading>
-                <InvoiceContainer>
+                <InvoiceContainer style={{ marginTop: "-40px" }}>
                   <RowDiv>
                     <SmallColDiv />
                     <ColDiv >
                       <div>Order number: #I00{booking?.id}</div>
                       <div>Date: {(new Date(booking?.dateEpoch)).toLocaleDateString()}</div>
                       <div>Time: {(() => {
-                          switch (booking?.timeSlotId) {
-                            case 1:  return 'Lunch 10:30AM';
-                            case 2:  return 'Lunch 11:00AM';
-                            case 3:  return 'Lunch 11:30AM';
-                            case 4:  return 'Lunch 12:00PM';
-                            case 5:  return 'Lunch 12:30PM';
-                            case 6:  return 'Dinner 5:30PM';
-                            case 7:  return 'Dinner 6:00PM';
-                            case 8:  return 'Dinner 6:30PM';
-                            case 9:  return 'Dinner 7:00PM';
-                            case 10: return 'Dinner 7:30PM';
-                            case 11: return 'Dinner 8:00PM';
-                            case 12: return 'Dinner 8:30PM';
-                            default: return 'Lunch 10:30AM';
-                          }
-                        })()}
+                        switch (booking?.timeSlotId) {
+                          case 1: return 'Lunch 10:30AM';
+                          case 2: return 'Lunch 11:00AM';
+                          case 3: return 'Lunch 11:30AM';
+                          case 4: return 'Lunch 12:00PM';
+                          case 5: return 'Lunch 12:30PM';
+                          case 6: return 'Dinner 5:30PM';
+                          case 7: return 'Dinner 6:00PM';
+                          case 8: return 'Dinner 6:30PM';
+                          case 9: return 'Dinner 7:00PM';
+                          case 10: return 'Dinner 7:30PM';
+                          case 11: return 'Dinner 8:00PM';
+                          case 12: return 'Dinner 8:30PM';
+                          default: return 'Lunch 10:30AM';
+                        }
+                      })()}
                       </div>
                       <div>Location: 1B King Road, North Sydney, NSW 2060 </div>
                     </ColDiv>
                   </RowDiv>
-                  <Invoice className="print-preview" ref={componentRef} id={bookingId}/>
+                  <Invoice className="print-preview" ref={componentRef} id={bookingId} />
                 </InvoiceContainer>
                 <SubmitButton onClick={handlePrint} style={{ width: "160px" }}> Print this out!</SubmitButton>
-                <Marginer direction="vertical" margin="2em"/> 
+                <Marginer direction="vertical" margin="2em" />
                 <SubmitButton onClick={accountpage}>Return to Account Page</SubmitButton>
-                <Marginer direction="vertical" margin="2em"/> 
+                <Marginer direction="vertical" margin="2em" />
               </FormContainer>
             </InnerPageContainer>
           </TopSectionInnerContainer>

@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
 import { editBooking, getBookingFromBookingId, checkExistingBooking } from '../utils/client';
 import { toast } from 'react-toastify';
-import { SubmitButton, RowContainer, InnerContainer, SmallContainer, DateContainer } from "../../components/commonStyle/commonStyle";
+import { SubmitButton, RowContainer, InnerContainer, SmallContainer, DateContainer, Heading } from "../../components/commonStyle/commonStyle";
 
 export const BookingContainer = styled.div`
   display: block;
@@ -62,7 +62,7 @@ export function EditBooking() {
   return (
     <BookingContainer>
       <RowContainer>
-        <h1>Edit Your Booking</h1>
+        <Heading>Edit Your Booking</Heading>
       </RowContainer>
 
       <RowContainer>

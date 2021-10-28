@@ -26,7 +26,6 @@ const SmallColDiv = styled.div`
   text-align: left;
 `;
 
-
 export const Invoice = React.forwardRef(({ id }, ref) => {
   const [booking, setBooking] = useState();
   const [items, setItems] = useState({ cartItems: [] });

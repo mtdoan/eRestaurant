@@ -39,7 +39,7 @@ export function BookedPage() {
               <FormContainer>
                 <Marginer direction="vertical" margin="2em"/> 
                 <Heading>Thank you, your booking has been placed successfully.</Heading>
-                <BookingContainer>
+                <BookingContainer style={{ marginTop: "-40px" }}>
                   <RowDiv>
                     <SmallColDiv />
                     <ColDiv >

@@ -4,10 +4,9 @@ import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
 import { useReactToPrint } from 'react-to-print';
 import { Invoice } from "../../components/invoice/invoice.jsx";
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Marginer } from "../../components/marginer";
 import { useHistory } from "react-router";
+import { PageWrapper, BackgroundFilter, TopSectionContainer, TopSectionInnerContainer, Heading } from "../../components/commonStyle/commonStyle";
 
 const FormContainer = styled.div`
   width: 100%;
@@ -27,78 +26,27 @@ const InvoiceContainer = styled.div`
   display: flex;
 `;
 
-  const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
+const SubmitButton = styled.button`
+  padding: 10px;
+  width: 220px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {outline: none;}
+  &:hover { background: #fff; color: rgba(205, 2, 36, 0.9);}
 `;
 
-  const Heading = styled.h1`
-  color: #000;
-  `;
-
-  const ColDiv = styled.div`
-    width: 30%;
-    padding: 0;
-    margin: "auto"
-    display: inline-block;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-    font-size: 16px;
-  `;
-  
-  const TopSectionContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    background: url(${TopSectionBackgroundImg}) no-repeat;
-    background-position: 0px 0px;
-    background-size: cover;
-    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-  `;
-
-  const TopSectionInnerContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    //margin-top: 20px;
-    background-color: white;
-  `;
-
-  const BackgroundFilter = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(234, 125, 125, 0.8);
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const InnerPageContainer = styled.div`
-    width: 70%;
-    min-height: 70vh;
-    flex-direction: column;
-    background: #ffffff;
-  `;
-  const SubmitButton = styled.button`
-    padding: 10px;
-    width: 220px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all, 240ms ease-in-out;
-    background: rgba(205, 2, 36, 0.9); 
-    &:focus {outline: none;}
-    &:hover { background: #fff; color: rgba(205, 2, 36, 0.9);}
-  `;
+const InnerPageContainer = styled.div`
+  width: 70%;
+  min-height: 70vh;
+  flex-direction: column;
+  background: #ffffff;
+`;
 
 export function InvoicePage() {
   const componentRef = useRef();
@@ -129,9 +77,8 @@ export function InvoicePage() {
           <TopSectionInnerContainer>
             <InnerPageContainer>
               <FormContainer>
-                <Marginer direction="vertical" margin="2em"/> 
-                <InvoiceContainer>
-                  <Invoice className="print-preview" ref={componentRef} id={orderId}/>
+                <InvoiceContainer style={{ marginTop: "-20px" }}>
+                  <Invoice className="print-preview" ref={componentRef} id={orderId} />
                 </InvoiceContainer>
                 <SubmitButton onClick={handlePrint} style={{ width: "160px" }}>Print this out!</SubmitButton>
                 <Marginer direction="vertical" margin="2em"/> 

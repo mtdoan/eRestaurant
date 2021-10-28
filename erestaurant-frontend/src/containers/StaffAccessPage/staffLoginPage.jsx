@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  MutedLink,
-} from "../../components/accountBox/common"
 import { NavbarLoginRegister } from "../../components/navbar";
 import { submitStaffSignInForm } from "../../components/utils/client";
 import { useHistory } from "react-router-dom";
@@ -10,8 +7,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material-ui/core';
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
+import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer,
+  Heading } from "../../components/commonStyle/commonStyle";
 
 const useStyles = makeStyles({
   container: {
@@ -44,19 +41,12 @@ const SubmitButton = styled.button`
   }
 `;
 
-const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
+const InnerPageContainer = styled.div`
+  width: 70%;
+  min-height: 70vh;
   flex-direction: column;
-  align-items: center;
-  background: #fff;
+  background: #ffffff;
 `;
-
-const Heading = styled.h1`
-  color: #000;
-  `;
 
 function StaffSignInForm() {
   const [email, setEmail] = useState("");
@@ -136,39 +126,6 @@ function StaffSignInForm() {
 }
 
 export function StaffLoginPage() {
-  const TopSectionContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    background: url(${TopSectionBackgroundImg}) no-repeat;
-    background-position: 0px 0px;
-    background-size: cover;
-    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-  `;
-
-  const TopSectionInnerContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    //margin-top: 20px;
-    background-color: white;
-  `;
-
-  const BackgroundFilter = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(234, 125, 125, 0.8);
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const InnerPageContainer = styled.div`
-    width: 70%;
-    min-height: 70vh;
-    flex-direction: column;
-    background: #ffffff;
-  `;
-
   return (
     <PageWrapper>
       <TopSectionContainer>

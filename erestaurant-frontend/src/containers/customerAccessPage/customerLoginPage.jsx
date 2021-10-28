@@ -9,14 +9,36 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material-ui/core';
 import { Marginer } from "../../components/marginer";
-import { PageWrapper, BackgroundFilter, TopSectionContainer, TopSectionInnerContainer, Heading, SubmitButton, AnchorLink } from "../../components/commonStyle/commonStyle";
+import { PageWrapper, BackgroundFilter, TopSectionContainer, TopSectionInnerContainer, Heading, AnchorLink } from "../../components/commonStyle/commonStyle";
 
 const InnerPageContainer = styled.div`
-    width: 70%;
-    min-height: 70vh;
-    flex-direction: column;
-    background: #ffffff;
-  `;
+  width: 70%;
+  min-height: 70vh;
+  flex-direction: column;
+  background: #ffffff;
+`;
+
+
+const SubmitButton = styled.button`
+  padding: 10px;
+  width: 150px;
+  margin: auto;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
+  }
+`;
 
 const useStyles = makeStyles({
   container: {

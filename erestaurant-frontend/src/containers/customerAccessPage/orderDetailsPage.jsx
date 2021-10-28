@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
 import { OrderBooking } from "../../components/booking/orderBooking";
 import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer } from "../../components/commonStyle/commonStyle";

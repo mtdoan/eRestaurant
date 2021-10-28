@@ -1,5 +1,4 @@
 import express from "express";
-// import mysql from "mysql";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 
@@ -51,7 +50,7 @@ app.use(cookieParser());
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 
-app.use(session({ 		
+app.use(session({
   secret: 'secretkey',
   resave: false,
   saveUninitialized: true,

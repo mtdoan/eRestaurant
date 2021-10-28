@@ -7,10 +7,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { FormGroup, FormControl, InputLabel, Input, makeStyles } from '@material-ui/core';
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import { Marginer } from "../../components/marginer";
 import { toast } from 'react-toastify';
+import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer,
+  Heading } from "../../components/commonStyle/commonStyle";
 
 const useStyles = makeStyles({
   container: {
@@ -21,16 +21,6 @@ const useStyles = makeStyles({
     }
   }
 })
-
-const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-`;
 
 const SubmitButton = styled.button`
   padding: 10px;
@@ -53,8 +43,11 @@ const SubmitButton = styled.button`
   }
 `;
 
-const Heading = styled.h1`
-  color: #000;
+const InnerPageContainer = styled.div`
+  width: 70%;
+  min-height: 70vh;
+  flex-direction: column;
+  background: #ffffff;
 `;
 
 function SignUpForm() {
@@ -228,46 +221,12 @@ function SignUpForm() {
         {errors.confirmPassword?.message}
       </div>
 
-      <SubmitButton type="button" onClick={handleSubmit(onSubmit)}>Signup</SubmitButton>
+      <SubmitButton type="button" onClick={handleSubmit(onSubmit)}>SIGNUP</SubmitButton>
     </FormGroup>
   )
 }
 
 export function RegisterPage() {
-
-  const TopSectionContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    background: url(${TopSectionBackgroundImg}) no-repeat;
-    background-position: 0px 0px;
-    background-size: cover;
-    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-  `;
-
-  const TopSectionInnerContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    //margin-top: 20px;
-    background-color: white;
-  `;
-
-  const BackgroundFilter = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(234, 125, 125, 0.8);
-    display: flex;
-    flex-direction: column;
-  `;
-
-  const InnerPageContainer = styled.div`
-    width: 70%;
-    min-height: 70vh;
-    flex-direction: column;
-    background: #ffffff;
-  `;
-
   return (
     <PageWrapper>
       <TopSectionContainer>
