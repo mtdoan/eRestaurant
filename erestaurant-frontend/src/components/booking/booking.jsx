@@ -7,9 +7,29 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
 import { submitBooking, checkExistingBooking, resetCart } from '../utils/client';
 import { toast } from 'react-toastify';
-import { SubmitButton, RowContainer, InnerContainer, SmallContainer, DateContainer, Heading } from "../commonStyle/commonStyle";
+import { RowContainer, InnerContainer, SmallContainer, DateContainer, Heading } from "../commonStyle/commonStyle";
 
-export const BookingContainer = styled.div`
+const SubmitButton = styled.button`
+  padding: 0.8rem 2rem;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
+  }
+`;
+
+const BookingContainer = styled.div`
   display: block;
   justify-content: space-between;
   width: 100%;

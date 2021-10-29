@@ -223,6 +223,46 @@ export function NavbarStaff(props) {
   );
 }
 
+export function NavbarLoggedInStaff(props) {
+  const { useTransparent } = props;
+  const menuMarginSize = 60;
+  const accessibilityMarginSize = 20;
+
+  const [userName, setUserName] = useState("customer");
+
+  const getUserName = () => {
+    getUser((user) => setUserName(user.firstName));
+  }
+
+  useEffect(() => {
+    console.log('Call CART api at Booking page');
+    getUserName();
+  }, []);
+
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+          <AccessibilityContainer>
+            <BrandLogo/>
+          </AccessibilityContainer>
+            <HomeMenuContainer>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={HomePagePath}>Home</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <Seperator />
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+              <AnchorLink to={buildPath("about")}>About</AnchorLink>
+              <Marginer direction="horizontal" margin={menuMarginSize} />
+            </HomeMenuContainer>
+          <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
+          </AccessibilityContainer>
+    </NavbarContainer>
+  );
+}
+
 export function NavbarLoginRegister(props) {
   const { useTransparent } = props;
   const marginSize = 20;

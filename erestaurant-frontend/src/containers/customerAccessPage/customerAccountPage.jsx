@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { buildPath } from "../../Paths";
 import { NavbarLoggedIn } from "../../components/navbar";
 import { useHistory } from 'react-router-dom';
 import { Button } from "@material-ui/core";
@@ -22,6 +21,7 @@ const SideNavContainer = styled.div`
 `;
 
 const OperationsButton = styled.button`
+  padding: 10px;
   font-size: 40px;
   color: white;
   cursor: pointer;
@@ -79,6 +79,27 @@ export function CustomerAccountPage() {
     history.push("/eRestaurant/booking/list")
   }
 
+const SubmitButton = styled.button`
+  padding: 10px;
+  margin: auto;
+  width: 150px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgba(205, 2, 36, 0.9); 
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #fff;
+    color: rgba(205, 2, 36, 0.9);
+  }
+`;
+
   return (
     <PageWrapper>
       <TopSectionContainer>
@@ -86,6 +107,7 @@ export function CustomerAccountPage() {
             <NavbarLoggedIn useTransparent/>
             <TopSectionInnerContainer>
               <InnerPageContainer>
+                <Marginer direction="vertical" margin="2em"/> 
                 <Title>Welcome to Le Bistrot D'André</Title>
                 <SideNavContainer>
                   <Button style={{ fontSize: "0.9rem" }} onClick={goToDetails}>Account Details</Button>
