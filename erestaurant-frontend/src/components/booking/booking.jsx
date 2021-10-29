@@ -5,8 +5,9 @@ import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import './react-datepicker.css';
-import {submitBooking, createBookingId } from '../utils/client';
-
+import { submitBooking, checkExistingBooking, resetCart } from '../utils/client';
+import { toast } from 'react-toastify';
+import { RowContainer, InnerContainer, SmallContainer, DateContainer, Heading } from "../commonStyle/commonStyle";
 
 const SubmitButton = styled.button`
   padding: 0.8rem 2rem;
@@ -34,79 +35,58 @@ const BookingContainer = styled.div`
   width: 100%;
 `;
 
-const RowContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 100%;
-`;
-
-const InnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-
-const SmallContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  width: 50%;
-`;
-const DateContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
-
-export function Booking(props) {
+export function Booking() {
+  const [cart, setCart] = useState({ cartItems: [] });
   const [restaurantId, setRestaurantId] = useState(-1);
   const [patronNumber, setPatronNumber] = useState(-1);
   const [startDate, setStartDate] = useState(null);
   const [time, setTime] = useState(-1);
   const history = useHistory();
 
-  const [bookingId, setBookingId] = useState(-1);
-  const getBookingId = () => {
-    createBookingId(setBookingId);
-  }
 
-  const callback = () => {
-    console.log("Call back");
-    history.push(`/eRestaurant/booked/${bookingId}`);
+  const callback = (data) => {
+    history.push(`/eRestaurant/booked/${data.bookingId}`);
   }
 
   const submitBookingHandler = () => {
-    submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+    checkExistingBooking(-1, startDate?.getTime(), time, (data) => {
+      if (data.existing) {
+        if (restaurantId != -1 && patronNumber != 1 &&startDate != null && time != -1) {
+          submitBooking(restaurantId, patronNumber, startDate.getTime(), time, callback);
+        } else {
+          toast.error("Please select restaurant location, number of patrons, date and time!", {autoClose: 3000});
+        }
+      } else {
+        toast.error("You've made a reservation at this time!", {autoClose: 3000});
+      }
+    });
   };
+
+  useEffect(() => {
+    resetCart((cartItems) => {
+      setCart({ cartItems })
+    });
+  }, []);
 
   console.log("setLocation = ", restaurantId);
   console.log("setPatronNumber = ", patronNumber);
   console.log("setStartDate = ", startDate?.getTime());
   console.log("setTime = ", time);
-
-  useEffect(() => {
-    getBookingId();
-}, []);
-  
+  let date = new Date();
   return (
     <BookingContainer>
       <RowContainer>
-        <h1>Make a Booking!</h1>
+        <Heading>Make a Booking!</Heading>
       </RowContainer>
 
       <RowContainer>
         <InnerContainer>
-          <SmallContainer id="choose-location">  
-            <p>Restaurant location</p>
-            <Select 
+          <SmallContainer id="choose-location">
+            <h3>Restaurant location</h3>
+            <Select
               options={[
-                { value: 1, label: 'Haymarket' },
-                { value: 2, label: 'Mascot' }
-              ]} 
+                { value: 1, label: 'North Sydney' }
+              ]}
               placeholder="Location"
               onChange={(event) => {
                 setRestaurantId(event.value);
@@ -115,9 +95,9 @@ export function Booking(props) {
           </SmallContainer>
         </InnerContainer>
         <InnerContainer>
-          <SmallContainer id="number-of-customers">  
-            <p>Number of patrons</p>
-            <Select 
+          <SmallContainer id="number-of-customers">
+            <h3>Number of patrons</h3>
+            <Select
               options={[
                 { value: 1, label: '1' },
                 { value: 2, label: '2' },
@@ -127,7 +107,7 @@ export function Booking(props) {
                 { value: 6, label: '6' },
                 { value: 7, label: '7' },
                 { value: 8, label: '8' }
-              ]} 
+              ]}
               placeholder="Number of patrons"
               onChange={(event) => {
                 setPatronNumber(event.value);
@@ -138,26 +118,26 @@ export function Booking(props) {
       </RowContainer>
       <RowContainer>
         <InnerContainer>
-          <SmallContainer id="choose-date">  
+          <SmallContainer id="choose-date">
             <DateContainer>
-              <p>Date</p>
+              <h3>Date</h3>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => {
                   setStartDate(date);
-                  }
                 }
-                minDate={new Date()}
+                }
+                minDate={new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1))}
                 placeholderText="Choose date"
-                dateFormat= "dd/MM/yyyy"
+                dateFormat="dd/MM/yyyy"
               />
             </DateContainer>
           </SmallContainer>
         </InnerContainer>
         <InnerContainer>
-          <SmallContainer id="number-of-customers">  
-            <p>Time</p>
-            <Select 
+          <SmallContainer id="number-of-customers">
+            <h3>Time</h3>
+            <Select
               options={[
                 { value: 1, label: 'Lunch 10:30AM' },
                 { value: 2, label: 'Lunch 11:00AM' },
@@ -171,7 +151,7 @@ export function Booking(props) {
                 { value: 10, label: 'Dinner 7:30PM' },
                 { value: 11, label: 'Dinner 8:00PM' },
                 { value: 12, label: 'Dinner 8:30PM' },
-              ]} 
+              ]}
               placeholder="Choose time"
               onChange={(event) => {
                 setTime(event.value);

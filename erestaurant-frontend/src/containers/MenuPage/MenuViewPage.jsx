@@ -1,52 +1,12 @@
 import React from "react";
 import { Navbar } from "../../components/navbar";
 import styled from "styled-components";
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
 import SnailImg from "../../images/snails sized.jpg";
 import DessertImg from "../../images/MilleFeuille sized.jpg";
 import { Tabs, TabLink, TabContent } from "react-tabs-redux";
-
-
-const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TopSectionContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: url(${TopSectionBackgroundImg}) no-repeat;
-  background-position: 0px 0px;
-  background-size: cover;
-  @media screen and (max-width: ${deviceSize.mobile}px) {
-    height: 700px;
-    background-position: 0px 0px;
-  }
-`;
-
-const BackgroundFilter = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: rgba(234, 125, 125, 0.8);
-  display: flex;
-  flex-direction: column;
-`;
-
-const TopSectionInnerContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 10px;
-  background-color: white;
-`;
+import { PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer
+  } from "../../components/commonStyle/commonStyle";
+import { ProductTitle } from '../../components/products/ProductsElements';  
 
 const MenuViewContainer = styled.div`
   width: 100%;
@@ -74,7 +34,6 @@ const MenuItemContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center ; 
-//   border: 1px solid black;
   margin: 20px;
 `;
 
@@ -87,283 +46,270 @@ const ItemContainer = styled.div`
 `;
 
 const ItemDescription = styled.p`
+  font-size: 0.9rem;
   font-style: italic;
 `;
 
 const styles = {
-    tabs: {
-      width: '1000px',
-      display: 'block',
-    //   marginRight: '30px',
-    //   verticalAlign: 'top',
-      justifyContent: 'center',
-    //   border: '1px solid black',
-    },
-    links: {
-      margin: 0,
-      padding: 0,
-    },
-    tabLink: {
-      height: '40px',
-      width: '200px',
-      lineHeight: '30px',
-      padding: '0 15px',
-      cursor: 'pointer',
-      border: 'none',
-      borderBottom: '2px solid transparent',
-      display: 'inline-block',
-      justifyContent: 'center',
-      backgroundColor: 'white',
-      fontSize: '18px',
-      fontFamily:'Arial',
-    },
-    activeLinkStyle: {
-      borderBottom: '2px solid red',
-      fontWeight: 'bold',
-    },
-    visibleTabStyle: {
-      display: 'inline-block',
-    },
-    content: {
+  tabs: {
+    width: '1000px',
+    display: 'block',
     justifyContent: 'center',
+  },
+  links: {
+    margin: 0,
+    padding: 0,
+  },
+  tabLink: {
+    height: '40px',
+    width: '200px',
+    lineHeight: '30px',
+    padding: '0 15px',
+    cursor: 'pointer',
+    border: 'none',
+    borderBottom: '2px solid transparent',
+    display: 'inline-block',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    fontSize: '1rem',
+    fontFamily: 'Arial',
+  },
+  activeLinkStyle: {
+    borderBottom: '2px solid red',
+    fontWeight: 'bold',
+  },
+  visibleTabStyle: {
+    display: 'inline-block',
+  },
+  content: {
+    justifyContent: 'center',
+  },
+};
 
-    },
-  };
-
-
-  export function MenuViewPage() {
-  const accessibilityMarginSize = 50;
-
+export function MenuViewPage() {
   return (
     <PageWrapper>
-    <TopSectionContainer>
+      <TopSectionContainer>
         <BackgroundFilter>
-            <Navbar useTransparent />
-            <TopSectionInnerContainer>
-                <MenuViewContainer>
-                <MenuContainer>
-                    <img src={SnailImg} alt="snails" style={{width: 250,height: 550, marginRight: 20,marginLeft: 20}}/>
-            
-                {/* <h1>Menu</h1> */}
+          <Navbar useTransparent />
+          <TopSectionInnerContainer>
+            <MenuViewContainer>
+              <MenuContainer>
+                <img src={SnailImg} alt="snails" style={{ width: 250, height: 550, marginRight: 20, marginLeft: 20 }} />
                 <Tabs
                   activeLinkStyle={styles.activeLinkStyle}
                   visibleTabStyle={styles.visibleTabStyle}
                   style={styles.tabs}>
-                  <TabLink to="entree" style={styles.tabLink} >ENTREES</TabLink>
-                  <TabLink to="main" style={styles.tabLink}>MAINS</TabLink>
-                  <TabLink to="desserts" style={styles.tabLink} >DESSERTS</TabLink>
-                  <TabLink to="drinks" style={styles.tabLink}>DRINKS</TabLink>
+                  <TabLink to="entree" style={styles.tabLink} >Entree</TabLink>
+                  <TabLink to="main" style={styles.tabLink}>Main</TabLink>
+                  <TabLink to="desserts" style={styles.tabLink} >Dessert</TabLink>
+                  <TabLink to="drinks" style={styles.tabLink}>Drink</TabLink>
 
-                  <TabContent for="entree" style={styles.content}> 
-                    {/* Placeholder */}
+                  <TabContent for="entree" style={styles.content}>
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Baguette & Salted Butter $5</p>
+                      <ItemContainer>
+                        <ProductTitle>Baguette & Salted Butter $5</ProductTitle>
                         <ItemDescription>Gluten free available</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Pate De Foie $10</p>
+                      <ItemContainer>
+                        <ProductTitle>Pate De Foie $10</ProductTitle>
                         <ItemDescription>Chicken Liver pate, served with baguette</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>French Onion Soup $12</p>
+                      <ItemContainer>
+                        <ProductTitle>French Onion Soup $12</ProductTitle>
                         <ItemDescription>Topped with Cheesy croutons</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Croqe Monsieur $14</p>
+                      <ItemContainer>
+                        <ProductTitle>Croqe Monsieur $14</ProductTitle>
                         <ItemDescription>Ham and cheese toastie with fried egg on top</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Beef Tartare $20</p>
+                      <ItemContainer>
+                        <ProductTitle>Beef Tartare $20</ProductTitle>
                         <ItemDescription>Raw Beef with Mayonaise and served with Grilled Bread </ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
-                    
-                    </TabContent>
+
+                  </TabContent>
                   <TabContent for="main" style={styles.content}>
-                      {/* Placeholder */}
-                      <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Bacon and Leek Quiche $24</p>
+                    <MenuItemContainer>
+                      <ItemContainer>
+                        <ProductTitle>Bacon and Leek Quiche $24</ProductTitle>
                         <ItemDescription>Bacon, Leek, egg in a creamy quiche sauce.</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Tomato Quiche $21</p>
+                      <ItemContainer>
+                        <ProductTitle>Tomato Quiche $21</ProductTitle>
                         <ItemDescription>Delicious fresh tomatoes</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Mushroom Risotto $28</p>
+                      <ItemContainer>
+                        <ProductTitle>Mushroom Risotto $28</ProductTitle>
                         <ItemDescription>Mushroom Mix with Herbs and Parmesan Cheese</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Salmon en Papillote $37</p>
+                      <ItemContainer>
+                        <ProductTitle>Salmon en Papillote $37</ProductTitle>
                         <ItemDescription>Fresh Salmon Fillet with Green Beans and Carrots</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Chicken Confit $34</p>
+                      <ItemContainer>
+                        <ProductTitle>Chicken Confit $34</ProductTitle>
                         <ItemDescription>Free Range Chicken with Tomato Puree</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Steak Frites $34</p>
+                      <ItemContainer>
+                        <ProductTitle>Steak Frites $34</ProductTitle>
                         <ItemDescription>Rib Eye Steak with Herb Fries</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Beef Bourguignon $39</p>
+                      <ItemContainer>
+                        <ProductTitle>Beef Bourguignon $39</ProductTitle>
                         <ItemDescription>Beef burgundy, slow cooked in Red Wine with Mushrooms, Carrots and Thyme</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Bouillabaisse $40</p>
+                      <ItemContainer>
+                        <ProductTitle>Bouillabaisse $40</ProductTitle>
                         <ItemDescription>Mussels, Crab, Mullet, Bass, Barramundi in a slow cooked Tomato Sauce</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                   </TabContent>
                   <TabContent for="desserts" style={styles.content}>
-                    {/* Placeholder */}
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Vanilla créme brûlèe $14</p>
+                      <ItemContainer>
+                        <ProductTitle>Vanilla créme brûlèe $14</ProductTitle>
                         <ItemDescription>Vanilla créme brûlèe, Pistachio crumble , Mandarin sorbet</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Profiteroles $12</p>
+                      <ItemContainer>
+                        <ProductTitle>Profiteroles $12</ProductTitle>
                         <ItemDescription>Vanilla ice cream, Salted caramel, Hot chocolate sauce</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Ice Cream $10</p>
+                      <ItemContainer>
+                        <ProductTitle>Ice Cream $10</ProductTitle>
                         <ItemDescription>Vanilla, Chocolate, Strawberry</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Raspberry souffle $15</p>
+                      <ItemContainer>
+                        <ProductTitle>Raspberry souffle $15</ProductTitle>
                         <ItemDescription>With Pistachio Ice Cream</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Mille-feuille of Banana $16</p>
+                      <ItemContainer>
+                        <ProductTitle>Mille-feuille of Banana $16</ProductTitle>
                         <ItemDescription>Hazelnut and Creme Chantilly, Mango, Passionfruit Sorbet</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                   </TabContent>
-                  <TabContent for="drinks" style={styles.content}> 
-                    {/* Placeholder */}
+                  <TabContent for="drinks" style={styles.content}>
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Fresh Juice $8</p>
+                      <ItemContainer>
+                        <ProductTitle>Fresh Juice $8</ProductTitle>
                         <ItemDescription>Apple, Orange, Pineapple</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Soft Drinks $8</p>
+                      <ItemContainer>
+                        <ProductTitle>Soft Drinks $8</ProductTitle>
                         <ItemDescription>Coke, Diet Coke, Sprite, Fanta, Pepsi, Ginger Beer</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Sparkling Water $5</p>
+                      <ItemContainer>
+                        <ProductTitle>Sparkling Water $5</ProductTitle>
                         <ItemDescription>It sure is sparkly</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Le Fraise Spritz $23</p>
+                      <ItemContainer>
+                        <ProductTitle>Le Fraise Spritz $23</ProductTitle>
                         <ItemDescription>Absolut Vodka, Alba Luna Prosecco, Citrus, Strawberry Shrub</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>Paris l' Appel $23</p>
+                      <ItemContainer>
+                        <ProductTitle>Paris l' Appel $23</ProductTitle>
                         <ItemDescription>Beefeater Gin, Navados Sherry, Grapefruit, Violette, Citrus</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>2018 Domaine de Beauvernay 'Terroir de Jullié' Julienas (RED) $27</p>
+                      <ItemContainer>
+                        <ProductTitle>2018 Domaine de Beauvernay 'Terroir de Jullié' Julienas (RED) $27</ProductTitle>
                         <ItemDescription>Bright,supple Gamay with cherries and violets on a smooth, juicy palate.</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>2019 Terre a Terre 'Piccadilly Red' Trousseau Cabernet Franc (RED) $27</p>
+                      <ItemContainer>
+                        <ProductTitle>2019 Terre a Terre 'Piccadilly Red' Trousseau Cabernet Franc (RED) $27</ProductTitle>
                         <ItemDescription>Light and fresh Australian twist on Jura: cherry, pomegranate and spices.</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>2018 Domaine de la Loge ‘Silex’ Pouilly-Fumé – Loire Valley, Fr (WHITE) $28</p>
+                      <ItemContainer>
+                        <ProductTitle>2018 Domaine de la Loge ‘Silex’ Pouilly-Fumé – Loire Valley, Fr (WHITE) $28</ProductTitle>
                         <ItemDescription>Light and fresh Australian twist on Jura: cherry, pomegranate and spices.</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
-                    
+
                     <MenuItemContainer>
-                        <ItemContainer>
-                        <p>2018 Domaine de Belle-vue, Clos des bouquinardieres – Pays Nantais, Fr (WHITE) $37</p>
+                      <ItemContainer>
+                        <ProductTitle>2018 Domaine de Belle-vue, Clos des bouquinardieres – Pays Nantais, Fr (WHITE) $37</ProductTitle>
                         <ItemDescription>Very mineral and vibrant, tastes of wet stone, this is one of the best Muscadet.</ItemDescription>
-                        </ItemContainer>
+                      </ItemContainer>
                     </MenuItemContainer>
 
-                     </TabContent>
+                  </TabContent>
                 </Tabs>
-                <img src={DessertImg} alt="snails" style={{width: 250,height: 550, marginRight: 20,marginLeft: 20}}/>
+                <img src={DessertImg} alt="snails" style={{ width: 250, height: 550, marginRight: 20, marginLeft: 20 }} />
+              </MenuContainer>
 
-                </MenuContainer>
-
-                </MenuViewContainer>
-            </TopSectionInnerContainer>
+            </MenuViewContainer>
+          </TopSectionInnerContainer>
         </BackgroundFilter>
-    </TopSectionContainer>
+      </TopSectionContainer>
     </PageWrapper>
   );
 }

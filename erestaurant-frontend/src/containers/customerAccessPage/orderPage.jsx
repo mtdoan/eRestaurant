@@ -1,47 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavbarLoggedIn } from "../../components/navbar";
-import { Link } from "react-router-dom";
 import CartScrollContainer from "../../components/cart/CartScrollContainer";
 import { ProductScrollContainer } from "../../components/products/ProductScrollContainer";
-import { loadCart, getUser } from "../../components/utils/client";
-import { deviceSize } from "../../components/responsive";
-import TopSectionBackgroundImg from "../../images/TopSectionBackground.jpeg";
-
-const PageWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const InnerPageContainer = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
-  min-height: 100vh;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const MenuTypeContainer = styled.div`
-  height: 40px;
-  display: flex;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  align-items: center;
-  background-color: transparent;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  width: 100%;
-`;
+import { loadCart } from "../../components/utils/client";
+import {
+  PageWrapper, TopSectionContainer, BackgroundFilter, TopSectionInnerContainer, InnerPageContainer,
+  MenuTypeContainer, ContentWrapper
+} from "../../components/commonStyle/commonStyle";
 
 const Tab = styled.button`
   font-size: 20px;
@@ -61,58 +27,27 @@ const Tab = styled.button`
 const ButtonGroup = styled.div`
   display: flex;
 `;
-const types = ['Entree', 'Main', 'Desserts', 'Drinks' ];
+
+const types = ['Entree', 'Main', 'Dessert', 'Drink'];
 
 export function OrderPage() {
   const [cart, setCart] = useState({ cartItems: [] });
   const [active, setActive] = useState(types[0]);
-  const [userName, setUserName] = useState("customer");
 
   const refreshCart = () => {
     loadCart((cartItems) => setCart({ cartItems }));
   };
 
-  const getUserName = () => {
-    getUser((user) => setUserName(user.firstName));
-  }
-
   useEffect(() => {
     console.log('Call CART api');
     refreshCart();
-    getUserName();
   }, []);
-
-  const TopSectionContainer = styled.div`
-    width: 100%;
-    height: 100vh;
-    background: url(${TopSectionBackgroundImg}) no-repeat;
-    background-position: 0px 0px;
-    background-size: cover;
-    @media screen and (max-width: ${deviceSize.mobile}px) {height: 700px; background-position: 0px 0px;}
-  `;
-
-  const TopSectionInnerContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    //margin-top: 20px;
-    background-color: white;
-  `;
-
-  const BackgroundFilter = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(234, 125, 125, 0.8);
-    display: flex;
-    flex-direction: column;
-  `;
 
   return (
     <PageWrapper>
       <TopSectionContainer>
         <BackgroundFilter>
-          <NavbarLoggedIn useTransparent/>
+          <NavbarLoggedIn useTransparent />
           <TopSectionInnerContainer>
             <InnerPageContainer>
               <MenuTypeContainer>
@@ -129,7 +64,7 @@ export function OrderPage() {
                 </ButtonGroup>
               </MenuTypeContainer>
               <ContentWrapper>
-                <ProductScrollContainer onCartChange={refreshCart} type={active}/>
+                <ProductScrollContainer onCartChange={refreshCart} type={active} />
                 <CartScrollContainer cartItems={cart.cartItems} onCartChange={refreshCart} />
               </ContentWrapper>
             </InnerPageContainer>

@@ -1,0 +1,22 @@
+{
+  "name": "erestaurant-backend",
+  "version": "1.0.0",
+  "description": "ses1a group 2",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.13",
+    "react-toastify": "^8.0.3"
+  }
+}

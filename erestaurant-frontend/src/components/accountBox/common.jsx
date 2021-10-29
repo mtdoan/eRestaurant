@@ -73,3 +73,4 @@ export const SubmitButton = styled.button`
     background: #ffdfdb;
   }
 `;
+

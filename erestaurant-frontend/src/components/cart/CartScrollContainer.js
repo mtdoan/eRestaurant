@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import {addDishToCart, removeDishFromCart } from '../utils/client';
 import { useHistory } from "react-router-dom";
-import { Marginer } from '../marginer';
+import {toast} from 'react-toastify';
 
 const CartItemInfo = styled.div`
   width: 80%;
@@ -29,7 +29,7 @@ const CartContainer = styled.div`
   border: 1px solid red;
   width: 40%;
   height: 700px;
-  margin: 0 0 1rem 1rem;
+  margin: 0 1rem 1rem 1rem;
 
 `;
 
@@ -40,7 +40,7 @@ const ItemTitle = styled.h2`
 
 const Button = styled.button`
   height: fit-content;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   border: none;
   outline: none;
   background: rgb(205, 2, 36);
@@ -69,26 +69,11 @@ const ConfirmContainer = styled.div`
 
 `;
 
-const SubmitButton = styled.button`
-  padding: 7px;
-  width: 220px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all, 240ms ease-in-out;
-  background: rgba(205, 2, 36, 0.9); 
-  &:focus {outline: none;}
-  &:hover { background: #fff; color: rgba(205, 2, 36, 0.9);}
-`;
-
 const CartScrollContainer = ({ cartItems, onCartChange }) => {
   const [cart, setCart] = useState({ cartItems: cartItems });
   const history = useHistory();
-  
-  const addToCart = (productId) => {
+
+   const addToCart = (productId) => {
     addDishToCart(productId, onCartChange);
   };
 
@@ -111,7 +96,11 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
   }
 
   const confirmOrderHandler = () => {
-    history.push("./orderpayment");
+    if (total != 0) {
+      history.push("./order/details");
+    } else {
+      toast.error("Please choose your meal!", {autoClose: 3000});
+    }
   };
 
   return (
@@ -131,13 +120,13 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
                 <ItemTitle>
                   {cartItem.dish.name} ${cartItem.dish.price}
                 </ItemTitle>
-                <p>
+                <p style={{ fontSize: "0.8rem"}}>
                   {cartItem.dish.description}
                 </p>
               </CartItemInfo>
               <CartItemButtonContainer>
                 <input type="button" value="-" className="minus" style={{ margin: "0 0 0 40px " }} onClick={deleteHandler} />
-                <p style={{ margin: "0 8px 0 8px " }}>{cartItem.count}</p>
+                <p style={{ margin: "0 8px 0 8px ", fontSize: "0.9rem" }}>{cartItem.count}</p>
                 <input type="button" value="+" className="plus" onClick={addHandler} />
               </CartItemButtonContainer>
             </div>
@@ -145,9 +134,8 @@ const CartScrollContainer = ({ cartItems, onCartChange }) => {
         })}
       </CartScrollDiv>
       <ConfirmContainer>
-        <p style={{ margin: "auto"}}>Total = ${total}</p>
-        <Marginer direction="vertical" margin="1em"/> 
-        <SubmitButton onClick={confirmOrderHandler}>Confirm Order</SubmitButton>
+        <p style={{ margin: "auto", fontSize: "0.9rem"}}>Total ${total}</p>
+        <Button onClick={confirmOrderHandler}>Confirm Order</Button>
       </ConfirmContainer>
     </CartContainer>
   )

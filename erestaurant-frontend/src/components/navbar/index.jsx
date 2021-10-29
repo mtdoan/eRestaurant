@@ -5,10 +5,10 @@ import { Marginer } from "../marginer";
 import { Link } from "react-router-dom";
 import { HomePagePath } from "../../Paths";
 import { buildPath } from "../../Paths";
-import { MenuViewPage } from "../../containers/MenuPage/MenuViewPage";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { getUser } from "../../components/utils/client";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { getUser, getStaffUser } from "../../components/utils/client";
+import { logout } from '../../components/utils/client';
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -30,25 +30,6 @@ const AccessibilityContainer = styled.div`
   margin-right: 1rem;
 `;
 
-
-const CenterContainer = styled.div`
-  height: 100%;
-  width: 60%;
-  display: block;
-  align-items: center;
-`;
-
-const MenuContainer = styled.div`
-  height: 40px;
-  width: 400px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  padding: 4px;
-  border-radius: 4px;
-`;
-
 const HomeMenuContainer = styled.div`
   height: 50px;
   width: 400px;
@@ -60,6 +41,7 @@ const HomeMenuContainer = styled.div`
   background: rgba(205, 2, 36, 0.9);
   border-radius: 4px;
 `;
+
 
 const MenuLoginRegisterContainer = styled.div`
   height: 40px;
@@ -108,34 +90,59 @@ export function Navbar(props) {
   const { useTransparent } = props;
   const menuMarginSize = 60;
   const accessibilityMarginSize = 20;
+  const [isUser, setIsUser] = useState(false);
+
+  const checkUser = () => {
+    getUser(
+      (user) => {
+        setIsUser(user != null)
+      }
+    );
+  }
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const logoutHandler = () => {
+    logout(() => setIsUser(false));
+  }
 
   return (
     <NavbarContainer id={props.id} useTransparent={useTransparent}>
       <AccessibilityContainer>
-      <BrandLogo id="brandLogo"/>
+        <BrandLogo id="brandLogo" />
       </AccessibilityContainer>
-        <HomeMenuContainer>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={HomePagePath}>Home</AnchorLink>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <Seperator />
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <Seperator />
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("about")}>About</AnchorLink>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-        </HomeMenuContainer>
-
-      <AccessibilityContainer id="rightAccessibilityBar">
-        <div style={{ marginLeft: "auto" }} />
-        <AnchorLink to={buildPath("register")}>Register</AnchorLink>
-        <Marginer direction="horizontal" margin={accessibilityMarginSize} />
+      <HomeMenuContainer>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={HomePagePath}>Home</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
         <Seperator />
-        <Marginer direction="horizontal" margin={accessibilityMarginSize} />
-        <AnchorLink to={buildPath("signin")}>Login</AnchorLink>
-      </AccessibilityContainer>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <Seperator />
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={buildPath("about")}>About</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+      </HomeMenuContainer>
+
+      {!isUser
+        ? <AccessibilityContainer id="rightAccessibilityBar">
+          <div style={{ marginLeft: "auto" }} />
+          <AnchorLink to={buildPath("register")}>Register</AnchorLink>
+          <Marginer direction="horizontal" margin={accessibilityMarginSize} />
+          <Seperator />
+          <Marginer direction="horizontal" margin={accessibilityMarginSize} />
+          <AnchorLink to={buildPath("signin")}>Login</AnchorLink>
+        </AccessibilityContainer>
+        : <AccessibilityContainer id="rightAccessibilityBar">
+          <div style={{ marginLeft: "auto" }} />
+          <AnchorLink >
+            <span onClick={logoutHandler}>Logout</span>
+          </AnchorLink>
+        </AccessibilityContainer>
+      }
     </NavbarContainer>
   );
 }
@@ -143,8 +150,6 @@ export function Navbar(props) {
 export function NavbarLoggedIn(props) {
   const { useTransparent } = props;
   const menuMarginSize = 60;
-  const accessibilityMarginSize = 20;
-
   const [userName, setUserName] = useState("customer");
 
   const getUserName = () => {
@@ -152,31 +157,68 @@ export function NavbarLoggedIn(props) {
   }
 
   useEffect(() => {
-    console.log('Call CART api at Booking page');
     getUserName();
   }, []);
 
   return (
     <NavbarContainer useTransparent={useTransparent}>
-          <AccessibilityContainer>
-            <BrandLogo/>
-          </AccessibilityContainer>
-            <HomeMenuContainer>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <AnchorLink to={HomePagePath}>Home</AnchorLink>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <Seperator />
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <Seperator />
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-              <AnchorLink to={buildPath("about")}>About</AnchorLink>
-              <Marginer direction="horizontal" margin={menuMarginSize} />
-            </HomeMenuContainer>
-          <AccessibilityContainer style={{display: 'flex',  justifyContent:'right'}}>
-          <h1 >Hello {userName}!</h1>
-          </AccessibilityContainer>
+      <AccessibilityContainer>
+        <BrandLogo />
+      </AccessibilityContainer>
+      <HomeMenuContainer>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={HomePagePath}>Home</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <Seperator />
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <Seperator />
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={buildPath("about")}>About</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+      </HomeMenuContainer>
+      <AccessibilityContainer style={{ display: 'flex', justifyContent: 'right', marginTop: '18px', fontColor: 'white' }}>
+        <p style={{ color: "#fff", fontSize: "1rem" }}>Hello {userName}!</p>
+      </AccessibilityContainer>
+    </NavbarContainer>
+  );
+}
+
+export function NavbarStaff(props) {
+  const { useTransparent } = props;
+  const menuMarginSize = 60;
+  const [staffName, setStaffName] = useState("staff");
+
+  const getStaffName = () => {
+    getStaffUser((staff) => setStaffName(staff.firstName));
+  }
+
+  useEffect(() => {
+    getStaffName();
+  }, []);
+
+  return (
+    <NavbarContainer useTransparent={useTransparent}>
+      <AccessibilityContainer>
+        <BrandLogo />
+      </AccessibilityContainer>
+      <HomeMenuContainer>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={HomePagePath}>Home</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <Seperator />
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={buildPath("menu")}>Menu</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <Seperator />
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+        <AnchorLink to={buildPath("about")}>About</AnchorLink>
+        <Marginer direction="horizontal" margin={menuMarginSize} />
+      </HomeMenuContainer>
+      <AccessibilityContainer style={{ display: 'flex', justifyContent: 'right', marginTop: '18px', fontColor: 'white' }}>
+        <p style={{ color: "#fff", fontSize: "1rem" }}>Hello {staffName}!</p>
+      </AccessibilityContainer>
     </NavbarContainer>
   );
 }
@@ -246,25 +288,24 @@ export function NavbarLoginRegister(props) {
 
 export function NavbarOrder(props) {
   const { useTransparent } = props;
-  const menuMarginSize = 60;
+  const marginSize = 60;
   const element = <FontAwesomeIcon icon={faShoppingCart} />
 
   return (
     <NavbarContainer useTransparent={useTransparent}>
       <BrandLogo />
-        <HomeMenuContainer>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={HomePagePath}>Home</AnchorLink>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <Seperator />
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("order")}>Order</AnchorLink>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <Seperator />
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-          <AnchorLink to={buildPath("about")}>About</AnchorLink>
-          <Marginer direction="horizontal" margin={menuMarginSize} />
-        </HomeMenuContainer>
+      <MenuLoginRegisterContainer>
+        <AnchorLinkLoginRegisterContainer to={HomePagePath}>Home</AnchorLinkLoginRegisterContainer>
+        <Marginer direction="horizontal" margin={marginSize} />
+        <SeperatorLoginRegisterContainer />
+        <Marginer direction="horizontal" margin={marginSize} />
+        <AnchorLinkLoginRegisterContainer to={buildPath("register")}>Register</AnchorLinkLoginRegisterContainer>
+        <Marginer direction="horizontal" margin={marginSize} />
+        <SeperatorLoginRegisterContainer />
+        <Marginer direction="horizontal" margin={marginSize} />
+        <AnchorLinkLoginRegisterContainer to={buildPath("signin")}>Login</AnchorLinkLoginRegisterContainer>
+        <Marginer direction="horizontal" margin={marginSize} />
+      </MenuLoginRegisterContainer>
 
       <AccessibilityContainer>
         <div style={{ marginLeft: "auto" }} />
