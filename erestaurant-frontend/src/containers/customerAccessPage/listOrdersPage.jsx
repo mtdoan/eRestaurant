@@ -52,7 +52,7 @@ export function ListOrdersPage() {
           <TopSectionInnerContainer>
             <InnerPageContainer>
               <p/>
-              <Heading style={{ marginBottom: "-30px" }}>Invoice list</Heading>
+              <Heading>Invoice list</Heading>
               {
                 data.allOrders.length == 0 ?
                   <h3>You have no invoices.</h3>

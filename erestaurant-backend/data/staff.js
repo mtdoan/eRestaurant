@@ -1,19 +1,9 @@
 export const staff = [
   {
-    "id": 0,
+    "id": 1,
     "firstName": "James",
     "lastName": "Martin",
-    "email": "manager1@admin.com",
-    "password": "admin123",
-    "phoneNumber": "0401123456",
-    "position": "Manager",
-    "restaurantId": 1
-  },
-  {
-    "id": 1,
-    "firstName": "John",
-    "lastName": "Lee",
-    "email": "manager2@admin.com",
+    "email": "manager@admin.com",
     "password": "admin123",
     "phoneNumber": "0401123456",
     "position": "Manager",

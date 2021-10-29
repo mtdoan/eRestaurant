@@ -52,7 +52,7 @@ export function ListBookingsPage() {
           <TopSectionInnerContainer>
             <InnerPageContainer>
               <p />
-              <Heading style={{ marginBottom: "-30px" }}>Booking list</Heading>
+              <Heading>Booking list</Heading>
               {
                 data.allBookings.length == 0 ?
                   <h3>You have no bookings.</h3>

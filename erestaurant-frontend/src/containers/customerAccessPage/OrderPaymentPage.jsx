@@ -64,7 +64,7 @@ export function OrderPaymentPage() {
             <InnerPageContainer>
               <BookingContainer>
                 <RowContainer>
-                  <Heading>Select your order details</Heading>
+                  <Heading>Card details</Heading>
                 </RowContainer>
 
                 <RowContainer>
